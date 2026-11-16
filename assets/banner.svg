@@ -57,7 +57,7 @@
         <!-- Top Left Facet: Odoo Amethyst / Plum #985184 -->
         <path d="M9 7h16l-8 18H5a4 4 0 0 1-4-4V11a4 4 0 0 1 4-4h4Z" fill="#985184"/>
         <!-- Top Right Facet: Sunflower Gold #FBB945 -->
-        <path d="M25 7h16a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H33l-8-18Z" fill="#FBB945"/>
+        <path d="M25 7h20a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H33l-8-18Z" fill="#FBB945"/>
         <!-- Center Diagonal Prism: Emerald Mint #1AD3BB -->
         <path d="M17 25l8-18 16 18-8 18H17Z" fill="#1AD3BB"/>
         <!-- Center Shadow: Deep Slate Petrol #005E7A -->
