@@ -1,6 +1,6 @@
 # MangoTek Financial Suite — Brand Identity Kit (Brandkit)
 
-> **Official Visual Identity, Design Tokens & Design System Guidelines for Odoo 18.0 & 20.0 Applications**  
+> **Official Visual Identity, Design Tokens & Design System Guidelines for Odoo 18.0, 19.0 & 20.0 Applications**  
 > **Maintained by:** [Mango Teknusa Inovasi](https://github.com/Mango-Teknusa-Inovasi) · **Contact:** `billing@ppti.me`  
 > **License:** 100% Free & Open Source under [LGPL-3.0](LICENSE)
 

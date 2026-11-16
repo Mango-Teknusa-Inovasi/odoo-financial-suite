@@ -28,15 +28,15 @@ flowchart TD
 
 ### Functional Gap Matrix
 
-| Functional Domain | Standard Odoo Status | Indonesian Business Localization Requirement | Priority |
+| Functional Domain | Standard Odoo Status | Indonesian Business Localization Requirement | Priority / Status |
 | :--- | :--- | :--- | :---: |
-| **Chart of Accounts & GL** | Complete (`account`) | Standard Indonesian Chart of Accounts (COA). | Low (Standard) |
-| **Invoicing & Purchasing** | Complete (`sale`, `purchase`) | Core document workflows are sufficient. | Low (Standard) |
-| **Withholding Tax & Coretax** | **Limited (VAT only)** | Comprehensive PPh (21/22/23/4(2)/Final MSME), NITKU & Coretax export. | **Critical (Phase 1)** |
-| **Marketplace Reconciliation** | **Unavailable** | Automated Excel settlement parsers for Shopee, TikTok Shop, Tokopedia. | **High (Phase 2)** |
-| **Recipe Costing & HPP** | **Over-engineered (`mrp`)** | Agile, non-SKU portion costing without heavy manufacturing orders. | **High (Phase 3)** |
-| **Legal Document PDF** | **Basic plain signatures** | Auto-overlay transparent company seal over digital signatures. | Medium (Phase 4) |
-| **Financial Health Analytics** | **Static financial reports** | Visual educational health ratios (Liquidity, Solvency, Margin) with status badges. | Medium (Phase 4) |
+| **Chart of Accounts & GL** | Complete (`account`) | Standard Indonesian Chart of Accounts (COA). | Complete (Core) |
+| **Invoicing & Purchasing** | Complete (`sale`, `purchase`) | Core document workflows are sufficient. | Complete (Core) |
+| **Withholding Tax & Coretax** | **Limited (VAT only)** | Comprehensive PPh (21/22/23/4(2)/Final MSME), NITKU, NSFP Pool & Coretax export. | **✅ Done (Phase 1)** |
+| **Marketplace Reconciliation** | **Unavailable** | Automated Excel settlement parsers for Shopee, TikTok Shop, Tokopedia. | **✅ Done (Phase 2)** |
+| **Recipe Costing & HPP** | **Over-engineered (`mrp`)** | Agile, portion costing with waste/shrinkage factor without heavy manufacturing. | **✅ Done (Phase 3)** |
+| **Legal Document PDF** | **Basic plain signatures** | Auto-overlay transparent company seal over digital signatures. | 🚀 **Up Next (Phase 4)** |
+| **Financial Health Analytics** | **Static financial reports** | Visual educational health ratios (Liquidity, Solvency, Margin) with status badges. | 🚀 **Up Next (Phase 4)** |
 
 ---
 
@@ -51,63 +51,44 @@ flowchart LR
 
 ---
 
-### 📌 Phase 1: Indonesian Taxation & Coretax Compliance (`l10n_id_coretax_taxation`)
+### 📌 Phase 1: Indonesian Taxation & Coretax Compliance (`l10n_id_coretax_taxation`) — ✅ COMPLETED
 > **Goal:** Ensure all commercial sales and vendor bills automatically calculate, record, and summarize Indonesian withholding taxes aligned with DJP Coretax specifications and Government Regulation PP 20/2026.
 
-#### Key Tasks:
-1. **Partner Extension (`res.partner`):**
-   * Standardize **16-digit NPWP** field with input format validation.
-   * Add **NITKU (Nomor Induk Tempat Kegiatan Usaha)** 22-digit field.
-   * Taxpayer categorization: Corporate (*Badan*), Individual (*Orang Pribadi*), or Tax Exemption Facility (*SKB*).
-2. **Withholding Tax Structure:**
-   * Tax accounts and rates for **PPh 23** (Services 2%, Rental 2%), **PPh 4(2)** (Real estate rental 10%, Construction), and **PPh 22**.
-   * **MSME Final Income Tax 0.5% (PP 20/2026):**
-     * Automated gross turnover calculation before discounts.
-     * Annual cumulative threshold tracker for the IDR 500,000,000 non-taxable turnover bracket for individual entrepreneurs.
-     * Toggle for "Self-Remitted" (*Disetor Sendiri*) vs. "Withheld by Counterparty" (*Dipotong Lawan Transaksi*).
-3. **Withholding Tax Slips & Codes:**
-   * Fields for Tax Withholding Slip Number (*Nomor Bukti Potong*) and Tax Object Code (*Kode Objek Pajak*) directly on vendor bills and customer invoices.
-4. **Coretax Export Wizard:**
-   * Monthly tax summary report with single-click CSV/Excel export pre-formatted for direct upload into the DJP Coretax web portal.
+#### Implementation Summary:
+* [x] **NPWP & NITKU Validation:** 16-digit NIK/NPWP16 and 22-digit NITKU validation on `res.partner`.
+* [x] **DJP Coretax Tax Structure:** PPN 12% (UU HPP), PPh 21, 22, 23, 4(2), and PPh Final UMKM 0.5% (PP 20/2026).
+* [x] **Automated NSFP Allocation:** Sequential NSFP pool range management (`l10n_id.nsfp.range`) assigned automatically upon posting customer invoices.
+* [x] **e-Faktur 4.0 & Coretax CSV Batch Exporter:** Multi-invoice export wizards generating statutory `FK` and `OF` CSV data for the DJP Coretax web portal.
+* [x] **Live Testing:** Verified on `INV/2026/00002` with NSFP `01.000-26.10000001` for demo company *MangoTek Development Center*.
 
 ---
 
-### 📌 Phase 2: Multichannel Marketplace Settlement Sync (`marketplace_settlement_sync`)
+### 📌 Phase 2: Multichannel Marketplace Settlement Sync (`marketplace_settlement_sync`) — ✅ COMPLETED
 > **Goal:** Eliminate manual entry of e-commerce settlement reports by parsing raw export files from Indonesian marketplaces directly into balanced, reconciled journal entries.
 
-#### Key Tasks:
-1. **Multi-Platform Excel Parser Wizard:**
-   * Dedicated file parsers (`.xlsx` / `.csv`) for major Indonesian e-commerce platforms:
-     * **Platform S:** Paid Order and Seller Balance settlement reports.
-     * **Platform T:** Order Completion and Daily GMV transaction analytics.
-2. **Automated Split-Accounting Logic:**
-   * Daily aggregation: Consolidate hundreds of sub-orders into single daily summary entries to prevent database bloating.
-   * **Debit:** Marketplace Escrow / Clearing Account (Asset).
-   * **Credit:** Sales Turnover Account (4100 Pendapatan Penjualan).
-   * **Debit Expenses:** Automatically extract platform service fees, free-shipping campaign deductions, and payment gateway commissions into *Marketplace Administration Expenses (6150)*.
-3. **Reconciliation Verification Preview:**
-   * Interactive modal window showing transaction net balance and fee reconciliation breakdown before committing to the general ledger.
+#### Implementation Summary:
+* [x] **Omnichannel Channel Configuration:** Preset accounts for Shopee, Tokopedia, TikTok Shop, Blibli, and custom channels.
+* [x] **Split-Accounting Engine:** Automatically divides Gross Order Value, Platform Deductions (Commission, Shipping, Vouchers), and Net Escrow Deposits into dedicated ledger accounts.
+* [x] **1-Click Draft Journal Creation:** Ingest settlement batches and generate draft entries into General Journal with order-level line item drilldown.
+* [x] **Live Verification:** Tested and reconciled batch `SETTLE/2026/00001` with Shopee Indonesia.
 
 ---
 
-### 📌 Phase 3: Lightweight Recipe & HPP Costing Engine (`fnb_hpp_calculator`)
+### 📌 Phase 3: Lightweight Recipe & HPP Costing Engine (`fnb_hpp_calculator`) — ✅ COMPLETED
 > **Goal:** Provide an intuitive, instant recipe costing system for F&B, café, bakery, and light assembly businesses without the administrative burden of Odoo's Manufacturing (`mrp`) module.
 
-#### Key Tasks:
-1. **Raw Material & Measurement Conversion:**
-   * Purchase unit pricing in wholesale quantities (kg, liter, pack, box).
-   * Automatic conversion into portion-level recipe measurements (grams, milliliters, pieces, drops).
-2. **Recipe Costing Card Model:**
-   * Formulation model defining menu items and their ingredient breakdown.
-   * Dynamic real-time calculation:
-     $$\text{Base Cost (HPP)} = \sum (\text{Portion Quantity} \times \text{Ingredient Unit Price}) + \text{Packaging/Overhead Allocation}$$
-   * Instant Gross Profit Margin percentage based on proposed retail menu prices.
-3. **Cost Sensitivity & Price Shift Alerts:**
-   * When raw material purchase costs fluctuate via vendor bills, the system recalculates portion cost and flags items where margin drops below the target threshold.
+#### Implementation Summary:
+* [x] **Portion Unit Economics:** Real-time conversion of bulk purchase raw materials to recipe portion measurements (g, ml, pcs).
+* [x] **Waste / Shrinkage Factor (%):** Trimming, peeling, and cooking loss factor automatically adjusts effective ingredient cost.
+* [x] **Packaging Allocation Layer:** Dedicated lines for cups, lids, straws, clamshell boxes, and takeaway packaging.
+* [x] **Visual Margin Health Badges:** Color-coded status flags for Optimal ($\ge 65\%$), Moderate ($50\%-64\%$), and Low/Underpriced ($< 50\%$).
+* [x] **Menu Price & Margin Simulator:** Forward and reverse calculation wizard to determine retail prices for desired profit margins.
+* [x] **1-Click POS Product Sync:** Push calculated HPP standard costs and selling prices directly to linked catalog products.
+* [x] **Live Verification:** Tested with *Iced Caramel Macchiato 16oz* (HPP Rp 12,712, Margin 66.5% - Optimal) and *Gourmet Wagyu Burger* (HPP Rp 46,332, Margin 31.9% - Low Margin Warning).
 
 ---
 
-### 📌 Phase 4: Official Document Branding & Financial Analytics (`business_document_dashboard`)
+### 📌 Phase 4: Official Document Branding & Financial Analytics (`account_stamp_signature` & `financial_health_dashboard`) — 🚀 UP NEXT
 > **Goal:** Elevate company branding on PDF invoices and provide executive business health indicators in an accessible format for business owners.
 
 #### Key Tasks:

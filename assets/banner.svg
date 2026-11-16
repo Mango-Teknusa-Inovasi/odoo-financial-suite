@@ -67,7 +67,7 @@
   <g transform="translate(930, 50)">
     <rect width="270" height="34" rx="17" fill="#1E293B" fill-opacity="0.8" stroke="#334155" stroke-width="1.2"/>
     <rect x="6" y="5" width="118" height="24" rx="12" fill="#714B67"/>
-    <text x="65" y="21" font-size="12" font-weight="700" fill="#FFFFFF" text-anchor="middle">Odoo 18.0 &amp; 20.0</text>
+    <text x="65" y="21" font-size="11" font-weight="700" fill="#FFFFFF" text-anchor="middle">Odoo 18 / 19 / 20</text>
     <text x="195" y="21" font-size="12" font-weight="600" fill="#94A3B8" text-anchor="middle">Community &amp; EE</text>
   </g>
 

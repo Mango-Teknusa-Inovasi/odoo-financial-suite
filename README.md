@@ -6,12 +6,12 @@
 
 [![License: LGPL-3](https://img.shields.io/badge/License-LGPL--3-blue.svg)](LICENSE)
 [![Price: 100% Free](https://img.shields.io/badge/Price-100%25%20Free-brightgreen.svg)](#)
-[![Odoo Version](https://img.shields.io/badge/Odoo-18.0%20%7C%2020.0-purple.svg)](https://www.odoo.com/)
+[![Odoo Version](https://img.shields.io/badge/Odoo-18.0%20%7C%2019.0%20%7C%2020.0-purple.svg)](https://www.odoo.com/)
 [![DJP Coretax Ready](https://img.shields.io/badge/DJP-Coretax%202026%20Ready-teal.svg)](#)
 [![Design System: Brandkit](https://img.shields.io/badge/Design%20System-BRANDKIT.md-985184.svg)](BRANDKIT.md)
 [![Maintained by](https://img.shields.io/badge/Maintained%20by-Mango--Teknusa--Inovasi-orange.svg)](https://github.com/Mango-Teknusa-Inovasi)
 
-**Enterprise-Ready Financial Engine, Indonesian Tax Localization (DJP Coretax 2026), Multi-Marketplace Settlement & Recipe Costing for Odoo 18.0 & 20.0.**
+**Enterprise-Ready Financial Engine, Indonesian Tax Localization (DJP Coretax 2026), Multi-Marketplace Settlement & Recipe Costing for Odoo 18.0, 19.0 & 20.0.**
 
 [Overview](#-overview) • [Core Modules](#-core-modules) • [Brandkit](#-brand-identity--design-tokens) • [Installation](#-getting-started) • [Guidelines](#-repository-layout) • [License](#-license)
 
@@ -36,7 +36,7 @@ Standard ERP systems introduce significant administrative overhead when applied 
 |:---:|:---|:---|:---|
 | <img src="assets/icons/l10n_id_coretax_taxation_100.png" width="48" height="48" alt="Coretax Icon"/> | [`l10n_id_coretax_taxation`](l10n_id_coretax_taxation) | **Indonesian Tax Coretax** | • DJP Coretax 2026 & e-Faktur 4.0 batch CSV export<br>• Automated NSFP (Nomor Seri Faktur Pajak) sequential pool<br>• 16-Digit NIK/NPWP16 & 22-Digit NITKU validation<br>• PPh 21, 22, 23, 4(2), and PPh Final UMKM 0.5% (PP 20/2026) |
 | <img src="assets/icons/marketplace_settlement_sync_100.png" width="48" height="48" alt="Marketplace Icon"/> | [`marketplace_settlement_sync`](marketplace_settlement_sync) | **Marketplace Settlement** | • Multi-channel statement parser (Shopee, Tokopedia, TikTok Shop)<br>• Automated split-accounting: Gross Revenue vs Platform Fees vs Escrow Payouts<br>• Single-click draft journal entry generation and audit trail drilldown |
-| <img src="assets/icons/fnb_hpp_calculator_100.png" width="48" height="48" alt="F&B HPP Icon"/> | `fnb_hpp_calculator` *(Phase 3)* | **F&B Recipe HPP** | • Lightweight culinary & retail bill of materials (BOM)<br>• Real-time ingredient costing, wastage factor adjustments, and gross margin tracking |
+| <img src="assets/icons/fnb_hpp_calculator_100.png" width="48" height="48" alt="F&B HPP Icon"/> | [`fnb_hpp_calculator`](fnb_hpp_calculator) | **F&B Recipe HPP** | • Lightweight culinary & retail bill of materials (BOM)<br>• Real-time ingredient costing, wastage factor adjustments, and gross margin tracking<br>• Interactive price & margin simulator wizard |
 | <img src="assets/icons/account_stamp_signature_100.png" width="48" height="48" alt="Stamp Icon"/> | `account_stamp_signature` *(Phase 4)* | **Digital Stamp & e-Meterai** | • Coordinate-based official seal and e-Meterai overlay on PDF customer invoices and purchase orders |
 | <img src="assets/icons/financial_health_dashboard_100.png" width="48" height="48" alt="Health Icon"/> | `financial_health_dashboard` *(Phase 5)* | **Financial Health KPI** | • Executive financial ratios (Current Ratio, Quick Ratio, Debt-to-Equity, Net Margin) with visual health badges |
 
@@ -80,7 +80,7 @@ odoo-financial-suite/
 ## 🚀 Getting Started
 
 ### Prerequisites
-* **Odoo:** Version `18.0` or `20.0` (Community or Enterprise)
+* **Odoo:** Version `18.0`, `19.0`, or `20.0` (Community or Enterprise)
 * **Python:** `3.10` or higher
 * **Database:** PostgreSQL `14+`
 
