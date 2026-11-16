@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Unit Tests for Executive Financial Health & Ratio KPI Dashboard (financial_health_dashboard)
+Unit Tests for Executive Financial Health & Ratio KPI Dashboard (financial_health_kpi)
 """
 
 import unittest

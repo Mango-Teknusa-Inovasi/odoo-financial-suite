@@ -28,7 +28,7 @@ MODULE_TEST_PATHS = [
     "marketplace_settlement_sync.tests.test_settlement",
     "fnb_hpp_calculator.tests.test_fnb_hpp",
     "account_stamp_signature.tests.test_stamp_emeterai",
-    "financial_health_dashboard.tests.test_financial_ratios",
+    "financial_health_kpi.tests.test_financial_ratios",
 ]
 
 def run_suite():

@@ -41,7 +41,7 @@ Standard ERP systems introduce significant administrative overhead when applied 
 | <img src="assets/icons/marketplace_settlement_sync_100.png" width="48" height="48" alt="Marketplace Icon"/> | [`marketplace_settlement_sync`](marketplace_settlement_sync) | **Marketplace Settlement** | • Multi-channel statement parser (Shopee, Tokopedia, TikTok Shop)<br>• Automated split-accounting: Gross Revenue vs Platform Fees vs Escrow Payouts<br>• Single-click draft journal entry generation and audit trail drilldown |
 | <img src="assets/icons/fnb_hpp_calculator_100.png" width="48" height="48" alt="F&B HPP Icon"/> | [`fnb_hpp_calculator`](fnb_hpp_calculator) | **F&B Recipe HPP** | • Lightweight culinary & retail bill of materials (BOM)<br>• Real-time ingredient costing, wastage factor adjustments, and gross margin tracking<br>• Interactive price & margin simulator wizard |
 | <img src="assets/icons/account_stamp_signature_100.png" width="48" height="48" alt="Stamp Icon"/> | [`account_stamp_signature`](account_stamp_signature) | **Stamp & e-Meterai** | • Dual-engine document seal: Transparent PNG company stamp overlay (-6° tilt) + digital signature<br>• Pluggable Peruri e-Meterai Gateway (UU No. 10/2020) for invoices >= Rp 5.000.000<br>• Local Sandbox mock simulator + BYOK API connectors (PDS, Mekari Sign, PrivyID) |
-| <img src="assets/icons/financial_health_dashboard_100.png" width="48" height="48" alt="Health Icon"/> | [`financial_health_dashboard`](financial_health_dashboard) | **Financial Health KPI** | • Executive financial ratio scorecard (Liquidity, Solvency, Margin health indicators)<br>• Educational traffic-light visual badges (Optimal, Moderate, Critical)<br>• Automated executive advisory synthesis & 1-click ledger drilldown |
+| <img src="assets/icons/financial_health_kpi_100.png" width="48" height="48" alt="Health Icon"/> | [`financial_health_kpi`](financial_health_kpi) | **Financial Health KPI** | • Executive financial ratio scorecard (Liquidity, Solvency, Margin health indicators)<br>• Educational traffic-light visual badges (Optimal, Moderate, Critical)<br>• Automated executive advisory synthesis & 1-click ledger drilldown |
 
 ---
 
@@ -89,7 +89,7 @@ odoo-financial-suite/
 ├── marketplace_settlement_sync/      # Omnichannel settlement reconciliation (Shopee, Tokopedia, TikTok)
 ├── fnb_hpp_calculator/               # Culinary recipe costing, shrinkage % & POS sync
 ├── account_stamp_signature/          # Dual-engine wet seal overlay & Peruri e-Meterai gateway (UU 10/2020)
-├── financial_health_dashboard/       # Executive ratio scorecard & advisory diagnostic
+├── financial_health_kpi/             # Executive ratio scorecard & advisory diagnostic
 ├── SHOWCASE.md                       # Comprehensive live verification gallery & screenshots
 ├── BRANDKIT.md                       # Comprehensive design system & brand guidelines
 ├── CHANGELOG.md                      # Release notes & version milestones

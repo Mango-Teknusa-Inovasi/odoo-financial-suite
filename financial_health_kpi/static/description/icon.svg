@@ -1,0 +1,15 @@
+<svg width="50" height="50" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
+  <!-- Bar 1 (Solvency) in Plum #985184 -->
+  <path d="M5 26a4 4 0 0 1 4-4h7v22a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V26Z" fill="#985184"/>
+  <!-- Bar 2 (Liquidity) in Bright Mint #1AD3BB -->
+  <path d="M18 16a4 4 0 0 1 4-4h7v32a2 2 0 0 1-2 2h-7a2 2 0 0 1-2-2V16Z" fill="#1AD3BB"/>
+  <!-- Bar 2 Base Shadow in Deep Petrol #005E7A -->
+  <path d="M18 36h11v8a2 2 0 0 1-2 2h-7a2 2 0 0 1-2-2V36Z" fill="#005E7A"/>
+  <!-- Bar 3 (Profitability) in Sunflower Gold #FBB945 -->
+  <path d="M31 6a4 4 0 0 1 4-4h7a4 4 0 0 1 4 4v40H31V6Z" fill="#FBB945"/>
+  <!-- Bar 3 Shadow in Tangerine #F86126 -->
+  <path d="M31 32h15v14h-15V32Z" fill="#F86126"/>
+  <!-- Trend Indicator Growth Diamond / Arrow in Coral Red #F06050 -->
+  <path d="M8 16l14-8 18-4-4 8-14 4-14 0Z" fill="#FC868B"/>
+  <circle cx="40" cy="4" r="2.5" fill="#F06050"/>
+</svg>

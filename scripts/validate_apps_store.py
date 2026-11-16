@@ -16,7 +16,7 @@ MODULES = [
     "marketplace_settlement_sync",
     "fnb_hpp_calculator",
     "account_stamp_signature",
-    "financial_health_dashboard",
+    "financial_health_kpi",
 ]
 
 def validate_suite():

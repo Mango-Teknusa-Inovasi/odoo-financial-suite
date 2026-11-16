@@ -103,7 +103,7 @@ flowchart LR
 
 ---
 
-### 📌 Phase 5: Executive Financial Health KPI Dashboard (`financial_health_dashboard`) — ✅ COMPLETED
+### 📌 Phase 5: Executive Financial Health KPI Dashboard (`financial_health_kpi`) — ✅ COMPLETED
 > **Goal:** Deliver executive-level financial ratio KPI widgets (Liquidity, Solvency, Margin health indicators) with educational tooltips, visual status cards, and plain-language advisory insights.
 
 #### Implementation Summary:
@@ -130,7 +130,7 @@ flowchart LR
 | **2** | `marketplace_settlement_sync` | 2-3 Days | Med-High | Excel import wizard, split-entry automation | **✅ Completed** |
 | **3** | `fnb_hpp_calculator` | 1-2 Days | Medium | Recipe card costing, live margin simulation | **✅ Completed** |
 | **4** | `account_stamp_signature` | 1 Day | Low | QWeb PDF stamp overlay & Peruri e-Meterai gateway | **✅ Completed** |
-| **5** | `financial_health_dashboard` | 1-2 Days | Medium | Interactive executive ratio widget & status badges | **✅ Completed** |
+| **5** | `financial_health_kpi` | 1-2 Days | Medium | Interactive executive ratio widget & status badges | **✅ Completed** |
 
 ---
 
