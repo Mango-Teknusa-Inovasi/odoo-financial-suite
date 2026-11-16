@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'POS Thermal Receipt',
-    'version': '18.0.1.0.0',
+    'version': '19.0.1.0.0',
     'category': 'Sales/Point of Sale',
     'summary': 'Perancang struk kasir thermal 58/80mm & ESC/POS',
     'description': """

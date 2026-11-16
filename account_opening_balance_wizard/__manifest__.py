@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'Opening Balance Wizard',
-    'version': '18.0.1.0.0',
+    'version': '19.0.1.0.0',
     'category': 'Accounting/Accounting',
     'summary': 'Single-window opening balance wizard with live balance bar, Excel import, and Indonesian tax asset register',
     'description': """
