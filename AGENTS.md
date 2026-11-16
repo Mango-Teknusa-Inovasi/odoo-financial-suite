@@ -67,7 +67,32 @@ flowchart TD
 
 ---
 
-## 3. Cross-Module Co-Existence & Anti-Collision Protocols (CRITICAL)
+## 3. Multi-Version Branching Governance (Odoo 18.0, 19.0, & 20.0)
+
+> [!IMPORTANT]
+> **MULTI-VERSION BRANCH MANDATE:** MangoTek Financial Suite officially supports and maintains three dedicated Odoo major version tracks. All AI agents, contributors, and automated pipelines **MUST** provide, test, and synchronize code across the corresponding Git branches before completing any phase:
+> - **Branch `18.0`**: Targeted for Odoo 18.0 LTS (Community & Enterprise). Manifest version `'18.0.x.y.z'`.
+> - **Branch `19.0`**: Targeted for Odoo 19.0. Manifest version `'19.0.x.y.z'`.
+> - **Branch `20.0`**: Targeted for Odoo 20.0. Manifest version `'20.0.x.y.z'`.
+> - **Branch `main`**: Default development and production baseline, synchronized with the active stable LTS branch.
+
+### Version Synchronization & Execution Rules:
+1. **Branch-Specific Semantic Versioning**:
+   - On branch `18.0` and `main`, all `__manifest__.py` files MUST declare versions starting with `18.0.` (e.g., `'18.0.1.0.0'`).
+   - On branch `19.0`, all `__manifest__.py` files MUST declare versions starting with `19.0.` (e.g., `'19.0.1.0.0'`).
+   - On branch `20.0`, all `__manifest__.py` files MUST declare versions starting with `20.0.` (e.g., `'20.0.1.0.0'`).
+2. **Cross-Branch Synchronization Gate**:
+   - Whenever a new module or phase is completed on `main`, the agent **MUST** merge and propagate the implementation to local branches `18.0`, `19.0`, and `20.0`.
+   - Never leave downstream release branches out of sync.
+3. **API & View Syntax Compatibility Across Versions**:
+   - **Tabular Views**: In Odoo 18, 19, and 20, tabular views **MUST** use `<list>` (or `<tree>` where parent views in Odoo core still mandate it) without deprecated parameters.
+   - **Kanban Templates**: Kanban views **MUST** use modern `<t t-name="card">` syntax rather than legacy `kanban-box`.
+   - **Scheduled Actions (`ir.cron`)**: In Odoo 18+, never declare deprecated XML attributes like `numbercall`.
+   - **Python Compatibility**: Code must run seamlessly on Python 3.10, 3.11, and 3.12+.
+
+---
+
+## 4. Cross-Module Co-Existence & Anti-Collision Protocols (CRITICAL)
 
 > [!IMPORTANT]
 > **ZERO PLUGIN CRASH INVARIANT**: Every module in the MangoTek Financial Suite is designed to be fully modular. A customer may choose to install any combination of modules (e.g. only `account_qris_qbiz` + `fnb_hpp_calculator`, or all 7 modules simultaneously). **No module may crash, collide with, or override the behavior of another module or standard Odoo core.**
@@ -108,7 +133,7 @@ flowchart TD
 
 ---
 
-## 4. Brand, Logo & Banner Architecture Standards
+## 5. Brand, Logo & Banner Architecture Standards
 
 > [!CAUTION]
 > **NO ARBITRARY DESIGNS:** Inconsistent banner designs, arbitrary card plates, random font choices, or missing open-source badges (as previously occurred with `account_qris_qbiz`) are **STRICTLY PROHIBITED**. All banners and icons must strictly comply with `BRANDKIT.md`.
@@ -167,7 +192,7 @@ Never manually draw or export banners from unapproved external templates.
 
 ---
 
-## 5. Anti-Slop Code & Hygiene Standards
+## 6. Anti-Slop Code & Hygiene Standards
 
 We enforce strict filters across code comments, UI design, and copywriting:
 
@@ -203,7 +228,7 @@ We enforce strict filters across code comments, UI design, and copywriting:
 
 ---
 
-## 6. Financial Security & Regulatory Standards (`security-audit`)
+## 7. Financial Security & Regulatory Standards (`security-audit`)
 
 All financial and taxation models must adhere to OWASP Top 10 and enterprise auditability principles:
 
@@ -231,7 +256,7 @@ All financial and taxation models must adhere to OWASP Top 10 and enterprise aud
 
 ---
 
-## 7. Mandatory End-to-End (E2E) Testing Protocol (ZERO COMMIT WITHOUT PASSING E2E)
+## 8. Mandatory End-to-End (E2E) Testing Protocol (ZERO COMMIT WITHOUT PASSING E2E)
 
 > [!CAUTION]
 > **STRICT PRE-COMMIT GATE:** AI agents and developers are **STRICTLY FORBIDDEN** from executing `git commit` on any code changes until the full End-to-End (E2E) test suite passes with zero failures and zero errors. In financial ERP systems, broken double-entry debits, unhandled tax rounding, or cross-module crashes directly corrupt general ledgers and statutory tax reports.
@@ -249,7 +274,7 @@ python tests/run_all_tests.py
 ```bash
 python scripts/validate_apps_store.py
 ```
-- Must audit all 7 modules and pass **56/56 checks (Score 5.0 / 5.0)**.
+- Must audit all active suite modules and pass **all checks (Score 5.0 / 5.0)**.
 - Validates: App name length ($\le 25$ chars, no buzzwords), version format (`18.0.1.0.0`), license (`LGPL-3`), price (`0.0 EUR`), cover banner existence (`static/description/banner.png`), icon existence (`static/description/icon.png`), and clean HTML descriptions without external redirect links or forbidden `<script>` tags.
 
 #### 3. Live Docker Registry & View Integrity Test (When Container is Active):
@@ -271,12 +296,13 @@ with registry.cursor() as cr:
 
 ---
 
-## 8. Pre-Commit Verification Checklist
+## 9. Pre-Commit Verification Checklist
 
 Before reporting completion or creating any local git commit, agents must verify every item:
 
 - [ ] **E2E & Unit Tests Pass:** `python tests/run_all_tests.py` reports `ALL UNIT & FEATURE TESTS PASSED SUCCESSFULLY!`.
-- [ ] **Store 5.0 Audit Passes:** `python scripts/validate_apps_store.py` reports `ALL 7 MODULES 100% COMPLIANT`.
+- [ ] **Store 5.0 Audit Passes:** `python scripts/validate_apps_store.py` reports all suite modules 100% compliant.
+- [ ] **Multi-Version Branch Sync:** Every module and phase is provided and merged across branches `18.0`, `19.0`, and `20.0`, with branch-specific manifest versions (`18.0.x.y.z`, `19.0.x.y.z`, `20.0.x.y.z`).
 - [ ] **Cross-Module Harmony:** No xpath collisions, no duplicate model names, and no broken foreign keys across modules.
 - [ ] **Banner Standardization:** Banner is generated via `scripts/generate_module_banners.py` conforming to `BRANDKIT.md` Section 8.
 - [ ] **Icon Standards:** Module icon is $100 \times 100\text{ px}$ PNG at `static/description/icon.png`.
