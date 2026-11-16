@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'F&B Recipe HPP',
-    'version': '18.0.1.0.0',
+    'version': '20.0.1.0.0',
     'category': 'Point of Sale',
     'summary': 'Lightweight recipe costing, portion HPP, gross margin calculation & culinary BOM without heavy MRP',
     'description': """
