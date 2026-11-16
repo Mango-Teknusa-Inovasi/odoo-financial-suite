@@ -8,7 +8,7 @@
 
 ## 1. Brand Mission & Positioning
 
-**MangoTek Financial Suite** is the premier open-source localization, regulatory compliance, and multi-channel financial engine designed natively for the **Odoo** ERP ecosystem (compatible with Odoo 18.0 and 20.0, Community and Enterprise editions).
+**MangoTek Financial Suite** is the premier open-source localization, regulatory compliance, and multi-channel financial engine designed natively for the **Odoo** ERP ecosystem (compatible with Odoo 18.0, 19.0 and 20.0, Community and Enterprise editions).
 
 ### Brand Essence
 * **Native Harmony:** Feels like a first-party component built directly by Odoo SA.
@@ -18,29 +18,32 @@
 
 ---
 
-## 2. Visual Architecture & Logo Anatomy
+## 2. Master Logo Anatomy: The MangoTek Geometric Gem
 
-The master logo of **MangoTek Financial Suite** represents the seamless synthesis of **MangoTek's** dynamic commercial drive with **Odoo's** iconic geometric facet design language.
+The master logo of **MangoTek Financial Suite** synthesizes the organic warmth of a **Mango fruit** with the crystalline precision of **Odoo's geometric facets** and a bold negative-space **M** monogram.
 
 ```
-       [ Mango Tangerine ]       [ Odoo Aubergine ]
-          Facet (#F86126)           Facet (#985184)
-               \                         /
-                \                       /
-                 [ Central Fiscal Prism ]
-                  Emerald Mint (#1AD3BB)
-                  + Deep Petrol (#005E7A)
-                /                       \
-               /                         \
-      [ Sunflower Gold ]         [ Enterprise Azure ]
-       Facet (#FBB945)             Facet (#088BF5)
+                  [ Top Emerald Leaf ]
+                     (#1AD3BB / #005E7A)
+                           \
+                            \
+        [ Mango Tangerine ]     [ Odoo Aubergine ]
+           Facet (#F86126)         Facet (#985184)
+                 \                     /
+                  \                   /
+                [ Central Monogram "M" ]
+                 Crisp White (#FFFFFF)
+                  /                   \
+                 /                     \
+       [ Sunflower Gold ]       [ Deep Slate Petrol ]
+        Facet (#FBB945)           Facet (#005E7A)
 ```
 
 ### Geometric Principles
-1. **Base Canvas:** `50x50` standard Odoo grid (`viewBox="0 0 50 50"`).
-2. **Corner Radii:** Outer boundary corners utilize `rx="4"` (or `r="4"`) for friendly curvature matching Odoo's backend UI.
-3. **Facet Angles:** Precise diagonal cuts (angled at $45^\circ$ or $26.5^\circ$ / slope $1:2$) create dynamic depth without relying on blurry drop-shadows.
-4. **Plane Hierarchy:** Flat solid fills placed on overlapping coordinate planes simulate three-dimensional refraction.
+1. **Silhouette Test:** Instantly recognizable as a stylized, premium Mango fruit silhouette with a top emerald leaf.
+2. **Base Canvas:** `50x50` standard Odoo grid (`viewBox="0 0 50 50"`).
+3. **Core Monogram:** Symmetrical capital letter "M" anchored in the center, ensuring strong identity even at 16px favicon scale.
+4. **Facet Angles:** Clean diagonal cuts ($45^\circ$ and $60^\circ$) create dynamic depth without using skeuomorphic gradients or drop-shadows.
 
 ---
 

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Res Company Form View Extension -->
+    <record id="view_company_form_stamp_inherit" model="ir.ui.view">
+        <field name="name">res.company.form.stamp.inherit</field>
+        <field name="model">res.company</field>
+        <field name="inherit_id" ref="base.view_company_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="Official Stamp &amp; Signature" name="stamp_signature_page">
+                    <group>
+                        <group string="Configuration">
+                            <field name="stamp_enabled"/>
+                            <field name="stamp_signature_position"/>
+                            <field name="signer_name"/>
+                            <field name="signer_title"/>
+                        </group>
+                        <group string="Graphic Assets (Transparent PNG)">
+                            <field name="company_seal" widget="image" class="oe_avatar" options="{'size': [140, 140]}"/>
+                            <field name="authorized_signature" widget="image" class="oe_avatar" options="{'size': [180, 90]}"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

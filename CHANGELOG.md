@@ -9,10 +9,26 @@ The format follows standard semantic versioning practices (`MAJOR.MINOR.PATCH`).
 ## [Unreleased]
 
 ### Planned
-- **`account_stamp_signature`** (Phase 4):
-  - Dynamic company stamp and digital signature positioning on PDF customer invoices and purchase orders.
-- **`financial_health_dashboard`** (Phase 4):
-  - Executive financial ratio KPI widgets (Current, Quick, Debt-to-Equity, Net Margin).
+- **`financial_health_dashboard`** (Phase 5):
+  - Executive financial ratio KPI widgets (Current, Quick, Debt-to-Equity, Net Margin) with visual status cards.
+
+---
+
+## [1.4.0] - 2026-11-16
+
+### Added
+- **`account_stamp_signature` (Phase 4 Completed):**
+  - **Engine A (Free & Offline):** Dynamic transparent PNG wet seal overlay with $-6^\circ$ tilt and $82\%$ opacity over executive digital signature block on standard QWeb PDF invoices.
+  - **Company Settings (`res.company`):** Configurable seal image, authorized signature, signatory name, and official designation.
+  - **Engine B (Statutory e-Meterai):** Automatic threshold detection under Indonesian law (UU No. 10/2020) for invoices $\ge \text{Rp } 5.000.000$.
+  - **Pluggable Gateway Architecture (`emeterai.provider`):** Driver pattern supporting Peruri Digital Security (PDS), Mekari Sign, PrivyID, and built-in Local Sandbox Engine with 100 free test stamps.
+  - **Peruri Serial Number & Verification:** Real-time generation of 22-digit Peruri SN and public verification QR code URL.
+  - **Statutory QWeb Invoice Badge:** Official bordered rosette badge displaying `BEA METERAI LUNAS Rp 10.000,-`, live QR barcode, and audit reference on `account.report_invoice_document`.
+  - **Chatter Audit Trail:** Automatic message posting on invoice confirmation with e-Meterai SN and verification links.
+  - **App Launcher Integration:** Dedicated 9-dots App Drawer menu and configuration entry under Accounting > Configuration.
+- **Master Branding Refinement:**
+  - Restored pristine Mango Gem master logo (circular fruit silhouette with fresh emerald leaf and white M monogram) across all banner and icon assets.
+  - Re-rendered master hero banner (`assets/banner.png`, 1200x630) with centered layout and `🟣 Odoo 18.0, 19.0 & 20.0` compatibility chips.
 
 ---
 

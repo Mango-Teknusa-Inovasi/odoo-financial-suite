@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- List / Tree View -->
+    <record id="view_emeterai_provider_tree" model="ir.ui.view">
+        <field name="name">emeterai.provider.list</field>
+        <field name="model">emeterai.provider</field>
+        <field name="arch" type="xml">
+            <list string="e-Meterai Providers" decoration-muted="not active">
+                <field name="name"/>
+                <field name="provider_type" widget="badge" 
+                       decoration-info="provider_type == 'mock'"
+                       decoration-success="provider_type in ('pds', 'mekari', 'privy')"/>
+                <field name="quota_balance" decoration-danger="quota_balance &lt;= 5" decoration-success="quota_balance &gt; 5"/>
+                <field name="company_id" groups="base.group_multi_company"/>
+                <field name="active" widget="boolean_toggle"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_emeterai_provider_form" model="ir.ui.view">
+        <field name="name">emeterai.provider.form</field>
+        <field name="model">emeterai.provider</field>
+        <field name="arch" type="xml">
+            <form string="e-Meterai Gateway Provider">
+                <header>
+                    <button name="action_check_quota" string="Check Balance / Quota" type="object" class="btn-primary" icon="fa-refresh"/>
+                    <field name="active" invisible="1"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                    </div>
+                    <div class="oe_title">
+                        <label for="name" string="Provider Name"/>
+                        <h1>
+                            <field name="name" placeholder="e.g. Peruri Digital Security Production"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group string="Gateway Architecture">
+                            <field name="provider_type"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                            <field name="active" widget="boolean_toggle"/>
+                        </group>
+                        <group string="Quota &amp; Status">
+                            <field name="quota_balance" readonly="1"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="API Connection Settings" name="api_settings">
+                            <group>
+                                <field name="api_url" placeholder="https://api.emeterai.peruri.co.id"/>
+                                <field name="client_id" placeholder="Your Client ID / Public Key"/>
+                                <field name="client_secret" password="True" placeholder="API Secret Key / Token"/>
+                            </group>
+                            <div class="alert alert-info mt-3" role="alert" invisible="provider_type != 'mock'">
+                                <span class="fa fa-info-circle me-1" title="Info"/>
+                                <strong>Sandbox Engine Active:</strong> Generates fully compliant 22-digit Peruri Serial Numbers and verification URLs locally for testing without connecting to paid Peruri distributor APIs.
+                            </div>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action Window -->
+    <record id="action_emeterai_provider" model="ir.actions.act_window">
+        <field name="name">e-Meterai Providers</field>
+        <field name="res_model">emeterai.provider</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Register an e-Meterai Gateway Provider
+            </p>
+            <p>
+                Configure Peruri Digital Security (PDS), Mekari Sign, PrivyID, or use the built-in Sandbox Simulator to affix official electronic stamps on invoices.
+            </p>
+        </field>
+    </record>
+</odoo>

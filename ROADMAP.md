@@ -35,8 +35,8 @@ flowchart TD
 | **Withholding Tax & Coretax** | **Limited (VAT only)** | Comprehensive PPh (21/22/23/4(2)/Final MSME), NITKU, NSFP Pool & Coretax export. | **✅ Done (Phase 1)** |
 | **Marketplace Reconciliation** | **Unavailable** | Automated Excel settlement parsers for Shopee, TikTok Shop, Tokopedia. | **✅ Done (Phase 2)** |
 | **Recipe Costing & HPP** | **Over-engineered (`mrp`)** | Agile, portion costing with waste/shrinkage factor without heavy manufacturing. | **✅ Done (Phase 3)** |
-| **Legal Document PDF** | **Basic plain signatures** | Auto-overlay transparent company seal over digital signatures. | 🚀 **Up Next (Phase 4)** |
-| **Financial Health Analytics** | **Static financial reports** | Visual educational health ratios (Liquidity, Solvency, Margin) with status badges. | 🚀 **Up Next (Phase 4)** |
+| **Legal Document Seal & e-Meterai** | **Basic plain signatures** | Dual-engine transparent wet stamp overlay (-6° tilt) + Peruri e-Meterai Gateway (UU 10/2020). | **✅ Done (Phase 4)** |
+| **Financial Health Analytics** | **Static financial reports** | Visual educational health ratios (Liquidity, Solvency, Margin) with status badges. | 🚀 **Up Next (Phase 5)** |
 
 ---
 
@@ -46,7 +46,8 @@ flowchart TD
 flowchart LR
     P1["Phase 1:<br/>Indonesian Tax &<br/>Coretax Ready"] --> P2["Phase 2:<br/>Marketplace Settlement<br/>Automation"]
     P2 --> P3["Phase 3:<br/>Lightweight Recipe<br/>& HPP Calculator"]
-    P3 --> P4["Phase 4:<br/>Document Branding &<br/>Executive Dashboard"]
+    P3 --> P4["Phase 4:<br/>Stamp & Peruri<br/>e-Meterai Gateway"]
+    P4 --> P5["Phase 5:<br/>Executive Financial<br/>Health Dashboard"]
 ```
 
 ---
@@ -88,23 +89,34 @@ flowchart LR
 
 ---
 
-### 📌 Phase 4: Official Document Branding & Financial Analytics (`account_stamp_signature` & `financial_health_dashboard`) — 🚀 UP NEXT
-> **Goal:** Elevate company branding on PDF invoices and provide executive business health indicators in an accessible format for business owners.
+### 📌 Phase 4: Dual-Engine Document Seal, Signature & Peruri e-Meterai Gateway (`account_stamp_signature`) — ✅ COMPLETED
+> **Goal:** Deliver a bifurcated document legal branding and statutory compliance system catering to both free internal documents and official e-Meterai duty under Indonesian law (UU No. 10/2020).
+
+#### Implementation Summary:
+* [x] **Engine A (100% Free & Offline):** Transparent PNG wet seal overlay with dynamic $-6^\circ$ tilt and $82\%$ opacity overlapping digital signature canvas in QWeb PDF invoice.
+* [x] **Company Settings (`res.company`):** Fields for seal graphic, authorized executive signature, signatory name, and official designation.
+* [x] **Engine B (Statutory e-Meterai):** Automatic threshold detection flagging invoices $\ge \text{Rp } 5.000.000$ for statutory Bea Meterai duty (Rp 10.000).
+* [x] **Pluggable Provider Architecture:** Driver pattern supporting Peruri Digital Security (PDS), Mekari Sign, PrivyID, and built-in Local Sandbox Simulator (100 test stamps).
+* [x] **Peruri Serial Number & QR Code:** Generates 22-digit Peruri SN (`SN-2026-82317851986049`) and public verification URL.
+* [x] **QWeb PDF Report Integration:** Renders official Peruri bordered rosette emblem and barcode alongside the wet seal on `account.report_invoice_document`.
+* [x] **Live Verification:** Tested and certified on invoice `INV/2026/00002` (Rp 54,028,500.00) in Docker container `odoo18_web`.
+
+---
+
+### 📌 Phase 5: Executive Financial Health KPI Dashboard (`financial_health_dashboard`) — 🚀 UP NEXT
+> **Goal:** Deliver executive-level financial ratio KPI widgets (Liquidity, Solvency, Margin health indicators) with educational tooltips and visual status cards.
 
 #### Key Tasks:
-1. **Automated Stamp & Signature Overlay:**
-   * Company settings configuration (`res.company`) for digital signature and company seal (PNG with transparency).
-   * Custom QWeb PDF report templates: Precise CSS layout overlaying the semi-transparent legal stamp over the digital signature, replicating authentic Indonesian formal documentation.
-2. **Executive Financial Health Dashboard:**
-   * Automated key metric computations:
-     * **Liquidity:** Current Ratio, Quick Ratio, Cash Ratio.
-     * **Solvency:** Debt-to-Equity Ratio (DER).
-     * **Profitability:** Gross Profit Margin, Net Profit Margin (NPM), Return on Equity (ROE).
-   * Traffic-light health status cards:
-     * 🟢 **Healthy:** Exceeds safe industry benchmark.
-     * 🟡 **Adequate:** Borderline cash reserve / operational efficiency.
-     * 🔴 **Action Required:** Solvency risk or negative operating margin.
-   * Concise educational tooltips describing the underlying accounting formula.
+1. **Automated Key Financial Ratios:**
+   * **Liquidity:** Current Ratio, Quick Ratio, Cash Ratio.
+   * **Solvency:** Debt-to-Equity Ratio (DER).
+   * **Profitability:** Gross Profit Margin, Net Profit Margin (NPM), Return on Equity (ROE).
+2. **Visual Traffic-Light Health Indicators:**
+   * 🟢 **Optimal:** Exceeds safe industry benchmark.
+   * 🟡 **Adequate:** Borderline cash reserve / operational efficiency.
+   * 🔴 **Attention Required:** Solvency risk or thin operating margins.
+3. **Executive Dashboard View:**
+   * Modern Odoo 18/19/20 kanban widget with 1-click drilldown into underlying journal ledgers.
 
 ---
 

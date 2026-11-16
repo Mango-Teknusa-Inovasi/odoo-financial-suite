@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Account Move Form View Extension -->
+    <record id="view_move_form_emeterai_inherit" model="ir.ui.view">
+        <field name="name">account.move.form.emeterai.inherit</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+            <!-- Header Action Button -->
+            <xpath expr="//header" position="inside">
+                <button name="action_stamp_emeterai" 
+                        string="Affix e-Meterai" 
+                        type="object" 
+                        class="btn-primary" 
+                        icon="fa-certificate"
+                        invisible="state != 'posted' or emeterai_status == 'stamped' or move_type not in ('out_invoice', 'in_invoice')"/>
+                <button name="action_reset_emeterai" 
+                        string="Reset e-Meterai" 
+                        type="object" 
+                        class="btn-secondary" 
+                        invisible="emeterai_status != 'stamped'"/>
+            </xpath>
+
+            <!-- Alerts inside Sheet before everything -->
+            <xpath expr="//sheet" position="before">
+                <!-- Alert Banner for Statutory Bea Meterai Requirement -->
+                <div class="alert alert-warning mb-2" role="alert" 
+                     invisible="not emeterai_required or emeterai_status == 'stamped' or move_type not in ('out_invoice', 'in_invoice')">
+                    <span class="fa fa-balance-scale me-1" title="Notice"/>
+                    <strong>Statutory Duty Notice (UU No. 10/2020):</strong> 
+                    This invoice exceeds <strong>Rp 5.000.000</strong>. Electronic Stamp Duty (Bea Meterai Rp 10.000) is required for statutory legal compliance. Click <strong>"Affix e-Meterai"</strong> to apply the official Peruri seal.
+                </div>
+                <!-- Success Banner for Stamped Invoice -->
+                <div class="alert alert-success mb-2" role="alert" 
+                     invisible="emeterai_status != 'stamped'">
+                    <span class="fa fa-check-circle me-1" title="Stamped"/>
+                    <strong>Officially Certified by Peruri:</strong> Electronic Stamp Duty has been paid. 
+                    Serial Number: <field name="emeterai_serial_number" readonly="1" class="fw-bold oe_inline"/>
+                </div>
+            </xpath>
+
+            <!-- Notebook Page for e-Meterai & Document Seal Details -->
+            <xpath expr="//notebook" position="inside">
+                <page string="e-Meterai &amp; Seal" name="emeterai_page" invisible="move_type not in ('out_invoice', 'in_invoice')">
+                    <group>
+                        <group string="Statutory Compliance">
+                            <field name="emeterai_required" readonly="1"/>
+                            <field name="emeterai_status" widget="badge" 
+                                   decoration-muted="emeterai_status == 'not_required'"
+                                   decoration-warning="emeterai_status == 'pending'"
+                                   decoration-success="emeterai_status == 'stamped'"
+                                   decoration-danger="emeterai_status == 'failed'"/>
+                            <field name="emeterai_provider_id" options="{'no_create': True}"/>
+                        </group>
+                        <group string="Peruri Audit Trail">
+                            <field name="emeterai_serial_number" readonly="1"/>
+                            <field name="emeterai_qr_code" widget="url" readonly="1"/>
+                            <field name="emeterai_stamped_date" readonly="1"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Account Move List/Tree View Extension: Add Status Badge -->
+    <record id="view_invoice_tree_emeterai_inherit" model="ir.ui.view">
+        <field name="name">account.invoice.tree.emeterai.inherit</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_invoice_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='status_in_payment']" position="after">
+                <field name="emeterai_status" widget="badge" optional="show"
+                       decoration-muted="emeterai_status == 'not_required'"
+                       decoration-warning="emeterai_status == 'pending'"
+                       decoration-success="emeterai_status == 'stamped'"
+                       decoration-danger="emeterai_status == 'failed'"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,16 @@
+<svg width="50" height="50" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
+  <!-- Document Folio in Vibrant Royal Blue #088BF5 -->
+  <path d="M8 6h24a4 4 0 0 1 4 4v34a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4V10a4 4 0 0 1 4-4Z" fill="#088BF5"/>
+  <!-- Top Diagonal Page Highlight in Sky Cyan #2EBCFA -->
+  <path d="M8 6h16l12 12v14H8V6Z" fill="#2EBCFA"/>
+  <!-- Bottom Fold in Midnight Navy #144496 -->
+  <path d="M4 36h28a4 4 0 0 1 4 4v4H8a4 4 0 0 1-4-4v-4Z" fill="#144496"/>
+  <!-- Official e-Meterai Notched Stamp Outer in Coral Pink #FC868B -->
+  <rect x="22" y="22" width="22" height="22" rx="5" fill="#FC868B"/>
+  <!-- Inner Stamp Core in Vivid Coral Red #F06050 -->
+  <rect x="25" y="25" width="16" height="16" rx="3" fill="#F06050"/>
+  <!-- Golden Seal Rosette in Sunflower Gold #FBB945 -->
+  <circle cx="33" cy="33" r="5" fill="#FBB945"/>
+  <!-- Official Star Emblem in Crisp White -->
+  <path d="M33 30.2l1 2.2 2.4.3-1.8 1.6.5 2.3-2.1-1.2-2.1 1.2.5-2.3-1.8-1.6 2.4-.3z" fill="#FFFFFF"/>
+</svg>

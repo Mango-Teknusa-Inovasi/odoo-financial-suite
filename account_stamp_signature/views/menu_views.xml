@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Action for Stamped Invoices Filter -->
+    <record id="action_invoice_stamped_view" model="ir.actions.act_window">
+        <field name="name">e-Meterai Stamped Invoices</field>
+        <field name="res_model">account.move</field>
+        <field name="view_mode">list,kanban,form</field>
+        <field name="domain">[('move_type', 'in', ('out_invoice', 'in_invoice')), ('emeterai_status', '=', 'stamped')]</field>
+        <field name="context">{'default_move_type': 'out_invoice'}</field>
+    </record>
+
+    <!-- Action for Pending e-Meterai Invoices -->
+    <record id="action_invoice_pending_stamp_view" model="ir.actions.act_window">
+        <field name="name">Invoices Requiring e-Meterai</field>
+        <field name="res_model">account.move</field>
+        <field name="view_mode">list,kanban,form</field>
+        <field name="domain">[('move_type', 'in', ('out_invoice', 'in_invoice')), ('emeterai_required', '=', True)]</field>
+        <field name="context">{'default_move_type': 'out_invoice'}</field>
+    </record>
+
+    <!-- 1. Root App Drawer Menu -->
+    <menuitem id="menu_account_stamp_root"
+              name="Stamp &amp; e-Meterai"
+              web_icon="account_stamp_signature,static/description/icon.png"
+              sequence="36"/>
+
+    <!-- 2. Operations Menu -->
+    <menuitem id="menu_account_stamp_operations"
+              name="Document Sealing"
+              parent="menu_account_stamp_root"
+              sequence="10"/>
+
+    <menuitem id="menu_account_stamp_pending"
+              name="Pending e-Meterai (&gt;= Rp 5M)"
+              parent="menu_account_stamp_operations"
+              action="action_invoice_pending_stamp_view"
+              sequence="10"/>
+
+    <menuitem id="menu_account_stamp_stamped"
+              name="Stamped Invoices"
+              parent="menu_account_stamp_operations"
+              action="action_invoice_stamped_view"
+              sequence="20"/>
+
+    <!-- 3. Configuration Menu -->
+    <menuitem id="menu_account_stamp_config"
+              name="Configuration"
+              parent="menu_account_stamp_root"
+              sequence="50"/>
+
+    <menuitem id="menu_account_stamp_providers"
+              name="e-Meterai Providers"
+              parent="menu_account_stamp_config"
+              action="action_emeterai_provider"
+              sequence="10"/>
+
+    <!-- 4. Hook into standard Invoicing / Accounting Configuration Menu -->
+    <menuitem id="menu_emeterai_provider_account_config"
+              name="e-Meterai Gateways"
+              parent="account.menu_finance_configuration"
+              action="action_emeterai_provider"
+              sequence="45"/>
+</odoo>
