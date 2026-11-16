@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'WhatsApp Finance Notifier',
-    'version': '18.0.1.0.0',
+    'version': '20.0.1.0.0',
     'category': 'Accounting/Accounting',
     'summary': '1-Click WhatsApp Invoicing, GOWA Bridge, Meta Cloud API, and Direct PDF Dispatch',
     'description': """
