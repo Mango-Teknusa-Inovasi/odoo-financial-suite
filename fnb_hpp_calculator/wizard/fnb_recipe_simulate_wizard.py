@@ -8,9 +8,23 @@ class FnbRecipeSimulateWizard(models.TransientModel):
 
     recipe_id = fields.Many2one('fnb.recipe', string='Recipe', required=True)
     currency_id = fields.Many2one('res.currency', related='recipe_id.currency_id')
-    current_cost_per_portion = fields.Monetary(string='Base HPP / Portion', currency_field='currency_id', readonly=True)
-    current_selling_price = fields.Monetary(string='Current Selling Price', currency_field='currency_id', readonly=True)
-    current_margin_percent = fields.Float(string='Current Margin (%)', readonly=True)
+    current_cost_per_portion = fields.Monetary(
+        string='Base HPP / Portion',
+        currency_field='currency_id',
+        related='recipe_id.cost_per_portion',
+        readonly=True
+    )
+    current_selling_price = fields.Monetary(
+        string='Current Selling Price',
+        currency_field='currency_id',
+        related='recipe_id.selling_price',
+        readonly=True
+    )
+    current_margin_percent = fields.Float(
+        string='Current Margin (%)',
+        related='recipe_id.gross_margin_percent',
+        readonly=True
+    )
 
     simulation_mode = fields.Selection([
         ('target_margin', 'Set Target Gross Margin (%) -> Compute Required Price'),
@@ -39,7 +53,7 @@ class FnbRecipeSimulateWizard(models.TransientModel):
         compute='_compute_simulation'
     )
 
-    @api.depends('simulation_mode', 'target_margin_percent', 'target_selling_price', 'current_cost_per_portion')
+    @api.depends('simulation_mode', 'target_margin_percent', 'target_selling_price', 'current_cost_per_portion', 'recipe_id.cost_per_portion')
     def _compute_simulation(self):
         for wizard in self:
             cost = wizard.current_cost_per_portion
