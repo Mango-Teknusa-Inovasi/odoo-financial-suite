@@ -1,6 +1,6 @@
 <div align="center">
 
-![MangoTek Financial Suite Banner](assets/banner.png)
+![MangoTek Financial Suite Banner](assets/banner.png?raw=true&v=1.1.0)
 
 # MangoTek Financial Suite
 
