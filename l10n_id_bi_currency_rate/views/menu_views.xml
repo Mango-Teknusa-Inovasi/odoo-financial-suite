@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Parent Menu under Accounting Configuration -->
+    <menuitem id="menu_bi_currency_rate_root"
+              name="Kurs Bank Indonesia"
+              parent="account.menu_finance_configuration"
+              sequence="65"/>
+
+    <!-- Submenu 1: Currency Rates Table -->
+    <menuitem id="menu_bi_currency_rates_list"
+              name="Daftar Nilai Kurs Valas"
+              parent="menu_bi_currency_rate_root"
+              action="action_bi_currency_rates"
+              sequence="10"/>
+
+    <!-- Submenu 2: Sync History Log -->
+    <menuitem id="menu_bi_currency_rate_log"
+              name="Riwayat Sinkronisasi"
+              parent="menu_bi_currency_rate_root"
+              action="action_bi_rate_sync_log"
+              sequence="20"/>
+</odoo>

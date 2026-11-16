@@ -198,14 +198,20 @@ flowchart TD
 
 ---
 
-### 📌 Phase 11: Bank Indonesia Official Rate Sync (`l10n_id_bi_currency_rate`) — 🚀 UPCOMING TARGET
-> **Goal:** Automate daily foreign exchange rate updates directly from official Bank Indonesia (JISDOR / Kurs Transaksi BI) data.
-* [ ] **Automated Daily Cron:** Scheduled task fetching official BI rates for USD, EUR, SGD, JPY, CNY, and MYR.
-* [ ] **Multi-Currency Pricing:** Automatic conversion for international transactions adhering to statutory Indonesian customs & tax regulations.
+### 📌 Phase 11: Bank Indonesia Official Rate Sync (`l10n_id_bi_currency_rate`) — ✅ COMPLETED
+> **Goal:** Automate daily foreign exchange rate updates directly from official Bank Indonesia (JISDOR / Kurs Transaksi BI) data and Kemenkeu KMK weekly fiscal rates.
+* [x] **Dual-Stream Rate Synchronization:** Automated ingestion of Bank Indonesia commercial rates (JISDOR for USD and Kurs Tengah for all other currencies) plus Kemenkeu KMK fiscal tax rates.
+* [x] **Multi-Provider Fallback Cascade:** 3-tier resilience architecture (Official Bank Indonesia API $\rightarrow$ High-availability open mirror $\rightarrow$ Internal Last Business Day carry-forward).
+* [x] **Weekend & Public Holiday Invariant:** Automatic roll-back to the latest preceding Friday business day rate during non-trading days.
+* [x] **Active Currency Filtering:** Selectively ingests only currencies enabled in the company database (USD, EUR, SGD, JPY, CNY, MYR, etc.), keeping system tables lean.
+* [x] **Human-Friendly Rupiah Representation:** Bidirectional editing in plain Rupiah (`idr_rate`, e.g. Rp 16.250) with automated Odoo inverted rate computation ($1 / \text{IDR}$).
+* [x] **Automated 17:00 WIB Cron & Manual Trigger:** Scheduled action (`ir.cron`) running every business day post-market close, with instant 1-click manual trigger in Invoicing Settings.
+* [x] **Audited History Logs:** Permanent logging model (`bi.rate.sync.log`) tracking provider origin, execution status, and rate snapshots with multi-company isolation.
+* [x] **Live Testing:** 6 unit tests passing 100% and validated against Odoo Apps Store guidelines (88/88 checks passed).
 
 ---
 
-### 📌 Phase 12: Visual Budgeting & Target Progress (`account_simple_budgeting`) — 📋 PLANNED
+### 📌 Phase 12: Visual Budgeting & Target Progress (`account_simple_budgeting`) — 🚀 UPCOMING TARGET
 > **Goal:** Empower business owners to set monthly revenue targets and expense ceilings with real-time visual progress indicators.
 * [ ] **Target vs Actual Tracking:** Set monthly targets per COA account with variance percentage analysis.
 * [ ] **Traffic-Light Progress Gauges:** Visual color-coded progress bars (🟢 Within Budget, 🟡 Near Limit, 🔴 Over Budget).
@@ -226,8 +232,8 @@ flowchart TD
 | **8** | `account_whatsapp_notifier` | 1 Day | Low | 1-click WhatsApp document dispatch & GOWA bridge | **✅ Completed** |
 | **9** | `account_project_job_costing` | 1-2 Days | Medium | Tagging job costing, dual-metric cashflow dashboard | **✅ Completed** |
 | **10** | `pos_thermal_receipt_designer` | 1-2 Days | Low-Med | Visual 58mm/80mm thermal receipt designer & live preview | **✅ Completed** |
-| **11** | `l10n_id_bi_currency_rate` | 1 Day | Low | Daily Bank Indonesia JISDOR official rate auto-sync | **🚀 Upcoming Target** |
-| **12** | `account_simple_budgeting` | 1 Day | Low-Med | Monthly revenue target & expense progress gauges | **📋 Planned** |
+| **11** | `l10n_id_bi_currency_rate` | 1 Day | Low | Daily Bank Indonesia JISDOR official rate auto-sync | **✅ Completed** |
+| **12** | `account_simple_budgeting` | 1 Day | Low-Med | Monthly revenue target & expense progress gauges | **🚀 Upcoming Target** |
 
 ---
 
