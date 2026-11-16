@@ -3,7 +3,7 @@
     <!-- 1. Root App Drawer Menu -->
     <menuitem id="menu_financial_health_root"
               name="Financial Health"
-              web_icon="financial_health_dashboard,static/description/icon.png"
+              web_icon="financial_health_kpi,static/description/icon.png"
               sequence="37"/>
 
     <!-- 2. Operational Submenus -->
@@ -12,7 +12,7 @@
               parent="menu_financial_health_root"
               sequence="10"/>
 
-    <menuitem id="menu_financial_health_dashboard_action"
+    <menuitem id="menu_financial_health_kpi_action"
               name="Health Ratio Dashboard"
               parent="menu_financial_health_operations"
               action="action_financial_health_kpi"
