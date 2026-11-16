@@ -39,13 +39,14 @@ class TestCoretaxValidation(unittest.TestCase):
         tax_year = 2026
         serial_int = 10000001
         
-        # Expected format: 01.000-26.10000001 (for standard transaction 01)
+        # Expected format: 010.000-26.10000001 (16 digits: 2-digit trx code + 1-digit status '0')
         trx_code = "01"
         year_short = str(tax_year)[-2:]
-        formatted_nsfp = f"{trx_code}.{prefix_code}-{year_short}.{serial_int:08d}"
+        formatted_nsfp = f"{trx_code}0.{prefix_code}-{year_short}.{serial_int:08d}"
         
-        self.assertEqual(formatted_nsfp, "01.000-26.10000001")
-        self.assertTrue(re.match(r"^\d{2}\.\d{3}-\d{2}\.\d{8}$", formatted_nsfp))
+        self.assertEqual(formatted_nsfp, "010.000-26.10000001")
+        self.assertEqual(len(re.sub(r'\D', '', formatted_nsfp)), 16) # Strictly 16 digits
+        self.assertTrue(re.match(r"^\d{3}\.\d{3}-\d{2}\.\d{8}$", formatted_nsfp))
 
     def test_ppn_12_percent_statutory_calculation(self):
         """Test statutory PPN 12% (UU Harmonisasi Peraturan Perpajakan)."""
