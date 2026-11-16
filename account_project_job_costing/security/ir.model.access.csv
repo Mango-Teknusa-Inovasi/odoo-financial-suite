@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_account_job_costing_user,account.job.costing.user,model_account_job_costing,account.group_account_invoice,1,1,1,0
+access_account_job_costing_manager,account.job.costing.manager,model_account_job_costing,account.group_account_manager,1,1,1,1
+access_account_job_close_wizard_user,account.job.close.wizard.user,model_account_job_close_wizard,account.group_account_invoice,1,1,1,1
+access_account_job_excel_export_user,account.job.excel.export.wizard.user,model_account_job_excel_export_wizard,account.group_account_invoice,1,1,1,1

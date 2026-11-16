@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_move_form_inherit_job_costing" model="ir.ui.view">
+        <field name="name">account.move.form.inherit.job.costing</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+            <!-- Header Level Project Tagging -->
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="project_job_id" options="{'no_create': True}" placeholder="Alokasikan ke Proyek (Opsional)..."/>
+            </xpath>
+
+            <!-- Line Level Cost Classification & Project Override -->
+            <xpath expr="//field[@name='invoice_line_ids']//field[@name='name']" position="after">
+                <field name="project_job_id" optional="show" options="{'no_create': True}" string="Proyek"/>
+                <field name="job_cost_type" optional="show" string="Kategori Biaya Proyek"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

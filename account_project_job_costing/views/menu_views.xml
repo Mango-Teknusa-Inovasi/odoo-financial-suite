@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- 1. Dedicated Root App Drawer Menu -->
+    <menuitem id="menu_account_job_costing_root"
+              name="Job Costing"
+              web_icon="account_project_job_costing,static/description/icon.png"
+              sequence="38"/>
+
+    <!-- 2. Operational Submenus -->
+    <menuitem id="menu_account_job_costing_operations"
+              name="Proyek &amp; Biaya"
+              parent="menu_account_job_costing_root"
+              sequence="10"/>
+
+    <menuitem id="menu_account_job_costing_action"
+              name="Lembar Biaya Proyek"
+              parent="menu_account_job_costing_operations"
+              action="action_account_job_costing"
+              sequence="10"/>
+
+    <!-- 3. Invoicing / Accounting Entry Hook -->
+    <menuitem id="menu_account_job_costing_invoicing_hook"
+              name="Biaya Proyek (Job Costing)"
+              parent="account.menu_finance_entries"
+              action="action_account_job_costing"
+              sequence="25"/>
+</odoo>
