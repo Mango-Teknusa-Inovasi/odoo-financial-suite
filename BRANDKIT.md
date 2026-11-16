@@ -97,6 +97,11 @@ Each module in the MangoTek Financial Suite possesses a distinct, cohesive 50x50
 * **Palette:** Sunflower Amber (`#D97706`), Warm Tangerine (`#F86126`), Deep Petrol (`#005E7A`), Emerald Mint (`#1AD3BB`).
 * **Source:** `account_opening_balance_wizard/static/description/icon.png`
 
+### 8. `account_whatsapp_notifier` (WhatsApp Finance Notifier)
+* **Concept:** Multi-device chat bubble containing verified invoice document fold, dispatch arrow, and payment settlement checks.
+* **Palette:** WhatsApp Green (`#25D366`), Emerald Mint (`#1AD3BB`), Royal Azure (`#088BF5`), Deep Petrol (`#005E7A`).
+* **Source:** `account_whatsapp_notifier/static/description/icon.png`
+
 ---
 
 ## 5. Typography Standards

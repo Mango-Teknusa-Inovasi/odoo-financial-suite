@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Template List View -->
+    <record id="view_account_whatsapp_template_tree" model="ir.ui.view">
+        <field name="name">account.whatsapp.template.list</field>
+        <field name="model">account.whatsapp.template</field>
+        <field name="arch" type="xml">
+            <list string="Template WhatsApp Finansial">
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+                <field name="code"/>
+                <field name="document_type"/>
+                <field name="company_id" groups="base.group_multi_company"/>
+                <field name="active" widget="boolean_toggle"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Template Form View -->
+    <record id="view_account_whatsapp_template_form" model="ir.ui.view">
+        <field name="name">account.whatsapp.template.form</field>
+        <field name="model">account.whatsapp.template</field>
+        <field name="arch" type="xml">
+            <form string="Template Pesan WhatsApp">
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" string="Nama Template"/>
+                        <h1>
+                            <field name="name" placeholder="contoh: Faktur Standar WhatsApp"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="code" placeholder="WA_INVOICE_STD"/>
+                            <field name="document_type"/>
+                        </group>
+                        <group>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                            <field name="active"/>
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <page name="body_page" string="Isi Pesan WhatsApp">
+                            <field name="body" placeholder="Tuliskan format pesan di sini..." widget="text"/>
+                            <div class="alert alert-info mt-3" role="status">
+                                <strong>Variabel Dinamis yang Tersedia:</strong>
+                                <ul class="mb-0 mt-1">
+                                    <li><code>{{partner_name}}</code> : Nama Pelanggan / Vendor</li>
+                                    <li><code>{{invoice_number}}</code> : Nomor Faktur Penjualan</li>
+                                    <li><code>{{amount_total}}</code> : Total Nominal Tagihan</li>
+                                    <li><code>{{amount_residual}}</code> : Sisa Tagihan Belum Lunas</li>
+                                    <li><code>{{due_date}}</code> : Tanggal Jatuh Tempo (DD/MM/YYYY)</li>
+                                    <li><code>{{company_name}}</code> : Nama Perusahaan Penjual</li>
+                                    <li><code>{{portal_url}}</code> : Tautan Pembayaran Online / Download PDF</li>
+                                    <li><code>{{qris_note}}</code> : Catatan Pembayaran QRIS Dinamis (Fase 6)</li>
+                                    <li><code>{{emeterai_status}}</code> : Catatan Keabsahan e-Meterai (Fase 4)</li>
+                                </ul>
+                            </div>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Template Action Window -->
+    <record id="action_account_whatsapp_template" model="ir.actions.act_window">
+        <field name="name">Template WhatsApp Finansial</field>
+        <field name="res_model">account.whatsapp.template</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Buat template pesan WhatsApp pertama Anda!
+            </p>
+        </field>
+    </record>
+</odoo>

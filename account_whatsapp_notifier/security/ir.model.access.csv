@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_account_whatsapp_template_user,account.whatsapp.template.user,model_account_whatsapp_template,account.group_account_invoice,1,1,1,0
+access_account_whatsapp_template_manager,account.whatsapp.template.manager,model_account_whatsapp_template,account.group_account_manager,1,1,1,1
+access_account_whatsapp_composer_user,account.whatsapp.composer.user,model_account_whatsapp_composer,account.group_account_invoice,1,1,1,1

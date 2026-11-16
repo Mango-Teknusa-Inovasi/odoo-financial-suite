@@ -83,6 +83,14 @@ MODULE_SPECIFICATIONS = [
         "accent": (26, 211, 187), # Emerald Mint
         "highlight": "⚖️ 1-Page Setup & Auto-Equity",
     },
+    {
+        "dir": "account_whatsapp_notifier",
+        "icon": "account_whatsapp_notifier_512.png",
+        "title": "WhatsApp Finance Notifier",
+        "subtitle": "1-Click WhatsApp Invoicing · GOWA Multi-Device Bridge · PDF Dispatch",
+        "accent": (37, 211, 102), # WhatsApp Green
+        "highlight": "💬 GOWA & WhatsApp Dispatch",
+    },
 ]
 
 def get_font(font_name, size):

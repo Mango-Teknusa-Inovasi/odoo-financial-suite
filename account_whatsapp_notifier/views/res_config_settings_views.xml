@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_view_form_whatsapp" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.whatsapp</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="account.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//app[@name='account']" position="inside">
+                <block title="WhatsApp Document Notifier (GOWA &amp; Meta)" id="whatsapp_settings_block">
+                    <setting id="whatsapp_provider_setting" help="Pilih engine pengiriman pesan WhatsApp untuk faktur dan tagihan.">
+                        <field name="whatsapp_provider" widget="radio"/>
+                    </setting>
+
+                    <!-- GOWA Settings (go-whatsapp-web-multidevice) -->
+                    <setting id="gowa_config_setting" title="Konfigurasi GOWA (Self-Hosted)"
+                             help="Hubungkan ke server go-whatsapp-web-multidevice lokal atau Docker."
+                             invisible="whatsapp_provider != 'gowa'">
+                        <div class="content-group">
+                            <div class="row mt-2">
+                                <label string="Server URL" for="gowa_server_url" class="col-lg-3 o_light_label"/>
+                                <field name="gowa_server_url" placeholder="http://localhost:3000 atau http://gowa:3000"/>
+                            </div>
+                            <div class="row mt-2">
+                                <label string="Basic Auth User" for="gowa_username" class="col-lg-3 o_light_label"/>
+                                <field name="gowa_username" placeholder="Optional basic auth username"/>
+                            </div>
+                            <div class="row mt-2">
+                                <label string="Basic Auth Pass" for="gowa_password" class="col-lg-3 o_light_label"/>
+                                <field name="gowa_password" password="True" placeholder="Optional basic auth password"/>
+                            </div>
+                            <div class="row mt-2">
+                                <label string="Device ID (Multi-Acc)" for="gowa_device_id" class="col-lg-3 o_light_label"/>
+                                <field name="gowa_device_id" placeholder="Optional X-Device-Id"/>
+                            </div>
+                            <div class="row mt-2">
+                                <field name="gowa_attach_pdf"/>
+                                <label string="Lampirkan Dokumen PDF Faktur secara Fisik" for="gowa_attach_pdf"/>
+                            </div>
+                            <div class="mt-3">
+                                <button name="action_test_gowa_connection" type="object"
+                                        string="Uji Koneksi GOWA (Ping Server)" class="btn btn-primary" icon="fa-plug"/>
+                            </div>
+                        </div>
+                    </setting>
+
+                    <!-- Meta WhatsApp Cloud API Settings -->
+                    <setting id="meta_config_setting" title="Meta WhatsApp Cloud API (Resmi)"
+                             help="Koneksi resmi via Meta Graph API."
+                             invisible="whatsapp_provider != 'meta_official'">
+                        <div class="content-group">
+                            <div class="row mt-2">
+                                <label string="Phone Number ID" for="meta_phone_number_id" class="col-lg-3 o_light_label"/>
+                                <field name="meta_phone_number_id" placeholder="123456789012345"/>
+                            </div>
+                            <div class="row mt-2">
+                                <label string="Access Token" for="meta_token" class="col-lg-3 o_light_label"/>
+                                <field name="meta_token" password="True" placeholder="EAAB..."/>
+                            </div>
+                        </div>
+                    </setting>
+
+                    <!-- Custom Webhook Gateway Settings -->
+                    <setting id="custom_config_setting" title="Gateway Kustom (Fonnte / Wablas)"
+                             help="Kirim via endpoint REST webhook pihak ketiga."
+                             invisible="whatsapp_provider != 'custom_api'">
+                        <div class="content-group">
+                            <div class="row mt-2">
+                                <label string="Webhook URL" for="custom_webhook_url" class="col-lg-3 o_light_label"/>
+                                <field name="custom_webhook_url" placeholder="https://api.fonnte.com/send"/>
+                            </div>
+                            <div class="row mt-2">
+                                <label string="API Token" for="custom_webhook_token" class="col-lg-3 o_light_label"/>
+                                <field name="custom_webhook_token" password="True" placeholder="Bearer ..."/>
+                            </div>
+                        </div>
+                    </setting>
+
+                    <!-- Automated Workflow -->
+                    <setting id="auto_send_setting" help="Otomatis kirim pesan saat faktur divalidasi ke status Posted.">
+                        <field name="auto_send_on_post"/>
+                        <label string="Kirim Otomatis saat Faktur Diposting (Posted)" for="auto_send_on_post"/>
+                    </setting>
+                </block>
+            </xpath>
+        </field>
+    </record>
+</odoo>
