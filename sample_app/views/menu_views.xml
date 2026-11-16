@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Top-level Menu -->
+    <menuitem id="menu_sample_app_root"
+              name="Sample App"
+              web_icon="sample_app,static/description/icon.png"
+              sequence="10"/>
+
+    <!-- Operations / Category Menu -->
+    <menuitem id="menu_sample_app_operations"
+              name="Operations"
+              parent="menu_sample_app_root"
+              sequence="10"/>
+
+    <!-- Tasks Menu Item -->
+    <menuitem id="menu_sample_task"
+              name="Tasks"
+              parent="menu_sample_app_operations"
+              action="action_sample_task"
+              sequence="10"/>
+</odoo>
