@@ -8,11 +8,31 @@ The format follows standard semantic versioning practices (`MAJOR.MINOR.PATCH`).
 
 ## [Unreleased]
 
-### Planned (Phases 9–12 Horizons)
-- **Phase 9: `account_project_job_costing`:** Agile project tagging with Dual-Metric dashboard (Accrual Profit vs Cash Position).
+### Planned (Phases 10–12 Horizons)
 - **Phase 10: `pos_thermal_receipt_designer`:** No-code visual thermal receipt customizer with dual width presets (58 mm / 80 mm).
 - **Phase 11: `l10n_id_bi_currency_rate`:** Automated daily sync of official Bank Indonesia foreign exchange rates (JISDOR / Kurs Transaksi BI).
 - **Phase 12: `account_simple_budgeting`:** Monthly revenue target and expense limit monitoring with traffic-light visual progress gauges.
+
+---
+
+## [1.4.0] - 2026-11-17
+
+### Added (Phase 9: Lightweight Project Job Costing)
+- **Core Module `account_project_job_costing`:** Agile project cost sheet and profit tracker providing dual-metric financial performance (Accrual P&L vs Real Cashflow) without requiring complex Odoo Analytic Distribution matrices.
+- **Dual-Metric Real-Time Financial Engine:**
+  - **Metric 1: Accrual P&L (Laba Rugi Akrual):** Invoiced Revenue minus categorized project expenses (Material, Labor, Overhead) computing Net Accrual Profit and Accrual Margin %.
+  - **Metric 2: Realized Cash Position (Posisi Kas Nyata):** Real payments collected from customer invoices minus real disbursements to supplier bills, plus visibility on Uncollected AR and Unpaid AP.
+- **Multi-Category Budget Tracking & Burn Rate:** Plafon budgets for Materials, Labor/Subcontractors, and Overhead with real-time variance and traffic-light health status (🟢 Sehat, 🟡 Perhatian, 🔴 Over Budget).
+- **Zero-Overhead Transaction Ingestion:** 1-click project tagging on Customer Invoices and Vendor Bills with auto-cascading to invoice lines and line-level cost classification.
+- **Indonesian Withholding Tax (WHT) Calculator:** Sensitivity modeling for PPh 23 (2.0%) and PPh Final Jasa Konstruksi (PP 9/2021: 1.75%, 2.65%, 4.0%) estimating net cash realization after tax.
+- **Smart Closure Guard Wizard (`account.job.close.wizard`):** Audit confirmation modal alerting managers of outstanding client receivables or unpaid vendor bills before closing projects.
+- **Executive Reporting & Outputs:**
+  - Official printable **QWeb PDF Project Cost Sheet** with dual-metric comparison and dual sign-off blocks.
+  - One-click **Excel (.xlsx)** transaction export generator with universal CSV UTF-8 BOM fallback.
+- **Quality & Apps Store Compliance:**
+  - `scripts/validate_apps_store.py`: 72/72 checks passed (Score 5.0 / 5.0 across all 9 modules).
+  - `tests/run_all_tests.py`: 47/47 tests passed (0 failures, 0 errors).
+  - Live Docker Verification: Installed, verified, and rendered QWeb PDF & Excel export in container `odoo18_web`.
 
 ---
 

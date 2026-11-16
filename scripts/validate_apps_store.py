@@ -20,6 +20,7 @@ MODULES = [
     "account_qris_qbiz",
     "account_opening_balance_wizard",
     "account_whatsapp_notifier",
+    "account_project_job_costing",
 ]
 
 def validate_suite():
@@ -49,11 +50,12 @@ def validate_suite():
                 failed_modules.append(mod)
                 continue
                 
-        # 1. Name Check (<= 25 chars, no adjectives, no company name)
+        # 1. Name Check (<= 25 chars, no buzzwords, no company name)
         total_checks += 1
         name = manifest.get("name", "")
         name_len = len(name)
-        if 0 < name_len <= 25 and not any(w in name.lower() for w in ["best", "awesome", "mangotek", "pro", "free"]):
+        has_buzzword = bool(re.search(r"\b(best|awesome|mangotek|pro|free)\b", name.lower()))
+        if 0 < name_len <= 25 and not has_buzzword:
             print(f"  ✅ [Name] '{name}' ({name_len}/25 chars, explicit, compliant)")
             passed_checks += 1
         else:

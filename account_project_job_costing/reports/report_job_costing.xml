@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Report Action -->
+    <record id="action_report_job_costing" model="ir.actions.report">
+        <field name="name">Lembar Biaya &amp; Profitabilitas Proyek (PDF)</field>
+        <field name="model">account.job.costing</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">account_project_job_costing.report_job_costing_document</field>
+        <field name="report_file">account_project_job_costing.report_job_costing_document</field>
+        <field name="print_report_name">'CostSheet_' + (object.code or 'PRJ').replace('/', '_')</field>
+        <field name="binding_model_id" ref="model_account_job_costing"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <!-- QWeb Document Template -->
+    <template id="report_job_costing_document">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.external_layout">
+                    <div class="page" style="font-family: 'Segoe UI', Arial, sans-serif; font-size: 12px; color: #1E293B;">
+                        <!-- Report Header -->
+                        <div class="row pb-3 mb-3 border-bottom">
+                            <div class="col-8">
+                                <h3 class="font-weight-bold mb-1" style="color: #0F172A;">LEMBAR BIAYA &amp; PROFITABILITAS PROYEK</h3>
+                                <p class="text-muted mb-0 small">Executive Project Cost Sheet &amp; Dual-Metric Cashflow Analysis</p>
+                            </div>
+                            <div class="col-4 text-end">
+                                <span class="badge badge-secondary p-2 font-weight-bold" style="font-size: 13px;">
+                                    <t t-esc="doc.code"/>
+                                </span>
+                                <div class="mt-1 small text-muted">
+                                    Status: <strong><t t-esc="dict(doc._fields['state'].selection).get(doc.state)"/></strong>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Project Metadata Grid -->
+                        <div class="row mb-4">
+                            <div class="col-6">
+                                <table class="table table-sm table-borderless mb-0">
+                                    <tr>
+                                        <td class="text-muted" style="width: 35%;">Nama Proyek:</td>
+                                        <td class="font-weight-bold"><t t-esc="doc.name"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-muted">Klien / Pemberi Kerja:</td>
+                                        <td><strong><t t-esc="doc.partner_id.name"/></strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-muted">PIC / Project Manager:</td>
+                                        <td><t t-esc="doc.user_id.name or '-'"/></td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="col-6">
+                                <table class="table table-sm table-borderless mb-0">
+                                    <tr>
+                                        <td class="text-muted" style="width: 40%;">Nilai Kontrak:</td>
+                                        <td class="font-weight-bold" style="color: #0284C7;">
+                                            <t t-esc="doc.currency_id.symbol"/> <t t-esc="'{:,.2f}'.format(doc.contract_amount)"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-muted">Masa Pelaksanaan:</td>
+                                        <td>
+                                            <t t-esc="doc.date_start or '-'"/> s/d <t t-esc="doc.date_end or '-'"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-muted">Kesehatan Finansial:</td>
+                                        <td>
+                                            <strong><t t-esc="dict(doc._fields['health_status'].selection).get(doc.health_status)"/></strong>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Section 1: Dual-Metric Financial Summary -->
+                        <h5 class="font-weight-bold mb-2 pb-1 border-bottom" style="color: #1E293B;">1. Ringkasan Finansial Dual-Metric</h5>
+                        <div class="row mb-4">
+                            <!-- Accrual Box -->
+                            <div class="col-6">
+                                <div class="card p-2 border">
+                                    <div class="font-weight-bold mb-2 text-primary" style="font-size: 12px;">METRIK 1: LABA RUGI AKRUAL</div>
+                                    <table class="table table-sm table-borderless mb-0">
+                                        <tr>
+                                            <td>Total Pendapatan Ditagih:</td>
+                                            <td class="text-end font-weight-bold">
+                                                <t t-esc="doc.currency_id.symbol"/> <t t-esc="'{:,.2f}'.format(doc.actual_revenue)"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Total Beban HPP Proyek:</td>
+                                            <td class="text-end text-muted">
+                                                (<t t-esc="doc.currency_id.symbol"/> <t t-esc="'{:,.2f}'.format(doc.actual_total_cost)"/>)
+                                            </td>
+                                        </tr>
+                                        <tr class="border-top">
+                                            <td class="font-weight-bold">Laba Bersih Akrual:</td>
+                                            <td class="text-end font-weight-bold" style="color: #15803D;">
+                                                <t t-esc="doc.currency_id.symbol"/> <t t-esc="'{:,.2f}'.format(doc.accrual_profit)"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-muted">Margin Laba Akrual:</td>
+                                            <td class="text-end font-weight-bold">
+                                                <t t-esc="'{:.1f}'.format(doc.accrual_margin_pct)"/>%
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <!-- Cash Position Box -->
+                            <div class="col-6">
+                                <div class="card p-2 border">
+                                    <div class="font-weight-bold mb-2 text-success" style="font-size: 12px;">METRIK 2: POSISI KAS NYATA</div>
+                                    <table class="table table-sm table-borderless mb-0">
+                                        <tr>
+                                            <td>Kas Riil Masuk dari Klien:</td>
+                                            <td class="text-end font-weight-bold">
+                                                <t t-esc="doc.currency_id.symbol"/> <t t-esc="'{:,.2f}'.format(doc.cash_received)"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Kas Riil Keluar ke Vendor:</td>
+                                            <td class="text-end text-muted">
+                                                (<t t-esc="doc.currency_id.symbol"/> <t t-esc="'{:,.2f}'.format(doc.cash_disbursed)"/>)
+                                            </td>
+                                        </tr>
+                                        <tr class="border-top">
+                                            <td class="font-weight-bold">Arus Kas Bersih Riil:</td>
+                                            <td class="text-end font-weight-bold" style="color: #0284C7;">
+                                                <t t-esc="doc.currency_id.symbol"/> <t t-esc="'{:,.2f}'.format(doc.net_cash_flow)"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-muted">Piutang Klien Belum Lunas:</td>
+                                            <td class="text-end text-danger">
+                                                <t t-esc="doc.currency_id.symbol"/> <t t-esc="'{:,.2f}'.format(doc.uncollected_ar)"/>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Section 2: Budget vs Realization -->
+                        <h5 class="font-weight-bold mb-2 pb-1 border-bottom" style="color: #1E293B;">2. Anggaran (Plafon) vs Realisasi Biaya</h5>
+                        <table class="table table-sm table-bordered mb-4">
+                            <thead class="bg-light">
+                                <tr>
+                                    <th>Kategori Biaya</th>
+                                    <th class="text-end">Anggaran (Plafon)</th>
+                                    <th class="text-end">Realisasi Aktual</th>
+                                    <th class="text-end">Sisa Anggaran (Varian)</th>
+                                    <th class="text-center">Burn Rate %</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1. Bahan &amp; Material</td>
+                                    <td class="text-end"><t t-esc="doc.currency_id.symbol"/> <t t-esc="'{:,.2f}'.format(doc.budget_material)"/></td>
+                                    <td class="text-end"><t t-esc="doc.currency_id.symbol"/> <t t-esc="'{:,.2f}'.format(doc.actual_material)"/></td>
+                                    <td class="text-end"><t t-esc="doc.currency_id.symbol"/> <t t-esc="'{:,.2f}'.format(doc.variance_material)"/></td>
+                                    <td class="text-center"><t t-esc="'{:.1f}'.format(doc.actual_material / doc.budget_material * 100.0) if doc.budget_material else '0.0'"/>%</td>
+                                </tr>
+                                <tr>
+                                    <td>2. Upah &amp; Subkontraktor</td>
+                                    <td class="text-end"><t t-esc="doc.currency_id.symbol"/> <t t-esc="'{:,.2f}'.format(doc.budget_labor)"/></td>
+                                    <td class="text-end"><t t-esc="doc.currency_id.symbol"/> <t t-esc="'{:,.2f}'.format(doc.actual_labor)"/></td>
+                                    <td class="text-end"><t t-esc="doc.currency_id.symbol"/> <t t-esc="'{:,.2f}'.format(doc.variance_labor)"/></td>
+                                    <td class="text-center"><t t-esc="'{:.1f}'.format(doc.actual_labor / doc.budget_labor * 100.0) if doc.budget_labor else '0.0'"/>%</td>
+                                </tr>
+                                <tr>
+                                    <td>3. Overhead &amp; Sewa Alat</td>
+                                    <td class="text-end"><t t-esc="doc.currency_id.symbol"/> <t t-esc="'{:,.2f}'.format(doc.budget_overhead)"/></td>
+                                    <td class="text-end"><t t-esc="doc.currency_id.symbol"/> <t t-esc="'{:,.2f}'.format(doc.actual_overhead)"/></td>
+                                    <td class="text-end"><t t-esc="doc.currency_id.symbol"/> <t t-esc="'{:,.2f}'.format(doc.variance_overhead)"/></td>
+                                    <td class="text-center"><t t-esc="'{:.1f}'.format(doc.actual_overhead / doc.budget_overhead * 100.0) if doc.budget_overhead else '0.0'"/>%</td>
+                                </tr>
+                                <tr class="font-weight-bold bg-light">
+                                    <td>TOTAL HPP PROYEK</td>
+                                    <td class="text-end"><t t-esc="doc.currency_id.symbol"/> <t t-esc="'{:,.2f}'.format(doc.budget_total_cost)"/></td>
+                                    <td class="text-end"><t t-esc="doc.currency_id.symbol"/> <t t-esc="'{:,.2f}'.format(doc.actual_total_cost)"/></td>
+                                    <td class="text-end"><t t-esc="doc.currency_id.symbol"/> <t t-esc="'{:,.2f}'.format(doc.variance_total)"/></td>
+                                    <td class="text-center"><t t-esc="'{:.1f}'.format(doc.burn_rate_pct)"/>%</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <!-- Section 3: Indonesian WHT Sensitivity -->
+                        <h5 class="font-weight-bold mb-2 pb-1 border-bottom" style="color: #1E293B;">3. Estimasi Pajak Penghasilan (WHT) &amp; Proyeksi Kas Bersih</h5>
+                        <div class="row mb-4">
+                            <div class="col-12">
+                                <table class="table table-sm table-bordered">
+                                    <tbody>
+                                        <tr>
+                                            <td style="width: 35%;">Kategori Pemotongan Pajak:</td>
+                                            <td><strong><t t-esc="dict(doc._fields['tax_wht_type'].selection).get(doc.tax_wht_type)"/></strong> (<t t-esc="doc.wht_estimated_rate"/>%)</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Estimasi Potongan PPh oleh Klien:</td>
+                                            <td class="text-danger font-weight-bold">
+                                                <t t-esc="doc.currency_id.symbol"/> <t t-esc="'{:,.2f}'.format(doc.wht_estimated_amount)"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Estimasi Kas Bersih Setelah Pajak:</td>
+                                            <td class="text-success font-weight-bold">
+                                                <t t-esc="doc.currency_id.symbol"/> <t t-esc="'{:,.2f}'.format(doc.net_cash_expected)"/>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Sign-off Block -->
+                        <div class="row mt-5 pt-3">
+                            <div class="col-6 text-center">
+                                <p class="text-muted mb-5">Dibuat oleh (Project Manager):</p>
+                                <p class="font-weight-bold mb-0"><u><t t-esc="doc.user_id.name or '____________________'"/></u></p>
+                            </div>
+                            <div class="col-6 text-center">
+                                <p class="text-muted mb-5">Disetujui oleh (Finance / Direktur):</p>
+                                <p class="font-weight-bold mb-0"><u>______________________________</u></p>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

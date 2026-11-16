@@ -39,19 +39,19 @@ flowchart TD
         P1 --> P2 --> P3 --> P4 --> P5
     end
 
-    subgraph Expansion ["Enterprise & Fintech Horizons (Phases 6 - 8 Completed)"]
+    subgraph Expansion ["Enterprise & Fintech Horizons (Phases 6 - 9 Completed)"]
         P6["Phase 6: QBiz Dynamic QRIS<br/>(account_qris_qbiz)"]
         P7["Phase 7: Opening Balance Setup<br/>(account_opening_balance_wizard)"]
         P8["Phase 8: 1-Click WhatsApp Dispatcher<br/>(account_whatsapp_notifier)"]
-        P5 --> P6 --> P7 --> P8
+        P9["Phase 9: Project Job Costing<br/>(account_project_job_costing)"]
+        P5 --> P6 --> P7 --> P8 --> P9
     end
 
-    subgraph Upcoming ["Upcoming Horizons (Phases 9 - 12)"]
-        P9["Phase 9: Project Job Costing<br/>(account_project_job_costing)"]
+    subgraph Upcoming ["Upcoming Horizons (Phases 10 - 12)"]
         P10["Phase 10: POS Thermal Receipt Designer<br/>(pos_thermal_receipt_designer)"]
         P11["Phase 11: Bank Indonesia Rate Sync<br/>(l10n_id_bi_currency_rate)"]
         P12["Phase 12: Visual Budgeting & Targets<br/>(account_simple_budgeting)"]
-        P8 --> P9 --> P10 --> P11 --> P12
+        P9 --> P10 --> P11 --> P12
     end
 ```
 
@@ -64,6 +64,7 @@ flowchart TD
 6. **`account_qris_qbiz`**: Depends on `base`, `account`, `mail`. Standalone EMVCo Tag 54 injection, unique code suffix, and webhook reconciler.
 7. **`account_opening_balance_wizard`**: Depends on `base`, `account`, `stock`, `mail`. Single-window onboarding wizard, multi-sheet Excel engine, and `account.simple.asset` (PPh 11 register).
 8. **`account_whatsapp_notifier`**: Depends on `base`, `account`, `mail`. Multi-engine dispatcher (GOWA self-hosted, Meta Cloud API, wa.me fallback), template engine, and interactive composer.
+9. **`account_project_job_costing`**: Depends on `base`, `account`, `mail`. Agile project cost sheet, dual-metric P&L (Accrual vs Real Cashflow), budget variance, and Indonesian WHT sensitivity.
 
 ---
 

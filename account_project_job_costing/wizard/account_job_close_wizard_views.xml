@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_account_job_close_wizard_form" model="ir.ui.view">
+        <field name="name">account.job.close.wizard.form</field>
+        <field name="model">account.job.close.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Konfirmasi Penutupan Proyek">
+                <field name="currency_id" invisible="1"/>
+                <div class="alert alert-warning mb-3" role="status">
+                    <h5 class="alert-heading font-weight-bold">⚠️ Perhatian: Terdapat Saldo Finansial Belum Lunas</h5>
+                    <p class="mb-0">
+                        Proyek ini masih memiliki transaksi piutang atau hutang yang belum terselesaikan. 
+                        Penutupan proyek akan mengubah status menjadi <strong>Selesai</strong> dan mencatat alasan justifikasi pada riwayat audit.
+                    </p>
+                </div>
+                <group>
+                    <group>
+                        <field name="project_job_id"/>
+                        <field name="uncollected_ar" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                    </group>
+                    <group>
+                        <field name="unpaid_ap" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                    </group>
+                </group>
+                <group string="Catatan &amp; Justifikasi Manajer">
+                    <field name="manager_note" placeholder="Masukkan alasan penyelesaian (misal: Sisa tagihan ditagihkan terpisah)..."/>
+                </group>
+                <footer>
+                    <button name="action_confirm_close" string="Konfirmasi &amp; Selesaikan Proyek" type="object" class="btn-warning"/>
+                    <button string="Batal" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

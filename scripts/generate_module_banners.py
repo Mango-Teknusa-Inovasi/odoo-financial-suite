@@ -91,6 +91,14 @@ MODULE_SPECIFICATIONS = [
         "accent": (37, 211, 102), # WhatsApp Green
         "highlight": "💬 GOWA & WhatsApp Dispatch",
     },
+    {
+        "dir": "account_project_job_costing",
+        "icon": "account_project_job_costing_512.png",
+        "title": "Project Job Costing",
+        "subtitle": "Agile Project Cost Sheet · Dual-Metric Accrual & Cashflow · Budget Burn Rate",
+        "accent": (2, 132, 199), # Royal Sky Azure (#0284C7)
+        "highlight": "📈 Dual-Metric Accrual & Cashflow",
+    },
 ]
 
 def get_font(font_name, size):

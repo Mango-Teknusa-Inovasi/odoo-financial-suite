@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Kanban View -->
+    <record id="view_account_job_costing_kanban" model="ir.ui.view">
+        <field name="name">account.job.costing.kanban</field>
+        <field name="model">account.job.costing</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="state" sample="1">
+                <field name="id"/>
+                <field name="name"/>
+                <field name="code"/>
+                <field name="partner_id"/>
+                <field name="contract_amount"/>
+                <field name="accrual_profit"/>
+                <field name="accrual_margin_pct"/>
+                <field name="net_cash_flow"/>
+                <field name="health_status"/>
+                <field name="currency_id"/>
+                <field name="state"/>
+                <templates>
+                    <t t-name="card">
+                        <div class="oe_kanban_global_click p-2">
+                            <div class="d-flex justify-content-between align-items-center mb-1">
+                                <span class="badge badge-secondary font-weight-bold"><field name="code"/></span>
+                                <t t-if="record.health_status.raw_value == 'healthy'">
+                                    <span class="badge badge-success">🟢 Sehat</span>
+                                </t>
+                                <t t-elif="record.health_status.raw_value == 'warning'">
+                                    <span class="badge badge-warning">🟡 Perhatian</span>
+                                </t>
+                                <t t-else="">
+                                    <span class="badge badge-danger">🔴 Over Budget</span>
+                                </t>
+                            </div>
+                            <div class="font-weight-bold text-truncate mb-1" style="font-size: 1.05rem;">
+                                <field name="name"/>
+                            </div>
+                            <div class="text-muted small mb-2 text-truncate">
+                                <i class="fa fa-user me-1" title="Klien"/> <field name="partner_id"/>
+                            </div>
+                            <div class="border-top pt-2 small">
+                                <div class="d-flex justify-content-between">
+                                    <span class="text-muted">Kontrak:</span>
+                                    <span class="font-weight-bold"><field name="contract_amount" widget="monetary" options="{'currency_field': 'currency_id'}"/></span>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <span class="text-muted">Laba Akrual:</span>
+                                    <span t-attf-class="font-weight-bold #{record.accrual_profit.raw_value &gt;= 0 ? 'text-success' : 'text-danger'}">
+                                        <field name="accrual_profit" widget="monetary" options="{'currency_field': 'currency_id'}"/> (<field name="accrual_margin_pct"/>%)
+                                    </span>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <span class="text-muted">Kas Bersih:</span>
+                                    <span t-attf-class="font-weight-bold #{record.net_cash_flow.raw_value &gt;= 0 ? 'text-primary' : 'text-danger'}">
+                                        <field name="net_cash_flow" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- List View -->
+    <record id="view_account_job_costing_list" model="ir.ui.view">
+        <field name="name">account.job.costing.list</field>
+        <field name="model">account.job.costing</field>
+        <field name="arch" type="xml">
+            <list decoration-danger="health_status == 'critical'" decoration-warning="health_status == 'warning'" decoration-success="health_status == 'healthy'">
+                <field name="code"/>
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="user_id" widget="many2one_avatar_user" optional="show"/>
+                <field name="contract_amount" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                <field name="actual_revenue" widget="monetary" options="{'currency_field': 'currency_id'}" optional="show"/>
+                <field name="actual_total_cost" widget="monetary" options="{'currency_field': 'currency_id'}" optional="show"/>
+                <field name="accrual_profit" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                <field name="accrual_margin_pct" string="Margin %"/>
+                <field name="net_cash_flow" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                <field name="health_status" widget="badge" decoration-danger="health_status == 'critical'" decoration-warning="health_status == 'warning'" decoration-success="health_status == 'healthy'"/>
+                <field name="state" widget="badge" decoration-info="state == 'draft'" decoration-primary="state == 'in_progress'" decoration-success="state == 'completed'"/>
+                <field name="currency_id" column_invisible="1"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_account_job_costing_form" model="ir.ui.view">
+        <field name="name">account.job.costing.form</field>
+        <field name="model">account.job.costing</field>
+        <field name="arch" type="xml">
+            <form string="Lembar Biaya &amp; Profitabilitas Proyek">
+                <header>
+                    <button name="action_start_project" string="Mulai Proyek" type="object" class="btn-primary" invisible="state != 'draft'"/>
+                    <button name="action_complete_project" string="Selesaikan Proyek" type="object" class="btn-success" invisible="state != 'in_progress'"/>
+                    <button name="action_export_excel" string="Ekspor Excel (.xlsx)" type="object" class="btn-outline-secondary" icon="fa-file-excel-o"/>
+                    <button name="action_reset_draft" string="Kembalikan ke Perencanaan" type="object" invisible="state not in ('completed', 'cancelled')"/>
+                    <button name="action_cancel" string="Batalkan Proyek" type="object" class="btn-secondary" invisible="state in ('completed', 'cancelled')"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,in_progress,completed"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_view_invoices" type="object" class="oe_stat_button" icon="fa-pencil-square-o">
+                            <field name="invoice_count" widget="statinfo" string="Faktur Klien"/>
+                        </button>
+                        <button name="action_view_bills" type="object" class="oe_stat_button" icon="fa-book">
+                            <field name="bill_count" widget="statinfo" string="Tagihan Vendor"/>
+                        </button>
+                    </div>
+
+                    <div class="oe_title">
+                        <span class="text-muted font-weight-bold"><field name="code"/></span>
+                        <h1>
+                            <field name="name" placeholder="Nama Pekerjaan / Proyek (misal: Renovasi Ruko Kemang)..."/>
+                        </h1>
+                    </div>
+
+                    <group>
+                        <group string="Informasi Kontrak &amp; Klien">
+                            <field name="partner_id"/>
+                            <field name="user_id"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                            <field name="external_project_ref" placeholder="No. Kontrak / ID Project Odoo..."/>
+                        </group>
+                        <group string="Jadwal &amp; Mata Uang">
+                            <field name="date_start"/>
+                            <field name="date_end"/>
+                            <field name="date_closed" invisible="not date_closed"/>
+                            <field name="currency_id" invisible="1"/>
+                            <field name="health_status" widget="badge" decoration-danger="health_status == 'critical'" decoration-warning="health_status == 'warning'" decoration-success="health_status == 'healthy'"/>
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <!-- TAB 1: Dual-Metric Financials -->
+                        <page name="tab_financial_summary" string="Ringkasan Finansial Dual-Metric">
+                            <div class="row">
+                                <div class="col-md-6 border-end">
+                                    <div class="p-2 mb-2 bg-light rounded font-weight-bold">
+                                        📈 METRIK 1: LABA RUGI AKRUAL
+                                    </div>
+                                    <group>
+                                        <field name="contract_amount" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                                        <field name="actual_revenue" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                                        <field name="actual_total_cost" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                                        <field name="accrual_profit" widget="monetary" options="{'currency_field': 'currency_id'}" decoration-success="accrual_profit &gt;= 0" decoration-danger="accrual_profit &lt; 0"/>
+                                        <field name="accrual_margin_pct" decoration-success="accrual_margin_pct &gt;= 20" decoration-warning="accrual_margin_pct &lt; 20 and accrual_margin_pct &gt;= 0" decoration-danger="accrual_margin_pct &lt; 0"/>
+                                    </group>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="p-2 mb-2 bg-light rounded font-weight-bold">
+                                        💵 METRIK 2: POSISI KAS NYATA
+                                    </div>
+                                    <group>
+                                        <field name="cash_received" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                                        <field name="cash_disbursed" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                                        <field name="net_cash_flow" widget="monetary" options="{'currency_field': 'currency_id'}" decoration-success="net_cash_flow &gt;= 0" decoration-danger="net_cash_flow &lt; 0"/>
+                                        <field name="uncollected_ar" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                                        <field name="unpaid_ap" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                                    </group>
+                                </div>
+                            </div>
+                        </page>
+
+                        <!-- TAB 2: Budget vs Realization -->
+                        <page name="tab_budget_cost" string="Anggaran vs Realisasi Biaya">
+                            <group string="Plafon Anggaran &amp; Realisasi Per Kategori">
+                                <group string="1. Bahan &amp; Material">
+                                    <field name="budget_material" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                                    <field name="actual_material" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                                    <field name="variance_material" widget="monetary" options="{'currency_field': 'currency_id'}" decoration-success="variance_material &gt;= 0" decoration-danger="variance_material &lt; 0"/>
+                                </group>
+                                <group string="2. Upah &amp; Subkontraktor">
+                                    <field name="budget_labor" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                                    <field name="actual_labor" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                                    <field name="variance_labor" widget="monetary" options="{'currency_field': 'currency_id'}" decoration-success="variance_labor &gt;= 0" decoration-danger="variance_labor &lt; 0"/>
+                                </group>
+                            </group>
+                            <group>
+                                <group string="3. Overhead &amp; Sewa Alat">
+                                    <field name="budget_overhead" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                                    <field name="actual_overhead" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                                    <field name="variance_overhead" widget="monetary" options="{'currency_field': 'currency_id'}" decoration-success="variance_overhead &gt;= 0" decoration-danger="variance_overhead &lt; 0"/>
+                                </group>
+                                <group string="Total HPP Proyek &amp; Burn Rate">
+                                    <field name="budget_total_cost" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                                    <field name="actual_total_cost" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                                    <field name="variance_total" widget="monetary" options="{'currency_field': 'currency_id'}" decoration-success="variance_total &gt;= 0" decoration-danger="variance_total &lt; 0"/>
+                                    <field name="burn_rate_pct" widget="progressbar"/>
+                                </group>
+                            </group>
+                        </page>
+
+                        <!-- TAB 3: Indonesian WHT -->
+                        <page name="tab_wht_tax" string="Estimasi Pajak PPh (WHT)">
+                            <group string="Simulasi Pemotongan Pajak Penghasilan Klien">
+                                <group>
+                                    <field name="tax_wht_type"/>
+                                    <field name="wht_estimated_rate"/>
+                                </group>
+                                <group>
+                                    <field name="wht_estimated_amount" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                                    <field name="net_cash_expected" widget="monetary" options="{'currency_field': 'currency_id'}" decoration-success="net_cash_expected &gt;= 0" decoration-danger="net_cash_expected &lt; 0"/>
+                                </group>
+                            </group>
+                            <p class="text-muted small">
+                                * Berdasarkan regulasi perpajakan Indonesia: PPh Pasal 23 (2.0% untuk jasa konsultan/manajemen) atau PPh Final Jasa Konstruksi (PP 9/2021: 1.75% Kualifikasi Kecil, 2.65% Menengah/Besar, 4.0% Tanpa Sertifikat).
+                            </p>
+                        </page>
+
+                        <!-- TAB 4: Transaction Lines -->
+                        <page name="tab_transaction_lines" string="Daftar Baris Transaksi Terhubung">
+                            <field name="invoice_line_ids" readonly="1">
+                                <list default_order="id desc">
+                                    <field name="move_id" string="No. Faktur"/>
+                                    <field name="partner_id" string="Mitra"/>
+                                    <field name="name" string="Deskripsi Item"/>
+                                    <field name="job_cost_type" widget="badge" decoration-info="job_cost_type == 'revenue'" decoration-success="job_cost_type == 'material'" decoration-warning="job_cost_type == 'labor'" decoration-danger="job_cost_type == 'overhead'"/>
+                                    <field name="price_subtotal" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                                    <field name="currency_id" column_invisible="1"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="view_account_job_costing_search" model="ir.ui.view">
+        <field name="name">account.job.costing.search</field>
+        <field name="model">account.job.costing</field>
+        <field name="arch" type="xml">
+            <search string="Cari Proyek">
+                <field name="name"/>
+                <field name="code"/>
+                <field name="partner_id"/>
+                <field name="user_id"/>
+                <filter string="Perencanaan" name="filter_draft" domain="[('state', '=', 'draft')]"/>
+                <filter string="Sedang Berjalan" name="filter_in_progress" domain="[('state', '=', 'in_progress')]"/>
+                <filter string="Selesai" name="filter_completed" domain="[('state', '=', 'completed')]"/>
+                <separator/>
+                <filter string="Kritis / Over Budget" name="filter_critical" domain="[('health_status', '=', 'critical')]"/>
+                <filter string="Perhatian (Burn &gt; 85%)" name="filter_warning" domain="[('health_status', '=', 'warning')]"/>
+                <group expand="0" string="Kelompokkan Berdasarkan">
+                    <filter string="Klien" name="group_by_partner" context="{'group_by': 'partner_id'}"/>
+                    <filter string="Status" name="group_by_state" context="{'group_by': 'state'}"/>
+                    <filter string="PIC / Project Manager" name="group_by_user" context="{'group_by': 'user_id'}"/>
+                    <filter string="Kesehatan Finansial" name="group_by_health" context="{'group_by': 'health_status'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_account_job_costing" model="ir.actions.act_window">
+        <field name="name">Lembar Biaya Proyek (Job Costing)</field>
+        <field name="res_model">account.job.costing</field>
+        <field name="view_mode">kanban,list,form</field>
+        <field name="search_view_id" ref="view_account_job_costing_search"/>
+        <field name="context">{'search_default_filter_in_progress': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Buat lembar biaya proyek baru untuk memantau laba rugi akrual vs posisi kas nyata.
+            </p>
+        </field>
+    </record>
+</odoo>

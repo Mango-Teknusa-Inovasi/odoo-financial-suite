@@ -102,6 +102,11 @@ Each module in the MangoTek Financial Suite possesses a distinct, cohesive 50x50
 * **Palette:** WhatsApp Green (`#25D366`), Emerald Mint (`#1AD3BB`), Royal Azure (`#088BF5`), Deep Petrol (`#005E7A`).
 * **Source:** `account_whatsapp_notifier/static/description/icon.png`
 
+### 9. `account_project_job_costing` (Project Job Costing)
+* **Concept:** Dual-metric project cost sheet with geometric budget progress bars, cashflow liquidity indicators, and contractor cost categories.
+* **Palette:** Royal Sky Azure (`#0284C7`), Midnight Slate (`#0F172A`), Emerald Mint (`#1AD3BB`), Tangerine (`#F86126`).
+* **Source:** `account_project_job_costing/static/description/icon.png`
+
 ---
 
 ## 5. Typography Standards
