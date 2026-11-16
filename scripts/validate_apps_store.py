@@ -21,6 +21,7 @@ MODULES = [
     "account_opening_balance_wizard",
     "account_whatsapp_notifier",
     "account_project_job_costing",
+    "pos_thermal_receipt_designer",
 ]
 
 def validate_suite():

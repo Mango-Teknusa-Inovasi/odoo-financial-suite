@@ -99,6 +99,14 @@ MODULE_SPECIFICATIONS = [
         "accent": (2, 132, 199), # Royal Sky Azure (#0284C7)
         "highlight": "📈 Dual-Metric Accrual & Cashflow",
     },
+    {
+        "dir": "pos_thermal_receipt_designer",
+        "icon": "pos_thermal_receipt_designer_512.png",
+        "title": "POS Thermal Receipt",
+        "subtitle": "Dual-Engine ESC/POS & QWeb · 58/80mm Adaptive Layout · Dynamic QRIS",
+        "accent": (245, 158, 11), # Sunflower Amber
+        "highlight": "🖨️ ESC/POS & 58/80mm Thermal",
+    },
 ]
 
 def get_font(font_name, size):

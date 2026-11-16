@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- 1. Dedicated Root App Drawer Menu -->
+    <menuitem id="menu_pos_thermal_root"
+              name="Thermal Receipt"
+              web_icon="pos_thermal_receipt_designer,static/description/icon.png"
+              sequence="39"/>
+
+    <!-- 2. Submenus under Thermal Receipt -->
+    <menuitem id="menu_pos_thermal_templates"
+              name="Template Struk Thermal"
+              parent="menu_pos_thermal_root"
+              action="action_pos_thermal_template"
+              sequence="10"/>
+
+    <!-- 3. Invoicing Configuration Hook -->
+    <menuitem id="menu_pos_thermal_template_invoicing_hook"
+              name="Template Struk Kasir Thermal"
+              parent="account.menu_finance_configuration"
+              action="action_pos_thermal_template"
+              sequence="60"/>
+</odoo>

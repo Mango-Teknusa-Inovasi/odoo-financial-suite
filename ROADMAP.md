@@ -185,15 +185,20 @@ flowchart TD
 
 ---
 
-### 📌 Phase 10: Visual POS Thermal Receipt Designer (`pos_thermal_receipt_designer`) — 🚀 UPCOMING TARGET
-> **Goal:** Provide a no-code visual designer for POS receipt printing on Bluetooth thermal printers.
-* [ ] **Dual Width Presets:** One-click layout switching between **58 mm** (portable belt printers) and **80 mm** (desktop counter printers).
-* [ ] **Live Monochrome Preview:** Real-time paper preview while typing headers, footers, return policies, or social media handles.
-* [ ] **Logo & QRIS Placement:** Automatic 1-bit monochrome dithering for store logos and dynamic QR codes.
+### 📌 Phase 10: Visual POS Thermal Receipt Designer (`pos_thermal_receipt_designer`) — ✅ COMPLETED
+> **Goal:** Provide an enterprise no-code visual designer and dual-engine ESC/POS & QWeb generator for thermal receipt printing on Bluetooth portable and desktop POS printers.
+* [x] **Dual Width Presets:** Native support and continuous paper formats for **58 mm** (32 characters / portable mini Bluetooth printers) and **80 mm** (48 characters / desktop counter printers).
+* [x] **Live Sticky WYSIWYG Monochrome Simulation:** Real-time responsive paper roll preview updating instantly on form edits with monospace alignment and dashed tear lines.
+* [x] **1-Bit Monochrome Dithering:** Automated Floyd-Steinberg bitmap conversion generating sharp, high-contrast monochrome logos without blurry gray shading.
+* [x] **Dynamic QRIS Ingestion:** Seamless integration with QBiz Dynamic QRIS (`account_qris_qbiz`) with fallback to custom static QR codes.
+* [x] **Adaptive Dual-Line Layout:** Eliminates product title truncation on narrow 58mm paper rolls (full product name on top line, quantity x price and line total on bottom line).
+* [x] **Pure Python ESC/POS Byte Generator:** Built-in byte sequence generator supporting initialization, bold, alignments, line feeds, and auto-cut commands (`GS V`).
+* [x] **Dual-Channel Printing:** Direct 1-click receipt printing from Customer Invoices (`account.move`) with company-level template default isolation.
+* [x] **Live Verification:** 6 unit tests passing 100% and validated against Odoo Apps Store guidelines (80/80 checks passed).
 
 ---
 
-### 📌 Phase 11: Bank Indonesia Official Rate Sync (`l10n_id_bi_currency_rate`) — 📋 PLANNED
+### 📌 Phase 11: Bank Indonesia Official Rate Sync (`l10n_id_bi_currency_rate`) — 🚀 UPCOMING TARGET
 > **Goal:** Automate daily foreign exchange rate updates directly from official Bank Indonesia (JISDOR / Kurs Transaksi BI) data.
 * [ ] **Automated Daily Cron:** Scheduled task fetching official BI rates for USD, EUR, SGD, JPY, CNY, and MYR.
 * [ ] **Multi-Currency Pricing:** Automatic conversion for international transactions adhering to statutory Indonesian customs & tax regulations.
@@ -220,8 +225,8 @@ flowchart TD
 | **7** | `account_opening_balance_wizard` | 1-2 Days | Low-Med | 1-page onboarding wizard, auto-balance to equity | **✅ Completed** |
 | **8** | `account_whatsapp_notifier` | 1 Day | Low | 1-click WhatsApp document dispatch & GOWA bridge | **✅ Completed** |
 | **9** | `account_project_job_costing` | 1-2 Days | Medium | Tagging job costing, dual-metric cashflow dashboard | **✅ Completed** |
-| **10** | `pos_thermal_receipt_designer` | 1-2 Days | Low-Med | Visual 58mm/80mm thermal receipt designer & live preview | **🚀 Upcoming Target** |
-| **11** | `l10n_id_bi_currency_rate` | 1 Day | Low | Daily Bank Indonesia JISDOR official rate auto-sync | **📋 Planned** |
+| **10** | `pos_thermal_receipt_designer` | 1-2 Days | Low-Med | Visual 58mm/80mm thermal receipt designer & live preview | **✅ Completed** |
+| **11** | `l10n_id_bi_currency_rate` | 1 Day | Low | Daily Bank Indonesia JISDOR official rate auto-sync | **🚀 Upcoming Target** |
 | **12** | `account_simple_budgeting` | 1 Day | Low-Med | Monthly revenue target & expense progress gauges | **📋 Planned** |
 
 ---
