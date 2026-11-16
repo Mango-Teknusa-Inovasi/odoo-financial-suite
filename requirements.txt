@@ -1,3 +1,3 @@
 # MangoTek Financial Suite - Development & CI Dependencies
 flake8>=7.0.0
-Pillow>=10.0.0
+Pillow>=13.0.0
