@@ -8,13 +8,24 @@ The format follows standard semantic versioning practices (`MAJOR.MINOR.PATCH`).
 
 ## [Unreleased]
 
-### Planned (Phases 11–12 Horizons)
-- **Phase 11: `l10n_id_bi_currency_rate`:** Automated daily sync of official Bank Indonesia foreign exchange rates (JISDOR / Kurs Transaksi BI).
+### Planned (Phase 12 Horizon)
 - **Phase 12: `account_simple_budgeting`:** Monthly revenue target and expense limit monitoring with traffic-light visual progress gauges.
 
 ---
 
 ## [1.3.0] - 2026-11-17
+
+### Added (Phase 11: Bank Indonesia Official Currency Rate Auto-Sync)
+- **Core Module `l10n_id_bi_currency_rate`:** Enterprise automated currency exchange rate synchronization engine fetching official Bank Indonesia rates (JISDOR for USD & Kurs Transaksi BI for other foreign currencies) and Kemenkeu KMK weekly fiscal tax rates.
+- **Dual-Stream Rate Synchronization:** Automated ingestion separating commercial accounting rates (JISDOR/Kurs Tengah) from statutory tax rates (KMK) used for PPN 12% and e-Faktur compliance.
+- **3-Tier Multi-Provider Fallback Cascade:**
+  - *Tier 1 (Official BI API & Feeds):* Direct ingestion from Bank Indonesia web endpoints with 5s network timeout tolerance.
+  - *Tier 2 (High-Availability Open Mirror):* Automatic failover to reliable open exchange rate mirrors if government portals experience maintenance or timeouts.
+  - *Tier 3 (Last Business Day Carry-Forward):* Internal database fallback carrying forward the latest active Friday business day rates during weekends or public holidays.
+- **Active Currencies Filter:** Selectively updates only foreign currencies actively configured in the company database (e.g. USD, EUR, SGD, JPY, CNY, MYR), avoiding database bloat.
+- **Human-Friendly Rupiah Grid (`idr_rate`):** Custom bidirectional monetary field allowing accountants to view and edit rates directly in familiar Rupiah (e.g. Rp 16,250.00) while automatically calculating Odoo's inverted fractional rate ($1/\text{IDR}$).
+- **Automated 17:00 WIB Scheduled Cron (`ir.cron`):** Daily background execution scheduled after market close and final JISDOR rate publication, plus 1-click manual trigger button in Invoicing Settings.
+- **Audited History Model (`bi.rate.sync.log`):** Multi-company historical audit trail tracking sync timestamps, data provider origin, execution status, and currency rate summaries.
 
 ### Added (Phase 10: POS Thermal Receipt Designer & ESC/POS Engine)
 - **Core Module `pos_thermal_receipt_designer`:** Enterprise visual thermal receipt designer and dual-engine ESC/POS & QWeb generator supporting 58 mm mini Bluetooth and 80 mm desktop POS continuous rolls.
@@ -51,8 +62,8 @@ The format follows standard semantic versioning practices (`MAJOR.MINOR.PATCH`).
 - **Odoo Apps Store Assets:** Complete compliance assets with 100x100 squircle icon, standard 1200x630 banner, and responsive store description page (`static/description/index.html`).
 
 ### Quality Verification
-- `scripts/validate_apps_store.py`: 80/80 checks passed (Score 5.0 / 5.0 across all 10 modules).
-- `tests/run_all_tests.py`: 53/53 tests passed (0 failures, 0 errors).
+- `scripts/validate_apps_store.py`: 88/88 checks passed (Score 5.0 / 5.0 across all 11 modules).
+- `tests/run_all_tests.py`: 59/59 tests passed (0 failures, 0 errors).
 - Multi-Branch Architecture: Verified and synchronized across `main`, `18.0`, `19.0`, and `20.0`.
 
 ---

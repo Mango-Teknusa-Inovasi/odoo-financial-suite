@@ -22,6 +22,7 @@ MODULES = [
     "account_whatsapp_notifier",
     "account_project_job_costing",
     "pos_thermal_receipt_designer",
+    "l10n_id_bi_currency_rate",
 ]
 
 def validate_suite():

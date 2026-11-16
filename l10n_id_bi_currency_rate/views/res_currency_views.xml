@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Dedicated Enhanced List View for Currency Rates -->
+    <record id="view_bi_currency_rate_list" model="ir.ui.view">
+        <field name="name">res.currency.rate.bi.list</field>
+        <field name="model">res.currency.rate</field>
+        <field name="priority">20</field>
+        <field name="arch" type="xml">
+            <list editable="bottom" decoration-info="rate_source == 'bi_middle'" decoration-success="rate_source == 'jisdor'">
+                <field name="name" string="Tanggal"/>
+                <field name="currency_id"/>
+                <field name="idr_rate" string="Kurs Rupiah (Rp)" widget="monetary" options="{'currency_field': 'company_currency_id'}"/>
+                <field name="rate" string="Rate Odoo (1/Rp)"/>
+                <field name="rate_source" widget="badge"/>
+                <field name="source_reference"/>
+                <field name="company_id" groups="base.group_multi_company"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Inherit standard view if available -->
+    <record id="view_currency_rate_tree_inherit_bi" model="ir.ui.view">
+        <field name="name">res.currency.rate.tree.inherit.bi</field>
+        <field name="model">res.currency.rate</field>
+        <field name="inherit_id" ref="base.view_currency_rate_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='rate']" position="before">
+                <field name="idr_rate" string="Kurs Rupiah (Rp)"/>
+            </xpath>
+            <xpath expr="//field[@name='rate']" position="after">
+                <field name="rate_source"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Action for Currency Rates -->
+    <record id="action_bi_currency_rates" model="ir.actions.act_window">
+        <field name="name">Daftar Kurs Valas (Bank Indonesia)</field>
+        <field name="res_model">res.currency.rate</field>
+        <field name="view_mode">list,form</field>
+        <field name="view_id" ref="view_bi_currency_rate_list"/>
+        <field name="context">{'search_default_group_currency': 1}</field>
+    </record>
+</odoo>

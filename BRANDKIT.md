@@ -112,6 +112,11 @@ Each module in the MangoTek Financial Suite possesses a distinct, cohesive 50x50
 * **Palette:** Sunflower Amber (`#F59E0B`), Midnight Slate (`#0F172A`), Pure Paper White (`#FFFFF8`), Emerald Mint (`#1AD3BB`).
 * **Source:** `pos_thermal_receipt_designer/static/description/icon.png`
 
+### 11. `l10n_id_bi_currency_rate` (BI Currency Rate Sync)
+* **Concept:** Central Bank classical neoclassical portico facade flanked by bi-directional currency exchange arrows, dynamic exchange ticker rate badges, and the Indonesian Garuda emblem.
+* **Palette:** Emerald Green (`#10B981`), Midnight Slate (`#0F172A`), Golden Sand (`#FBB945`), Royal Azure (`#088BF5`).
+* **Source:** `l10n_id_bi_currency_rate/static/description/icon.png`
+
 ---
 
 ## 5. Typography Standards

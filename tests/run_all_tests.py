@@ -35,6 +35,7 @@ MODULE_TEST_PATHS = [
     "account_whatsapp_notifier.tests.test_whatsapp_notifier",
     "account_project_job_costing.tests.test_project_job_costing",
     "pos_thermal_receipt_designer.tests.test_thermal_receipt",
+    "l10n_id_bi_currency_rate.tests.test_bi_currency_rate",
 ]
 
 def run_suite():
