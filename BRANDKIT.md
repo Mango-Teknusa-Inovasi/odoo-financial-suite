@@ -88,10 +88,10 @@ Each module in the MangoTek Financial Suite possesses a distinct, cohesive 50x50
 * **Palette:** Royal Azure (`#088BF5`), Sky Cyan (`#2EBCFA`), Midnight Navy (`#144496`), Coral Red (`#F06050`), Sunflower Gold (`#FBB945`).
 * **Source:** `assets/icons/account_stamp_signature.svg`
 
-### 5. `financial_health_dashboard` (Executive Financial Health)
+### 5. `financial_health_kpi` (Executive Financial Health)
 * **Concept:** Ascending multi-tier ratio bars (Solvency, Liquidity, Profitability) intersected by an upward growth vector diamond.
 * **Palette:** Plum (`#985184`), Emerald Mint (`#1AD3BB`), Sunflower Gold (`#FBB945`), Coral (`#FC868B`), Tangerine (`#F86126`).
-* **Source:** `assets/icons/financial_health_dashboard.svg`
+* **Source:** `assets/icons/financial_health_kpi.svg`
 
 ---
 

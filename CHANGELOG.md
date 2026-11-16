@@ -45,7 +45,7 @@ The format follows standard semantic versioning practices (`MAJOR.MINOR.PATCH`).
 ## [1.5.0] - 2026-11-16
 
 ### Added
-- **`financial_health_dashboard` (Phase 5 Completed):**
+- **`financial_health_kpi` (Phase 5 Completed):**
   - **Financial Health Model (`financial.health.kpi`):** Automated ratio computation engine pulling live from standard Odoo 18/19/20 General Ledger journal items (`account.move.line`).
   - **Liquidity Diagnostics:** Current Ratio, Quick Ratio (Acid-Test), and Cash Ratio tracking short-term obligation coverage.
   - **Solvency & Capital Structure:** Debt-to-Equity Ratio (DER) and Debt-to-Asset Ratio (DAR) assessing financial leverage risk.

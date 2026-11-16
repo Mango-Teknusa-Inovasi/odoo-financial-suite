@@ -109,8 +109,8 @@ All 5 core modules of the **MangoTek Financial Suite** are natively integrated i
 
 ---
 
-## 📈 Module 5: Executive Financial Health KPI Dashboard (`financial_health_dashboard`)
-> **Directory:** `financial_health_dashboard` | **Odoo Version:** `18.0.1.0.0` | **License:** `LGPL-3.0`
+## 📈 Module 5: Executive Financial Health KPI Dashboard (`financial_health_kpi`)
+> **Directory:** `financial_health_kpi` | **Odoo Version:** `18.0.1.0.0` | **License:** `LGPL-3.0`
 
 ### Executive Advisory & Ratio Analysis:
 - **Automated Ratio Calculations (from live GL lines):**
