@@ -8,8 +8,15 @@ The format follows standard semantic versioning practices (`MAJOR.MINOR.PATCH`).
 
 ## [Unreleased]
 
-### Planned
-- Continuous integration testing and multi-company automated demo benchmarks.
+### Planned (Phases 6–12 Horizons)
+- **Phase 6: `account_qris_qbiz`:** Dynamic QRIS invoicing and POS powered by [ardianryan/qbiz-qrisdinamis](https://github.com/ardianryan/qbiz-qrisdinamis) (dual mode: native EMVCo Tag 54 injector & QBiz API connector with auto-reconciliation webhook).
+- **Phase 7: `account_opening_balance_wizard`:** 1-page financial balance onboarding wizard (Cash/Bank, Partner AR/AP breakdown, Fixed Assets, and auto-balance to Equity).
+- **Phase 8: `account_whatsapp_notifier`:** 1-click WhatsApp document delivery for Invoices, Purchase Orders, and Delivery Slips.
+- **Phase 9: `account_project_job_costing`:** Agile project tagging with Dual-Metric dashboard (Accrual Profit vs Cash Position).
+- **Phase 10: `pos_thermal_receipt_designer`:** No-code visual thermal receipt customizer with dual width presets (58 mm / 80 mm).
+- **Phase 11: `l10n_id_bi_currency_rate`:** Automated daily sync of official Bank Indonesia foreign exchange rates (JISDOR / Kurs Transaksi BI).
+- **Phase 12: `account_simple_budgeting`:** Monthly revenue target and expense limit monitoring with traffic-light visual progress gauges.
+- **Visual Assets:** Generated geometric vector icons (`assets/icons/`) for all 7 upcoming roadmap modules.
 
 ---
 

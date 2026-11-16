@@ -43,6 +43,18 @@ Standard ERP systems introduce significant administrative overhead when applied 
 | <img src="assets/icons/account_stamp_signature_100.png" width="48" height="48" alt="Stamp Icon"/> | [`account_stamp_signature`](account_stamp_signature) | **Stamp & e-Meterai** | • Dual-engine document seal: Transparent PNG company stamp overlay (-6° tilt) + digital signature<br>• Pluggable Peruri e-Meterai Gateway (UU No. 10/2020) for invoices >= Rp 5.000.000<br>• Local Sandbox mock simulator + BYOK API connectors (PDS, Mekari Sign, PrivyID) |
 | <img src="assets/icons/financial_health_kpi_100.png" width="48" height="48" alt="Health Icon"/> | [`financial_health_kpi`](financial_health_kpi) | **Financial Health KPI** | • Executive financial ratio scorecard (Liquidity, Solvency, Margin health indicators)<br>• Educational traffic-light visual badges (Optimal, Moderate, Critical)<br>• Automated executive advisory synthesis & 1-click ledger drilldown |
 
+### 🚀 Upcoming Modules on the Roadmap (Phases 6–12)
+
+| Module Icon | Module Candidate | Focus Area | Planned Capabilities |
+|:---:|:---|:---|:---|
+| <img src="assets/icons/account_qris_qbiz_100.png" width="48" height="48" alt="QRIS Icon"/> | `account_qris_qbiz` | **QBiz Dynamic QRIS** | Dynamic QRIS payments (nominal pas Tag 54 + CRC16) powered by [ardianryan/qbiz-qrisdinamis](https://github.com/ardianryan/qbiz-qrisdinamis) with unique-code webhook auto-reconciliation. |
+| <img src="assets/icons/account_opening_balance_wizard_100.png" width="48" height="48" alt="Balance Wizard Icon"/> | `account_opening_balance_wizard` | **Setup Saldo Awal Wizard** | Streamlined 1-page financial balance onboarding (Cash/Bank, Partner AR/AP breakdown, Fixed Assets, and auto-balance to Equity). |
+| <img src="assets/icons/account_whatsapp_notifier_100.png" width="48" height="48" alt="WhatsApp Icon"/> | `account_whatsapp_notifier` | **WhatsApp Document Dispatcher** | 1-click WhatsApp document delivery for Invoices, Purchase Orders, and Delivery Slips with direct PDF download links. |
+| <img src="assets/icons/account_project_job_costing_100.png" width="48" height="48" alt="Project Costing Icon"/> | `account_project_job_costing` | **Project Job Costing** | Agile project tagging with Dual-Metric dashboard (Accrual Profit vs Cash Position & uncollected receivables). |
+| <img src="assets/icons/pos_thermal_receipt_designer_100.png" width="48" height="48" alt="POS Thermal Icon"/> | `pos_thermal_receipt_designer` | **POS Thermal Receipt Designer** | No-code visual thermal receipt customizer with dual width presets (58 mm / 80 mm) and live monochrome preview. |
+| <img src="assets/icons/l10n_id_bi_currency_rate_100.png" width="48" height="48" alt="BI Rate Icon"/> | `l10n_id_bi_currency_rate` | **Bank Indonesia Rate Sync** | Automated daily sync of official Bank Indonesia foreign exchange rates (JISDOR / Kurs Transaksi BI). |
+| <img src="assets/icons/account_simple_budgeting_100.png" width="48" height="48" alt="Budgeting Icon"/> | `account_simple_budgeting` | **Visual Budgeting & Targets** | Monthly revenue target and expense limit monitoring with traffic-light visual progress gauges. |
+
 ---
 
 ## 📸 Live Visual Showcase & Screenshots
