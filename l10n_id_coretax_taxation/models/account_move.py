@@ -98,11 +98,15 @@ class AccountMove(models.Model):
 
             raw_serial = pool.allocate_next_nsfp()
             full_nsfp = f"{move.l10n_id_tax_transaction_code}.{raw_serial}"
-            move.write({
+            vals = {
                 'l10n_id_faktur_pajak_number': full_nsfp,
                 'l10n_id_efaktur_status': 'assigned',
                 'l10n_id_faktur_date': move.invoice_date or fields.Date.today(),
-            })
+            }
+            # Bridge synchronization with standard Odoo l10n_id field if present
+            if 'l10n_id_tax_number' in move._fields:
+                vals['l10n_id_tax_number'] = full_nsfp
+            move.write(vals)
 
     def action_post(self):
         """Auto-assign NSFP upon posting outgoing customer invoice if pool is available."""

@@ -49,6 +49,18 @@ class ResPartner(models.Model):
             # Strip non-digits
             cleaned = re.sub(r'\D', '', self.l10n_id_npwp16)
             self.l10n_id_npwp16 = cleaned
+            # Bridge synchronization: mirror to standard Odoo VAT / buyer doc number
+            if 'vat' in self._fields and not self.vat:
+                self.vat = cleaned
+            if 'l10n_id_buyer_document_number' in self._fields and not self.l10n_id_buyer_document_number:
+                self.l10n_id_buyer_document_number = cleaned
+
+    @api.onchange('vat')
+    def _onchange_vat_sync_npwp16(self):
+        if self.vat and not self.l10n_id_npwp16:
+            cleaned = re.sub(r'\D', '', self.vat)
+            if len(cleaned) == 16:
+                self.l10n_id_npwp16 = cleaned
 
     @api.onchange('l10n_id_nitku')
     def _onchange_l10n_id_nitku(self):

@@ -87,9 +87,10 @@ class L10nIdEfakturExportWizard(models.TransientModel):
             masa_pajak = invoice_date.month
             tahun_pajak = invoice_date.year
 
-            # DPP and PPN totals
-            dpp_total = sum(move.invoice_line_ids.filtered(lambda l: not l.display_type).mapped('price_subtotal'))
-            ppn_total = sum(move.invoice_line_ids.filtered(lambda l: not l.display_type).mapped('price_total')) - dpp_total
+            # DPP and PPN totals (filter standard product lines, ignoring sections and notes)
+            product_lines = move.invoice_line_ids.filtered(lambda l: l.display_type not in ('line_section', 'line_note'))
+            dpp_total = sum(product_lines.mapped('price_subtotal'))
+            ppn_total = sum(product_lines.mapped('price_total')) - dpp_total
             if ppn_total <= 0:
                 ppn_total = int(round(dpp_total * 0.12))
 
@@ -118,7 +119,7 @@ class L10nIdEfakturExportWizard(models.TransientModel):
             ])
 
             # 2. Output OF (Objek Faktur Lines)
-            for line in move.invoice_line_ids.filtered(lambda l: not l.display_type):
+            for line in product_lines:
                 price_subtotal = int(round(line.price_subtotal))
                 line_ppn = int(round(price_subtotal * 0.12))
                 writer.writerow([
