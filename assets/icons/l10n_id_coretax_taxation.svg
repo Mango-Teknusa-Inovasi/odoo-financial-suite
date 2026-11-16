@@ -1,0 +1,17 @@
+<svg width="50" height="50" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
+  <!-- Folio Base Sheet in Electric Mint #1AD3BB -->
+  <path d="M36 46H10c-3.314 0-6-2.686-6-6V6a2 2 0 0 1 2-2h20l16 16v20c0 3.314-2.686 6-6 6Z" fill="#1AD3BB"/>
+  <!-- Top Folded Corner Dog-Ear in Deep Petrol #005E7A -->
+  <path d="M26 4v12a4 4 0 0 0 4 4h12L26 4Z" fill="#005E7A"/>
+  <!-- Bottom Spine / Page Turn in Plum #985184 -->
+  <path d="M4 40c0 3.314 2.686 6 6 6h26a6 6 0 0 0 6-6H16c-6.627 0-12-2.686-12-6v6Z" fill="#985184"/>
+  <!-- Middle Certificate Ribbon in Deep Slate Teal #1A6F66 -->
+  <path d="M4 23h38v5H4v-5Z" fill="#1A6F66"/>
+  <!-- Golden DJP Tax Seal / Coin with Shadow -->
+  <circle cx="33" cy="33" r="11" fill="#FBB945"/>
+  <circle cx="33" cy="33" r="9" fill="#F86126"/>
+  <!-- Crisp White Geometric % Symbol -->
+  <circle cx="30" cy="30" r="1.8" fill="#FFFFFF"/>
+  <circle cx="36" cy="36" r="1.8" fill="#FFFFFF"/>
+  <path d="M36.5 28.5l-7 9" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/>
+</svg>

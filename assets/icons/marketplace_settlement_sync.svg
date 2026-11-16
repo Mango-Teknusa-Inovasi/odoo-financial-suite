@@ -1,0 +1,17 @@
+<svg width="50" height="50" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
+  <!-- Marketplace Tote / Storefront in Tangerine #F86126 -->
+  <path d="M8 17h24a4 4 0 0 1 4 4v21a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4V21a4 4 0 0 1 4-4Z" fill="#F86126"/>
+  <!-- Tote Handle in Sunflower Gold #FBB945 -->
+  <path d="M14 17V11a6 6 0 0 1 12 0v6h-4v-6a2 2 0 0 0-4 0v6h-4Z" fill="#FBB945"/>
+  <!-- Under-Canopy Shadow / Facet in Warm Amber #FBB945 -->
+  <path d="M4 21h32v6H4v-6Z" fill="#FBB945"/>
+  <!-- Bank Settlement Ledger Overlap in Plum #985184 -->
+  <path d="M18 20h24a4 4 0 0 1 4 4v20a4 4 0 0 1-4 4H22a4 4 0 0 1-4-4V20Z" fill="#985184"/>
+  <!-- Ledger Bottom Shadow in Deep Berry #712258 -->
+  <path d="M18 40h28v4a4 4 0 0 1-4 4H22a4 4 0 0 1-4-4v-4Z" fill="#712258"/>
+  <!-- Dual Interlocking Sync Arrows (Sales Inflow & Net Escrow Payout) -->
+  <!-- Upper Sync Arrow in Bright Mint #1AD3BB -->
+  <path d="M12 28h17v-3.5l6 5.5-6 5.5V32H12v-4Z" fill="#1AD3BB"/>
+  <!-- Lower Sync Arrow in Sky Cyan #2EBCFA -->
+  <path d="M40 36H23v3.5l-6-5.5 6-5.5V32h17v4Z" fill="#2EBCFA"/>
+</svg>
