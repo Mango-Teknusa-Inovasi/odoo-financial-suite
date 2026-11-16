@@ -1,5 +1,5 @@
 {
-    'name': 'Multichannel Marketplace Settlement Sync',
+    'name': 'Marketplace Settlement',
     'version': '1.0.0',
     'category': 'Accounting/Localizations',
     'summary': 'Automated settlement ingestion and journal generation for Shopee, Tokopedia, TikTok Shop & Indonesian marketplaces',
@@ -14,6 +14,7 @@ Eliminates manual bookkeeping of online marketplace orders and payouts:
     """,
     'author': 'Mango Teknusa Inovasi',
     'website': 'https://github.com/Mango-Teknusa-Inovasi/odoo-financial-suite',
+    'support': 'billing@ppti.me',
     'license': 'LGPL-3',
     'depends': ['base', 'account', 'mail'],
     'data': [

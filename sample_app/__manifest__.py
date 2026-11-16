@@ -1,5 +1,5 @@
 {
-    'name': 'Sample App',
+    'name': 'Sample Task App',
     'version': '1.0.0',
     'summary': 'Starter template modul Odoo 20 untuk testing & development',
     'description': """
@@ -14,6 +14,7 @@ Fitur:
     'category': 'Extra Tools',
     'author': 'Mango Teknusa Inovasi',
     'website': 'https://github.com/Mango-Teknusa-Inovasi/odoo-financial-suite',
+    'support': 'billing@ppti.me',
     'license': 'LGPL-3',
     'depends': ['base'],
     'data': [

@@ -1,5 +1,5 @@
 {
-    'name': 'Indonesian Taxation & Coretax Compliance',
+    'name': 'Indonesian Tax Coretax',
     'version': '1.0.0',
     'category': 'Accounting/Localizations',
     'summary': 'Indonesian DJP Coretax & e-Faktur Engine: PPN 12%, NSFP Allocator, Withholding Tax (PPh 21/22/23/4(2)/Final UMKM PP 20/2026), 16-Digit NPWP/NIK & Coretax CSV',
@@ -17,6 +17,7 @@ Statutory Indonesian Commercial Taxation & DJP Coretax Engine:
     """,
     'author': 'Mango Teknusa Inovasi',
     'website': 'https://github.com/Mango-Teknusa-Inovasi/odoo-financial-suite',
+    'support': 'billing@ppti.me',
     'license': 'LGPL-3',
     'depends': ['base', 'account'],
     'data': [
