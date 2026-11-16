@@ -295,11 +295,32 @@
         </field>
     </record>
 
+    <!-- Search View -->
+    <record id="view_financial_health_kpi_search" model="ir.ui.view">
+        <field name="name">financial.health.kpi.search</field>
+        <field name="model">financial.health.kpi</field>
+        <field name="arch" type="xml">
+            <search string="Search Financial Health Evaluations">
+                <field name="name"/>
+                <field name="company_id" groups="base.group_multi_company"/>
+                <filter name="filter_healthy" string="Optimal / Healthy (>= 75)" domain="[('overall_score', '&gt;=', 75)]"/>
+                <filter name="filter_warning" string="Warning / Attention (&lt; 75)" domain="[('overall_score', '&lt;', 75)]"/>
+                <group expand="0" string="Group By">
+                    <filter name="group_by_company" string="Company" domain="[]" context="{'group_by': 'company_id'}"/>
+                    <filter name="group_by_period_type" string="Period Type" domain="[]" context="{'group_by': 'period_type'}"/>
+                    <filter name="group_by_date" string="End Date" domain="[]" context="{'group_by': 'date_to'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
     <!-- Action Window -->
     <record id="action_financial_health_kpi" model="ir.actions.act_window">
         <field name="name">Financial Health Evaluations</field>
         <field name="res_model">financial.health.kpi</field>
         <field name="view_mode">kanban,list,form</field>
+        <field name="view_id" ref="view_financial_health_kpi_kanban"/>
+        <field name="search_view_id" ref="view_financial_health_kpi_search"/>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
                 Create your first Financial Health Evaluation
@@ -308,5 +329,27 @@
                 Analyze liquidity ratios, debt-to-equity solvency, and gross profit margins with educational traffic-light health indicators.
             </p>
         </field>
+    </record>
+
+    <!-- Explicit Action View Bindings -->
+    <record id="action_financial_health_kpi_view_kanban" model="ir.actions.act_window.view">
+        <field name="sequence" eval="1"/>
+        <field name="view_mode">kanban</field>
+        <field name="view_id" ref="view_financial_health_kpi_kanban"/>
+        <field name="act_window_id" ref="action_financial_health_kpi"/>
+    </record>
+
+    <record id="action_financial_health_kpi_view_list" model="ir.actions.act_window.view">
+        <field name="sequence" eval="2"/>
+        <field name="view_mode">list</field>
+        <field name="view_id" ref="view_financial_health_kpi_tree"/>
+        <field name="act_window_id" ref="action_financial_health_kpi"/>
+    </record>
+
+    <record id="action_financial_health_kpi_view_form" model="ir.actions.act_window.view">
+        <field name="sequence" eval="3"/>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_financial_health_kpi_form"/>
+        <field name="act_window_id" ref="action_financial_health_kpi"/>
     </record>
 </odoo>
