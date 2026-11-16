@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- List / Tree View -->
+    <record id="view_account_simple_asset_tree" model="ir.ui.view">
+        <field name="name">account.simple.asset.list</field>
+        <field name="model">account.simple.asset</field>
+        <field name="arch" type="xml">
+            <list string="Kartu Aktiva Tetap (PPh 11)" decoration-muted="state == 'closed'">
+                <field name="name"/>
+                <field name="code"/>
+                <field name="asset_group"/>
+                <field name="acquisition_date"/>
+                <field name="original_cost" sum="Total Biaya"/>
+                <field name="past_accumulated_depreciation" sum="Total Akumulasi"/>
+                <field name="net_book_value" sum="Total Nilai Buku"/>
+                <field name="monthly_depreciation"/>
+                <field name="company_id" groups="base.group_multi_company"/>
+                <field name="state" widget="badge" decoration-info="state == 'draft'" decoration-success="state == 'running'" decoration-muted="state == 'closed'"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_account_simple_asset_form" model="ir.ui.view">
+        <field name="name">account.simple.asset.form</field>
+        <field name="model">account.simple.asset</field>
+        <field name="arch" type="xml">
+            <form string="Kartu Aktiva Tetap &amp; Amortisasi">
+                <header>
+                    <button name="action_compute_board" string="Generate Jadwal Penyusutan" type="object" class="btn-primary" invisible="state == 'running'"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,running,closed"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" string="Nama Aset Tetap"/>
+                        <h1>
+                            <field name="name" placeholder="Misal: Mesin Roaster Kopi 5kg"/>
+                        </h1>
+                        <field name="code" placeholder="Kode Aset / Serial Number"/>
+                    </div>
+                    <group>
+                        <group string="Klasifikasi Pajak &amp; Masa Manfaat">
+                            <field name="asset_group"/>
+                            <field name="acquisition_date"/>
+                            <field name="start_depreciation_date"/>
+                            <field name="useful_life_months"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                            <field name="currency_id" invisible="1"/>
+                        </group>
+                        <group string="Valuasi Nilai Rupiah">
+                            <field name="original_cost"/>
+                            <field name="salvage_value"/>
+                            <field name="past_accumulated_depreciation"/>
+                            <field name="net_book_value" class="fw-bold text-primary"/>
+                            <field name="monthly_depreciation" class="fw-bold text-success"/>
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <page string="Jadwal Amortisasi Bulanan" name="tab_depreciation">
+                            <field name="line_ids" readonly="1">
+                                <list decoration-muted="is_posted">
+                                    <field name="schedule_date"/>
+                                    <field name="depreciation_amount" sum="Total Beban"/>
+                                    <field name="cumulative_depreciation"/>
+                                    <field name="remaining_value"/>
+                                    <field name="is_posted" widget="boolean_toggle"/>
+                                    <field name="move_id"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Pemetaan Akun Akuntansi" name="tab_accounts">
+                            <group>
+                                <group>
+                                    <field name="asset_account_id"/>
+                                    <field name="accumulated_account_id"/>
+                                    <field name="expense_account_id"/>
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="view_account_simple_asset_search" model="ir.ui.view">
+        <field name="name">account.simple.asset.search</field>
+        <field name="model">account.simple.asset</field>
+        <field name="arch" type="xml">
+            <search string="Cari Aktiva Tetap">
+                <field name="name"/>
+                <field name="code"/>
+                <field name="asset_group"/>
+                <filter name="filter_running" string="Aktif / Running" domain="[('state', '=', 'running')]"/>
+                <filter name="filter_draft" string="Draft" domain="[('state', '=', 'draft')]"/>
+                <group expand="0" string="Group By">
+                    <filter name="group_by_category" string="Kategori Pajak" domain="[]" context="{'group_by': 'asset_group'}"/>
+                    <filter name="group_by_company" string="Perusahaan" domain="[]" context="{'group_by': 'company_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action Window -->
+    <record id="action_account_simple_asset" model="ir.actions.act_window">
+        <field name="name">Kartu Aktiva Tetap</field>
+        <field name="res_model">account.simple.asset</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_account_simple_asset_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Daftarkan Aset Tetap Perusahaan Anda
+            </p>
+            <p>
+                Kelola daftar aktiva berwujud dan otomatisasi perhitungan jadwal depresiasi bulanan sesuai ketentuan UU PPh Pasal 11.
+            </p>
+        </field>
+    </record>
+</odoo>

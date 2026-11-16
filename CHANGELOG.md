@@ -8,15 +8,33 @@ The format follows standard semantic versioning practices (`MAJOR.MINOR.PATCH`).
 
 ## [Unreleased]
 
-### Planned (Phases 6–12 Horizons)
-- **Phase 6: `account_qris_qbiz`:** Dynamic QRIS invoicing and POS powered by [ardianryan/qbiz-qrisdinamis](https://github.com/ardianryan/qbiz-qrisdinamis) (dual mode: native EMVCo Tag 54 injector & QBiz API connector with auto-reconciliation webhook).
-- **Phase 7: `account_opening_balance_wizard`:** 1-page financial balance onboarding wizard (Cash/Bank, Partner AR/AP breakdown, Fixed Assets, and auto-balance to Equity).
+### Planned (Phases 8–12 Horizons)
 - **Phase 8: `account_whatsapp_notifier`:** 1-click WhatsApp document delivery for Invoices, Purchase Orders, and Delivery Slips.
 - **Phase 9: `account_project_job_costing`:** Agile project tagging with Dual-Metric dashboard (Accrual Profit vs Cash Position).
 - **Phase 10: `pos_thermal_receipt_designer`:** No-code visual thermal receipt customizer with dual width presets (58 mm / 80 mm).
 - **Phase 11: `l10n_id_bi_currency_rate`:** Automated daily sync of official Bank Indonesia foreign exchange rates (JISDOR / Kurs Transaksi BI).
 - **Phase 12: `account_simple_budgeting`:** Monthly revenue target and expense limit monitoring with traffic-light visual progress gauges.
-- **Visual Assets:** Generated geometric vector icons (`assets/icons/`) for all 7 upcoming roadmap modules.
+
+---
+
+## [1.2.0] - 2026-11-17
+
+### Added (Phase 7: Opening Balance Setup Wizard)
+- **Core Module `account_opening_balance_wizard`:** Complete single-window financial balance setup wizard for Indonesian businesses migrating from legacy accounting systems (Accurate, Zahir, Jurnal, SAP, or spreadsheets).
+- **Live Dynamic Balance Bar:** Real-time computation of Debits, Credits, and Net Equity Difference directly within the single-window form with color-coded status indicators.
+- **Multi-Sheet Excel Engine:** Pre-formatted XLSX export and import template covering Cash/Bank, Customers (AR), Vendors (AP), Inventory, and Fixed Assets with bulk upload parsing.
+- **Indonesian Tax Asset Register (`account.simple.asset`):** UU PPh Pasal 11 straight-line monthly depreciation scheduler (Kelompok 1 to 4 and Bangunan Permanen) with automated book value tracking.
+- **Zero-Balance Opening Clearing Architecture:** Generates posted customer invoices and vendor bills tagged `is_opening_balance=True` counterbalanced by master opening journal lines, maintaining subledger accuracy with zero general ledger double-counting.
+- **Security & Multi-Company:** Granular access controls (`security/ir.model.access.csv`) and multi-company record rules (`security/opening_balance_security.xml`).
+
+### Standardized & Verified (Banner Standardization & Visual Governance)
+- **Unified Banner Architecture:** Standardized all 7 module banners (`1200x630`) using dark slate gradient (`#0F172A` to `#182036`), ambient radial glow, 140x140 squircle icon container, top open-source badge, Segoe UI typography, and 3 standard pills.
+- **Standardized `account_qris_qbiz` Banner:** Corrected design discrepancy in `account_qris_qbiz` banner to match the master design tokens and layout of the other suite modules.
+- **Banner Governance (`BRANDKIT.md` & `scripts/generate_module_banners.py`):** Added Section 8 to `BRANDKIT.md` and established an automated master banner generator script so banner and logo architecture rules are permanently preserved.
+- **Compliance & Tests:**
+  - `scripts/validate_apps_store.py`: 56/56 checks passed (Score 5.0 / 5.0 across all 7 modules).
+  - `tests/run_all_tests.py`: 35/35 unit and feature tests passed with 0 failures and 0 errors.
+  - Live Docker Verification: Installed, upgraded, and validated end-to-end inside Docker container `odoo18_web`.
 
 ---
 

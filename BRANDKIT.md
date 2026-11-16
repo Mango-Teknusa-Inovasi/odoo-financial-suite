@@ -87,6 +87,16 @@ Each module in the MangoTek Financial Suite possesses a distinct, cohesive 50x50
 * **Palette:** Plum (`#985184`), Emerald Mint (`#1AD3BB`), Sunflower Gold (`#FBB945`), Coral (`#FC868B`), Tangerine (`#F86126`).
 * **Source:** `assets/icons/financial_health_kpi.svg`
 
+### 6. `account_qris_qbiz` (QBiz Dynamic QRIS)
+* **Concept:** Interlocking four-corner QR positioning targets framing dynamic lightning bolt payment mutation vectors.
+* **Palette:** Royal Azure (`#088BF5`), Sky Cyan (`#2EBCFA`), Deep Petrol (`#005E7A`), Emerald Mint (`#1AD3BB`).
+* **Source:** `account_qris_qbiz/static/description/icon.png`
+
+### 7. `account_opening_balance_wizard` (Opening Balance Setup Wizard)
+* **Concept:** Symmetrical double-entry balance scale with ascending foundation blocks and ledger migration arrows.
+* **Palette:** Sunflower Amber (`#D97706`), Warm Tangerine (`#F86126`), Deep Petrol (`#005E7A`), Emerald Mint (`#1AD3BB`).
+* **Source:** `account_opening_balance_wizard/static/description/icon.png`
+
 ---
 
 ## 5. Typography Standards
@@ -110,9 +120,10 @@ All icons and brand assets are maintained in vector SVG and exported to raster P
 
 | Asset | Resolution | Format | Purpose |
 |:---|:---|:---|:---|
-| **App Launcher Icon** | `50x50` (or `100x100` @2x) | PNG / SVG | Odoo 9-dots App Drawer & Kanban Views |
+| **App Launcher Icon** | `100x100` (or `50x50`) | PNG / SVG | Odoo 9-dots App Drawer & Kanban Views |
+| **Module Cover Banner** | `1200x630` (1.905:1) | PNG | Odoo Apps Store Index & Module Header |
 | **Odoo Apps Store Thumbnail** | `512x512` | PNG / SVG | Odoo Apps Store Listing & Vendor Portal |
-| **GitHub Master Banner** | `1280x640` | PNG / SVG | GitHub Social Card & README Hero Header |
+| **GitHub Master Banner** | `1280x640` (2:1) | PNG / SVG | GitHub Social Card & README Hero Header |
 | **Favicon** | `32x32` / `16x16` | PNG / ICO | Web browser tab indicator |
 
 ---
@@ -123,5 +134,60 @@ All icons and brand assets are maintained in vector SVG and exported to raster P
 * **DO:** Maintain high-contrast facet boundaries so icons remain legible down to 24px.
 * **DO:** Always display the official `100% Free & Open Source · LGPL-3.0` badge on public listings.
 * **DON'T:** Never apply generic AI gradient bubbles, glossy chrome reflections, or skeuomorphic glassmorphism.
-* **DON'T:** Never distort the aspect ratio ($1:1$ for icons, $2:1$ for the repository banner).
+* **DON'T:** Never distort the aspect ratio ($1:1$ for icons, $1200\times630$ for module banners).
 * **DON'T:** Never introduce third-party proprietary vendor logos into open-source core assets.
+
+---
+
+## 8. Standardized Module Banner Architecture & Governance
+
+To eliminate visual inconsistency across the MangoTek Financial Suite (such as differing layouts, fonts, badge counts, or background styles), all module banners (`static/description/banner.png`) MUST strictly adhere to the unified architecture defined below and MUST be generated using `scripts/generate_module_banners.py`.
+
+### Unified Banner Specification (1200 x 630 px)
+
+```
++-------------------------------------------------------------------------------+
+|  [● 100% FREE & OPEN SOURCE · LGPL-3]                                         |  py = 42
+|                                                                               |
+|                            [ 140x140 Icon Container ]                         |  y = 100..240
+|                                                                               |
+|                             MODULE TITLE (46px Bold)                          |  y = 280
+|                                                                               |
+|                       Feature Subtitle Description (21px)                     |  y = 350
+|                                                                               |
+|                      SUITE IDENTIFIER OVERLINE (13px Bold)                    |  y = 400
+|                                                                               |
+|   [🟣 Odoo 18.0, 19.0 & 20.0]  [✨ Module Specific Highlight]  [⚖️ Community]   |  y = 515
++-------------------------------------------------------------------------------+
+```
+
+### Visual Anatomy Rules
+1. **Canvas & Background:**
+   - Dimensions: `1200 x 630` pixels exactly.
+   - Background: Dark gradient from `#0F172A` (top) to `#182036` (bottom).
+   - Radial Ambient Glow: Centered at `cx=600, cy=230` with `radius=320`, tinted with the module's primary `accent_rgb` at 15% opacity.
+2. **Top Open Source Badge:**
+   - Position: Centered horizontally at `py = 42`.
+   - Text: `100% FREE & OPEN SOURCE · LGPL-3` in Segoe UI Bold 14px, letter-spaced `+1.5px`.
+   - Indicator: Emerald green circle dot (`#10B981`, radius 4px) preceding the text.
+   - Container: Rounded rectangle (`fill=#1E293B, outline=#334155, radius=18`).
+3. **Module Icon Plate:**
+   - Position: Centered at `x = 530..670, y = 100..240` (140x140 px).
+   - Container: Rounded squircle (`fill=#1E293B, outline=#334155, radius=24`).
+   - Icon Graphic: 100x100 px centered inside the plate.
+4. **Typography & Hierarchical Positioning:**
+   - **Title:** `y = 280`, Segoe UI Bold 46px, `#FFFFFF`.
+   - **Subtitle:** `y = 350`, Segoe UI Regular 21px, `#94A3B8`.
+   - **Suite Identifier:** `y = 400`, Segoe UI Bold 13px, tracking `+3.0px`, uppercase `#38BDF8`.
+5. **Bottom Standard Pills (Strictly 3 Pills):**
+   - Pill 1 (Framework): `🟣 Odoo 18.0, 19.0 & 20.0`
+   - Pill 2 (Highlight): Specific core capability (e.g. `⚡ ASPI QRIS & Webhook`, `⚖️ Dynamic Net Equity Balancing`)
+   - Pill 3 (Tier): `⚖️ Community & Enterprise`
+   - Styling: Rounded capsules (`radius=16, fill=#1E293B, outline=#334155`), text 14px SemiBold `#E2E8F0`.
+
+### Master Generator Script
+Any addition of new modules or updates to banners must be executed via:
+```bash
+python scripts/generate_module_banners.py
+```
+This guarantees 100% visual parity across all modules in the repository without manual graphical discrepancies.

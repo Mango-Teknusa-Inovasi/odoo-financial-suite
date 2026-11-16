@@ -31,6 +31,7 @@ MODULE_TEST_PATHS = [
     "account_stamp_signature.tests.test_stamp_emeterai",
     "financial_health_kpi.tests.test_financial_ratios",
     "account_qris_qbiz.tests.test_qris_emvco",
+    "account_opening_balance_wizard.tests.test_opening_balance",
 ]
 
 def run_suite():
