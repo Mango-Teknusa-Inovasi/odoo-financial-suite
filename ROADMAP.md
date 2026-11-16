@@ -158,15 +158,21 @@ flowchart TD
 
 ---
 
-### 📌 Phase 8: 1-Click WhatsApp Document Dispatcher (`account_whatsapp_notifier`) — 🚀 UPCOMING TARGET
+### 📌 Phase 8: 1-Click WhatsApp Document Dispatcher (`account_whatsapp_notifier`) — ✅ COMPLETED
 > **Goal:** Send invoices, bills, purchase orders, and delivery slips directly to customer/vendor WhatsApp numbers.
-* [ ] **One-Click WhatsApp Action:** Smart button on `account.move` and `sale.order` opening pre-filled WhatsApp message.
-* [ ] **Dual Gateway Support:** WhatsApp Web click-to-chat URL link + direct API connector (WhatsApp Cloud API / local gateways like Fonnte/Wablas).
-* [ ] **Dynamic Document Link:** Generates secure tokenized PDF download links for buyers.
+* [x] **One-Click WhatsApp Action:** Smart button on `account.move` opening interactive composer modal with pre-filled message, recipient phone normalizer, and PDF document attachment.
+* [x] **Multi-Engine Gateway Support:**
+  * Mode 1: Native Click-to-Chat (wa.me) - 100% free client-side link with zero setup or API keys.
+  * Mode 2: GOWA Connector - Native REST API integration with `aldinokemal/go-whatsapp-web-multidevice` for self-hosted multi-device automated messaging and multipart PDF upload.
+  * Mode 3: Meta Official WhatsApp Cloud API - High-volume official Graph API integration with Bearer Token and Phone Number ID.
+  * Mode 4: Custom REST Webhook - Generic JSON payload connector for Fonnte, Wablas, or proprietary proxies.
+* [x] **Dynamic Document Link:** Generates secure tokenized portal PDF download links for buyers.
+* [x] **Smart Cross-Module Synergy:** Automatically injects dynamic QRIS payment instructions (`account_qris_qbiz`) and e-Meterai seal validation notes (`account_stamp_signature`).
+* [x] **Chatter Audit Trail:** Dispatched WhatsApp messages, timestamps, and delivery methods logged to invoice Chatter.
 
 ---
 
-### 📌 Phase 9: Lightweight Project Job Costing (`account_project_job_costing`) — 📋 PLANNED
+### 📌 Phase 9: Lightweight Project Job Costing (`account_project_job_costing`) — 🚀 UPCOMING TARGET
 > **Goal:** Provide agile profit & loss tracking per project without requiring Odoo's complex Analytic Accounting structure.
 * [ ] **Tagging Architecture:** Lightweight project tag dropdown on sales invoices, vendor bills, and operational expenses.
 * [ ] **Dual-Metric Realtime Dashboard:**

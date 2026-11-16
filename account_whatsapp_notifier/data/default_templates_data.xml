@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- 1. New Customer Invoice Template -->
+        <record id="template_whatsapp_invoice_new" model="account.whatsapp.template">
+            <field name="name">Faktur Pelanggan Baru</field>
+            <field name="code">WA_INVOICE_NEW</field>
+            <field name="sequence">10</field>
+            <field name="document_type">out_invoice</field>
+            <field name="body"><![CDATA[Halo Bpk/Ibu {{partner_name}},
+
+Terima kasih atas kepercayaan Anda bertransaksi dengan {{company_name}}.
+Berikut kami sampaikan rincian faktur penjualan Anda:
+
+*No. Faktur:* {{invoice_number}}
+*Total Tagihan:* {{amount_total}}
+*Jatuh Tempo:* {{due_date}}
+{{qris_note}}
+{{emeterai_status}}
+
+Silakan periksa berkas PDF resmi yang terlampir atau akses rincian faktur secara online melalui tautan berikut:
+{{portal_url}}
+
+Salam hangat,
+*{{company_name}}*]]></field>
+        </record>
+
+        <!-- 2. Overdue Payment Reminder Template -->
+        <record id="template_whatsapp_invoice_reminder" model="account.whatsapp.template">
+            <field name="name">Pengingat Tagihan Jatuh Tempo</field>
+            <field name="code">WA_INVOICE_REMINDER</field>
+            <field name="sequence">20</field>
+            <field name="document_type">reminder</field>
+            <field name="body"><![CDATA[Yth. Bpk/Ibu {{partner_name}},
+
+Kami menginformasikan bahwa faktur {{invoice_number}} dari {{company_name}} telah mendekati / melewati tanggal jatuh tempo pada {{due_date}}.
+
+*Rincian Tagihan:*
+*No. Faktur:* {{invoice_number}}
+*Sisa Pembayaran:* {{amount_residual}}
+{{qris_note}}
+
+Mohon konfirmasikan apabila pembayaran telah dilakukan. Anda dapat memeriksa status tagihan dan mengunduh berkas faktur pada tautan:
+{{portal_url}}
+
+Terima kasih atas kerja samanya,
+*{{company_name}}*]]></field>
+        </record>
+
+        <!-- 3. Payment Confirmation / Receipt Template -->
+        <record id="template_whatsapp_invoice_receipt" model="account.whatsapp.template">
+            <field name="name">Konfirmasi Pembayaran Lunas</field>
+            <field name="code">WA_INVOICE_RECEIPT</field>
+            <field name="sequence">30</field>
+            <field name="document_type">receipt</field>
+            <field name="body"><![CDATA[Yth. Bpk/Ibu {{partner_name}},
+
+Pembayaran untuk faktur {{invoice_number}} sebesar {{amount_total}} telah kami terima dengan baik.
+
+Status Faktur: *LUNAS (PAID)*
+Tanggal Verifikasi: {{due_date}}
+
+Kuitansi dan bukti pelunasan digital dapat diunduh pada tautan:
+{{portal_url}}
+
+Terima kasih telah bertransaksi dengan {{company_name}}!]]></field>
+        </record>
+    </data>
+</odoo>

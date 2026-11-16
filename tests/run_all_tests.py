@@ -32,6 +32,7 @@ MODULE_TEST_PATHS = [
     "financial_health_kpi.tests.test_financial_ratios",
     "account_qris_qbiz.tests.test_qris_emvco",
     "account_opening_balance_wizard.tests.test_opening_balance",
+    "account_whatsapp_notifier.tests.test_whatsapp_notifier",
 ]
 
 def run_suite():

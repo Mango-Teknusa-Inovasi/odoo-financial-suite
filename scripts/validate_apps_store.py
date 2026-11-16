@@ -19,6 +19,7 @@ MODULES = [
     "financial_health_kpi",
     "account_qris_qbiz",
     "account_opening_balance_wizard",
+    "account_whatsapp_notifier",
 ]
 
 def validate_suite():
