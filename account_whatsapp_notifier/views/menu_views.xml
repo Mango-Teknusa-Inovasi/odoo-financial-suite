@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Submenu under Accounting / Invoicing > Configuration -->
+    <menuitem id="menu_account_whatsapp_root"
+              name="WhatsApp Finansial"
+              parent="account.menu_finance_configuration"
+              sequence="55"/>
+
+    <menuitem id="menu_account_whatsapp_templates"
+              name="Template Pesan WhatsApp"
+              parent="menu_account_whatsapp_root"
+              action="action_account_whatsapp_template"
+              sequence="10"/>
+</odoo>

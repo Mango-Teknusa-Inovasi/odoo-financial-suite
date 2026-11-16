@@ -8,12 +8,29 @@ The format follows standard semantic versioning practices (`MAJOR.MINOR.PATCH`).
 
 ## [Unreleased]
 
-### Planned (Phases 8–12 Horizons)
-- **Phase 8: `account_whatsapp_notifier`:** 1-click WhatsApp document delivery for Invoices, Purchase Orders, and Delivery Slips.
+### Planned (Phases 9–12 Horizons)
 - **Phase 9: `account_project_job_costing`:** Agile project tagging with Dual-Metric dashboard (Accrual Profit vs Cash Position).
 - **Phase 10: `pos_thermal_receipt_designer`:** No-code visual thermal receipt customizer with dual width presets (58 mm / 80 mm).
 - **Phase 11: `l10n_id_bi_currency_rate`:** Automated daily sync of official Bank Indonesia foreign exchange rates (JISDOR / Kurs Transaksi BI).
 - **Phase 12: `account_simple_budgeting`:** Monthly revenue target and expense limit monitoring with traffic-light visual progress gauges.
+
+---
+
+## [1.3.0] - 2026-11-17
+
+### Added (Phase 8: WhatsApp Financial Notifier & Document Dispatcher)
+- **Core Module `account_whatsapp_notifier`:** Universal multi-engine WhatsApp notification dispatcher for Invoices, Bills, and Customer Follow-ups supporting self-hosted GOWA (Go WhatsApp Web Multidevice), official Meta Cloud API, and native `wa.me` Click-to-Chat.
+- **Unofficial Self-Hosted GOWA Gateway Support:** Seamless compatibility with `aldinokemal/go-whatsapp-web-multidevice` including `POST /send/message` for text and `POST /send/file` multipart form-data upload for direct PDF invoice dispatch with device routing (`X-Device-Id`).
+- **Interactive Document Composer Wizard (`account.whatsapp.composer`):** Modal dialog with live template preview, phone editor, instant dispatch, PDF attachment checkbox, and 1-click `wa.me` web/mobile fallback.
+- **Indonesian Dynamic Template Engine (`account.whatsapp.template`):** Seeded templates for Faktur Baru, Pengingat Jatuh Tempo, and Konfirmasi Pembayaran with dynamic placeholders (`{{partner_name}}`, `{{invoice_number}}`, `{{amount_total}}`, `{{amount_residual}}`, `{{due_date}}`, `{{company_name}}`, `{{portal_url}}`, `{{qris_note}}`, `{{emeterai_status}}`).
+- **Indonesian Phone Normalizer (`res.partner`):** Automatic normalization converting Indonesian numbers (`08xx`, `+62 8xx`, `62-8xx`) to standard international E.164 without plus signs (`628xx`).
+- **Companion Interoperability & Zero-Crash Coexistence:** Soft integration with `account_qris_qbiz` (appending QRIS payment instructions) and `account_stamp_signature` (e-Meterai status badge) without declaring hard dependencies.
+- **Security & Multi-Company:** Granular access controls (`security/ir.model.access.csv`) and multi-company record rules (`security/whatsapp_security.xml`).
+- **Odoo Apps Store Assets:** Complete compliance assets with 100x100 squircle icon, standard 1200x630 banner, and responsive store description page (`static/description/index.html`).
+- **Quality Verification:**
+  - `scripts/validate_apps_store.py`: 64/64 checks passed (Score 5.0 / 5.0 across all 8 modules).
+  - `tests/run_all_tests.py`: 41/41 tests passed (0 failures, 0 errors).
+  - Live Docker Verification: Installed, upgraded, and verified end-to-end on container `odoo18_web` running Odoo 18.0.
 
 ---
 

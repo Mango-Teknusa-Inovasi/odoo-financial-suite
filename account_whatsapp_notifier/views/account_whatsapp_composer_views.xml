@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_account_whatsapp_composer_form" model="ir.ui.view">
+        <field name="name">account.whatsapp.composer.form</field>
+        <field name="model">account.whatsapp.composer</field>
+        <field name="arch" type="xml">
+            <form string="Kirim Dokumen via WhatsApp">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="partner_id" readonly="1"/>
+                            <field name="phone" placeholder="contoh: 08123456789 atau 628123456789"/>
+                            <field name="template_id"/>
+                        </group>
+                        <group>
+                            <field name="gateway_provider"/>
+                            <field name="attach_pdf" invisible="gateway_provider != 'gowa'"/>
+                            <field name="device_id" placeholder="Optional Device ID" invisible="gateway_provider != 'gowa'"/>
+                        </group>
+                    </group>
+
+                    <separator string="Pratinjau Pesan WhatsApp"/>
+                    <field name="message" widget="text" placeholder="Ketik pesan WhatsApp di sini..."/>
+
+                    <div class="alert alert-secondary mt-2" role="status">
+                        <small>
+                            <strong>Catatan:</strong> Jika Anda menggunakan tombol <em>Kirim via GOWA / API</em>, pesan dan berkas PDF akan dikirimkan otomatis di latar belakang. Jika menggunakan <em>Buka WhatsApp Web</em>, tab browser baru akan terbuka langsung ke aplikasi WhatsApp Web (wa.me) dengan teks yang sudah terisi.
+                        </small>
+                    </div>
+                </sheet>
+
+                <footer>
+                    <button name="action_send_gowa_or_api"
+                            string="Kirim Otomatis (GOWA / API)"
+                            type="object"
+                            class="btn-primary"
+                            icon="fa-paper-plane"
+                            invisible="gateway_provider == 'click_to_chat'"/>
+                    <button name="action_send_whatsapp_web"
+                            string="Buka WhatsApp Web"
+                            type="object"
+                            class="btn-success"
+                            icon="fa-whatsapp"/>
+                    <button string="Batal" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

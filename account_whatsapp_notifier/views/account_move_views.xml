@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Add WhatsApp Button and Status to Invoice Form View -->
+    <record id="view_move_form_whatsapp_inherit" model="ir.ui.view">
+        <field name="name">account.move.form.whatsapp.inherit</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="priority">45</field>
+        <field name="arch" type="xml">
+            <!-- Header Action Button -->
+            <xpath expr="//header" position="inside">
+                <button name="action_open_whatsapp_composer"
+                        string="Kirim WhatsApp"
+                        type="object"
+                        class="btn-success"
+                        icon="fa-whatsapp"
+                        invisible="state == 'draft'"/>
+            </xpath>
+
+            <!-- Status Indicator in Other Info -->
+            <xpath expr="//field[@name='payment_reference']" position="after">
+                <field name="whatsapp_status" widget="badge"
+                       decoration-success="whatsapp_status == 'sent'"
+                       decoration-danger="whatsapp_status == 'failed'"
+                       decoration-muted="whatsapp_status == 'not_sent'"/>
+                <field name="whatsapp_sent_date" invisible="not whatsapp_sent_date"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Add WhatsApp Status Badge to Customer Invoices List View -->
+    <record id="view_invoice_tree_whatsapp_inherit" model="ir.ui.view">
+        <field name="name">account.invoice.tree.whatsapp.inherit</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_invoice_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='status_in_payment']" position="after">
+                <field name="whatsapp_status" widget="badge" optional="show"
+                       decoration-success="whatsapp_status == 'sent'"
+                       decoration-danger="whatsapp_status == 'failed'"
+                       decoration-muted="whatsapp_status == 'not_sent'"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
