@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Multi-Company Rule for Financial Health KPI -->
+        <record id="financial_health_kpi_comp_rule" model="ir.rule">
+            <field name="name">Financial Health KPI Multi-Company</field>
+            <field name="model_id" ref="model_financial_health_kpi"/>
+            <field name="global" eval="True"/>
+            <field name="domain_force">['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]</field>
+        </record>
+    </data>
+</odoo>

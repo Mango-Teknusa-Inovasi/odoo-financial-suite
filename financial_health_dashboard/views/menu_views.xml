@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- 1. Root App Drawer Menu -->
+    <menuitem id="menu_financial_health_root"
+              name="Financial Health"
+              web_icon="financial_health_dashboard,static/description/icon.png"
+              sequence="37"/>
+
+    <!-- 2. Operational Submenus -->
+    <menuitem id="menu_financial_health_operations"
+              name="Health Analytics"
+              parent="menu_financial_health_root"
+              sequence="10"/>
+
+    <menuitem id="menu_financial_health_dashboard_action"
+              name="Health Ratio Dashboard"
+              parent="menu_financial_health_operations"
+              action="action_financial_health_kpi"
+              sequence="10"/>
+
+    <!-- 3. Accounting > Reporting Hook -->
+    <menuitem id="menu_financial_health_reporting_hook"
+              name="Executive Financial Health Ratios"
+              parent="account.menu_finance_reports"
+              action="action_financial_health_kpi"
+              sequence="55"/>
+</odoo>

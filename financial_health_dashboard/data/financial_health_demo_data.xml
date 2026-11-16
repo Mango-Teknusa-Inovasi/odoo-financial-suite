@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Initial Executive Financial Health Evaluation -->
+        <record id="financial_health_kpi_demo_initial" model="financial.health.kpi">
+            <field name="name">Q4 2026 Executive Financial Health Audit</field>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="period_type">all_time</field>
+        </record>
+    </data>
+</odoo>

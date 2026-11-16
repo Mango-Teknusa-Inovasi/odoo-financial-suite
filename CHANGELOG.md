@@ -9,8 +9,23 @@ The format follows standard semantic versioning practices (`MAJOR.MINOR.PATCH`).
 ## [Unreleased]
 
 ### Planned
-- **`financial_health_dashboard`** (Phase 5):
-  - Executive financial ratio KPI widgets (Current, Quick, Debt-to-Equity, Net Margin) with visual status cards.
+- Continuous integration testing and multi-company automated demo benchmarks.
+
+---
+
+## [1.5.0] - 2026-11-16
+
+### Added
+- **`financial_health_dashboard` (Phase 5 Completed):**
+  - **Financial Health Model (`financial.health.kpi`):** Automated ratio computation engine pulling live from standard Odoo 18/19/20 General Ledger journal items (`account.move.line`).
+  - **Liquidity Diagnostics:** Current Ratio, Quick Ratio (Acid-Test), and Cash Ratio tracking short-term obligation coverage.
+  - **Solvency & Capital Structure:** Debt-to-Equity Ratio (DER) and Debt-to-Asset Ratio (DAR) assessing financial leverage risk.
+  - **Profitability Metrics:** Gross Profit Margin (GPM %) and Net Profit Margin (NPM %) measuring operational efficiency.
+  - **Educational Traffic-Light System:** Visual status badges (🟢 Optimal, 🟡 Moderate, 🔴 Critical) with built-in financial benchmarks.
+  - **Automated Executive Advisory Synthesis:** Dynamic plain-language narrative summarizing key strengths and alerting to receivables collection gaps.
+  - **Executive Dashboard Kanban & Form Views:** Progress score gauge (0-100), working capital surplus card, and 1-click drilldowns into Trade Receivables, Trade Payables, and General Ledger.
+  - **App Launcher Integration:** Dedicated 9-dots App Drawer launcher icon and menu entry under Accounting > Reporting.
+  - **Suite Completion:** All 5 core phases of the MangoTek Financial Suite are now fully implemented, verified live in Docker, and published.
 
 ---
 

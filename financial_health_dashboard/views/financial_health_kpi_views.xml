@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- List / Tree View -->
+    <record id="view_financial_health_kpi_tree" model="ir.ui.view">
+        <field name="name">financial.health.kpi.list</field>
+        <field name="model">financial.health.kpi</field>
+        <field name="arch" type="xml">
+            <list string="Financial Health Evaluations" decoration-success="overall_status == 'excellent'" decoration-info="overall_status == 'good'" decoration-warning="overall_status == 'fair'" decoration-danger="overall_status == 'critical'">
+                <field name="name"/>
+                <field name="period_type"/>
+                <field name="overall_score" widget="progressbar"/>
+                <field name="overall_status" widget="badge"
+                       decoration-success="overall_status in ('excellent', 'good')"
+                       decoration-warning="overall_status == 'fair'"
+                       decoration-danger="overall_status == 'critical'"/>
+                <field name="current_ratio"/>
+                <field name="debt_to_equity_ratio"/>
+                <field name="net_profit_margin"/>
+                <field name="working_capital"/>
+                <field name="date_computed"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Kanban View -->
+    <record id="view_financial_health_kpi_kanban" model="ir.ui.view">
+        <field name="name">financial.health.kpi.kanban</field>
+        <field name="model">financial.health.kpi</field>
+        <field name="arch" type="xml">
+            <kanban class="o_kanban_dashboard" sample="1">
+                <field name="name"/>
+                <field name="overall_score"/>
+                <field name="overall_status"/>
+                <field name="current_ratio"/>
+                <field name="current_ratio_status"/>
+                <field name="debt_to_equity_ratio"/>
+                <field name="der_status"/>
+                <field name="net_profit_margin"/>
+                <field name="npm_status"/>
+                <field name="working_capital"/>
+                <field name="currency_id"/>
+                <templates>
+                    <t t-name="card">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="fw-bold fs-5 text-dark"><field name="name"/></span>
+                            <field name="overall_status" widget="badge"
+                                   decoration-success="overall_status in ('excellent', 'good')"
+                                   decoration-warning="overall_status == 'fair'"
+                                   decoration-danger="overall_status == 'critical'"/>
+                        </div>
+                        <div class="row align-items-center mb-3">
+                            <div class="col-6">
+                                <div class="text-muted small">Financial Health Score</div>
+                                <div class="fs-2 fw-bolder text-primary">
+                                    <t t-esc="record.overall_score.raw_value or 0"/>
+                                    <span class="fs-6 text-muted font-normal">/100</span>
+                                </div>
+                            </div>
+                            <div class="col-6 text-end">
+                                <div class="text-muted small">Working Capital</div>
+                                <div class="fw-bold text-dark fs-6">
+                                    <field name="working_capital"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="border-top pt-2 mt-1">
+                            <div class="row text-center">
+                                <div class="col-4 border-end">
+                                    <div class="text-muted small" style="font-size: 10px;">Current Ratio</div>
+                                    <div class="fw-bold" style="font-size: 13px;">
+                                        <t t-esc="record.current_ratio.value"/>x
+                                    </div>
+                                    <field name="current_ratio_status" widget="badge"
+                                           decoration-success="current_ratio_status == 'optimal'"
+                                           decoration-warning="current_ratio_status == 'moderate'"
+                                           decoration-danger="current_ratio_status == 'critical'"/>
+                                </div>
+                                <div class="col-4 border-end">
+                                    <div class="text-muted small" style="font-size: 10px;">Debt-to-Equity</div>
+                                    <div class="fw-bold" style="font-size: 13px;">
+                                        <t t-esc="record.debt_to_equity_ratio.value"/>x
+                                    </div>
+                                    <field name="der_status" widget="badge"
+                                           decoration-success="der_status == 'optimal'"
+                                           decoration-warning="der_status == 'moderate'"
+                                           decoration-danger="der_status == 'critical'"/>
+                                </div>
+                                <div class="col-4">
+                                    <div class="text-muted small" style="font-size: 10px;">Net Margin</div>
+                                    <div class="fw-bold" style="font-size: 13px;">
+                                        <t t-esc="record.net_profit_margin.value"/>%
+                                    </div>
+                                    <field name="npm_status" widget="badge"
+                                           decoration-success="npm_status == 'optimal'"
+                                           decoration-warning="npm_status == 'moderate'"
+                                           decoration-danger="npm_status == 'critical'"/>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_financial_health_kpi_form" model="ir.ui.view">
+        <field name="name">financial.health.kpi.form</field>
+        <field name="model">financial.health.kpi</field>
+        <field name="arch" type="xml">
+            <form string="Financial Health Evaluation">
+                <header>
+                    <button name="action_compute_ratios" string="Calculate / Refresh Ratios" type="object" class="btn-primary" icon="fa-refresh"/>
+                    <button name="action_view_receivables" string="Receivables (AR)" type="object" class="btn-secondary" icon="fa-arrow-down"/>
+                    <button name="action_view_payables" string="Payables (AP)" type="object" class="btn-secondary" icon="fa-arrow-up"/>
+                    <button name="action_view_general_ledger" string="General Ledger" type="object" class="btn-secondary" icon="fa-book"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" string="Evaluation Title"/>
+                        <h1>
+                            <field name="name" placeholder="e.g. Q4 2026 Executive Financial Health"/>
+                        </h1>
+                    </div>
+
+                    <!-- Executive Scorecard Banner -->
+                    <div class="card border-0 bg-light p-3 mb-4 rounded-3">
+                        <div class="row align-items-center">
+                            <div class="col-md-3 text-center border-end">
+                                <div class="text-muted small text-uppercase fw-bold">Health Score</div>
+                                <div class="display-6 fw-bold text-primary">
+                                    <field name="overall_score"/>
+                                    <span class="fs-5 text-muted font-normal">/100</span>
+                                </div>
+                                <field name="overall_status" widget="badge"
+                                       decoration-success="overall_status in ('excellent', 'good')"
+                                       decoration-warning="overall_status == 'fair'"
+                                       decoration-danger="overall_status == 'critical'"/>
+                            </div>
+                            <div class="col-md-9 ps-md-4">
+                                <div class="row g-2 text-center text-md-start">
+                                    <div class="col-sm-4">
+                                        <div class="text-muted small">Current Ratio (Liquidity)</div>
+                                        <div class="h5 fw-bold text-dark mb-0">
+                                            <field name="current_ratio"/>x
+                                            <field name="current_ratio_status" widget="badge" class="ms-1"
+                                                   decoration-success="current_ratio_status == 'optimal'"
+                                                   decoration-warning="current_ratio_status == 'moderate'"
+                                                   decoration-danger="current_ratio_status == 'critical'"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="text-muted small">Debt-to-Equity (Solvency)</div>
+                                        <div class="h5 fw-bold text-dark mb-0">
+                                            <field name="debt_to_equity_ratio"/>x
+                                            <field name="der_status" widget="badge" class="ms-1"
+                                                   decoration-success="der_status == 'optimal'"
+                                                   decoration-warning="der_status == 'moderate'"
+                                                   decoration-danger="der_status == 'critical'"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="text-muted small">Net Profit Margin</div>
+                                        <div class="h5 fw-bold text-dark mb-0">
+                                            <field name="net_profit_margin"/>%
+                                            <field name="npm_status" widget="badge" class="ms-1"
+                                                   decoration-success="npm_status == 'optimal'"
+                                                   decoration-warning="npm_status == 'moderate'"
+                                                   decoration-danger="npm_status == 'critical'"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <group>
+                        <group string="Scope &amp; Period">
+                            <field name="company_id" groups="base.group_multi_company"/>
+                            <field name="period_type"/>
+                            <field name="date_from"/>
+                            <field name="date_to"/>
+                        </group>
+                        <group string="Audit Metadata">
+                            <field name="currency_id" invisible="1"/>
+                            <field name="date_computed"/>
+                            <field name="working_capital"/>
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <page string="Liquidity &amp; Solvency" name="liquidity_solvency">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h5 class="fw-bold text-dark mb-2">Short-Term Liquidity Health</h5>
+                                    <p class="text-muted small">Assesses ability to satisfy short-term obligations using liquid assets.</p>
+                                    <group>
+                                        <field name="current_ratio"/>
+                                        <field name="current_ratio_status" widget="badge"
+                                               decoration-success="current_ratio_status == 'optimal'"
+                                               decoration-warning="current_ratio_status == 'moderate'"
+                                               decoration-danger="current_ratio_status == 'critical'"/>
+                                        <field name="quick_ratio"/>
+                                        <field name="quick_ratio_status" widget="badge"
+                                               decoration-success="quick_ratio_status == 'optimal'"
+                                               decoration-warning="quick_ratio_status == 'moderate'"
+                                               decoration-danger="quick_ratio_status == 'critical'"/>
+                                        <field name="cash_ratio"/>
+                                        <field name="cash_ratio_status" widget="badge"
+                                               decoration-success="cash_ratio_status == 'optimal'"
+                                               decoration-warning="cash_ratio_status == 'moderate'"
+                                               decoration-danger="cash_ratio_status == 'critical'"/>
+                                    </group>
+                                </div>
+                                <div class="col-md-6">
+                                    <h5 class="fw-bold text-dark mb-2">Long-Term Solvency &amp; Leverage</h5>
+                                    <p class="text-muted small">Measures balance sheet risk, debt burden, and capital structure safety.</p>
+                                    <group>
+                                        <field name="debt_to_equity_ratio"/>
+                                        <field name="der_status" widget="badge"
+                                               decoration-success="der_status == 'optimal'"
+                                               decoration-warning="der_status == 'moderate'"
+                                               decoration-danger="der_status == 'critical'"/>
+                                        <field name="debt_to_asset_ratio"/>
+                                        <field name="dar_status" widget="badge"
+                                               decoration-success="dar_status == 'optimal'"
+                                               decoration-warning="dar_status == 'moderate'"
+                                               decoration-danger="dar_status == 'critical'"/>
+                                    </group>
+                                </div>
+                            </div>
+                        </page>
+
+                        <page string="Profitability &amp; Operating Performance" name="profitability">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h5 class="fw-bold text-dark mb-2">Operating Margins</h5>
+                                    <group>
+                                        <field name="gross_profit_margin"/>
+                                        <field name="gpm_status" widget="badge"
+                                               decoration-success="gpm_status == 'optimal'"
+                                               decoration-warning="gpm_status == 'moderate'"
+                                               decoration-danger="gpm_status == 'critical'"/>
+                                        <field name="net_profit_margin"/>
+                                        <field name="npm_status" widget="badge"
+                                               decoration-success="npm_status == 'optimal'"
+                                               decoration-warning="npm_status == 'moderate'"
+                                               decoration-danger="npm_status == 'critical'"/>
+                                    </group>
+                                </div>
+                                <div class="col-md-6">
+                                    <h5 class="fw-bold text-dark mb-2">Income &amp; Expense Breakdown</h5>
+                                    <group>
+                                        <field name="total_revenue"/>
+                                        <field name="cogs"/>
+                                        <field name="gross_profit"/>
+                                        <field name="operating_expenses"/>
+                                        <field name="net_profit"/>
+                                    </group>
+                                </div>
+                            </div>
+                        </page>
+
+                        <page string="Balance Sheet Breakdown" name="balance_sheet">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h5 class="fw-bold text-dark mb-2">Asset Composition</h5>
+                                    <group>
+                                        <field name="total_cash"/>
+                                        <field name="total_receivables"/>
+                                        <field name="total_current_assets"/>
+                                        <field name="total_fixed_assets"/>
+                                        <field name="total_assets" class="fw-bold"/>
+                                    </group>
+                                </div>
+                                <div class="col-md-6">
+                                    <h5 class="fw-bold text-dark mb-2">Liabilities &amp; Equity</h5>
+                                    <group>
+                                        <field name="total_current_liabilities"/>
+                                        <field name="total_long_term_liabilities"/>
+                                        <field name="total_liabilities" class="fw-bold"/>
+                                        <field name="total_equity" class="fw-bold"/>
+                                        <field name="working_capital"/>
+                                    </group>
+                                </div>
+                            </div>
+                        </page>
+
+                        <page string="Executive Advisory Analysis" name="executive_summary">
+                            <field name="executive_summary" widget="html"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action Window -->
+    <record id="action_financial_health_kpi" model="ir.actions.act_window">
+        <field name="name">Financial Health Evaluations</field>
+        <field name="res_model">financial.health.kpi</field>
+        <field name="view_mode">kanban,list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first Financial Health Evaluation
+            </p>
+            <p>
+                Analyze liquidity ratios, debt-to-equity solvency, and gross profit margins with educational traffic-light health indicators.
+            </p>
+        </field>
+    </record>
+</odoo>
