@@ -8,14 +8,24 @@ The format follows standard semantic versioning practices (`MAJOR.MINOR.PATCH`).
 
 ## [Unreleased]
 
-### Planned (Phases 10–12 Horizons)
-- **Phase 10: `pos_thermal_receipt_designer`:** No-code visual thermal receipt customizer with dual width presets (58 mm / 80 mm).
+### Planned (Phases 11–12 Horizons)
 - **Phase 11: `l10n_id_bi_currency_rate`:** Automated daily sync of official Bank Indonesia foreign exchange rates (JISDOR / Kurs Transaksi BI).
 - **Phase 12: `account_simple_budgeting`:** Monthly revenue target and expense limit monitoring with traffic-light visual progress gauges.
 
 ---
 
 ## [1.3.0] - 2026-11-17
+
+### Added (Phase 10: POS Thermal Receipt Designer & ESC/POS Engine)
+- **Core Module `pos_thermal_receipt_designer`:** Enterprise visual thermal receipt designer and dual-engine ESC/POS & QWeb generator supporting 58 mm mini Bluetooth and 80 mm desktop POS continuous rolls.
+- **Dual Width Presets & Dynamic Grid:** Native paperformat records for 58 mm (32 characters per line) and 80 mm (48 characters per line) with automated monospace grid computation.
+- **Live Sticky WYSIWYG Form Simulation:** Real-time responsive paper roll preview updating instantly upon changing store headers, footers, policies, and item layout styles.
+- **1-Bit Floyd-Steinberg Monochrome Dithering:** Automated PIL dithering converting full-color store logos into crisp, high-contrast 1-bit monochrome bitmaps without gray blurriness.
+- **Dynamic QRIS Payment Block:** Direct ingestion of QBiz Dynamic QRIS (`account_qris_qbiz`) with CRC16 and unique invoice nominals, plus fallback to custom static QR codes.
+- **Adaptive Dual-Line Item Layout:** Eliminates truncation on narrow 58 mm paper by rendering item names on top and quantity x price with right-aligned line totals below.
+- **Pure Python ESC/POS Byte Sequence Generator:** Low-level ESC/POS byte generator (`generate_escpos_bytes()`) supporting printer initialize, text alignment, double-height headers, bold totals, line feeds, and automatic paper cutting (`GS V 66 0`).
+- **Dual-Channel Invoicing & POS Integration:** Print thermal receipts directly from Customer Invoices (`account.move`) or POS orders with company default template fallback.
+- **Social Engagement & Store Amenities:** Form fields for store WiFi SSID & password, Instagram/TikTok handles, return policies, and custom marketing footer slogans.
 
 ### Added (Phase 9: Lightweight Project Job Costing)
 - **Core Module `account_project_job_costing`:** Agile project cost sheet and profit tracker providing dual-metric financial performance (Accrual P&L vs Real Cashflow) without requiring complex Odoo Analytic Distribution matrices.
@@ -41,9 +51,9 @@ The format follows standard semantic versioning practices (`MAJOR.MINOR.PATCH`).
 - **Odoo Apps Store Assets:** Complete compliance assets with 100x100 squircle icon, standard 1200x630 banner, and responsive store description page (`static/description/index.html`).
 
 ### Quality Verification
-- `scripts/validate_apps_store.py`: 72/72 checks passed (Score 5.0 / 5.0 across all 9 modules).
-- `tests/run_all_tests.py`: 47/47 tests passed (0 failures, 0 errors).
-- Live Docker Verification: Installed, upgraded, and verified end-to-end on container `odoo18_web` running Odoo 18.0.
+- `scripts/validate_apps_store.py`: 80/80 checks passed (Score 5.0 / 5.0 across all 10 modules).
+- `tests/run_all_tests.py`: 53/53 tests passed (0 failures, 0 errors).
+- Multi-Branch Architecture: Verified and synchronized across `main`, `18.0`, `19.0`, and `20.0`.
 
 ---
 
