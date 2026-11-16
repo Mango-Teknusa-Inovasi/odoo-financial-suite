@@ -137,26 +137,28 @@ flowchart TD
 
 ---
 
-### 📌 Phase 6: Dynamic QRIS Invoicing & POS (`account_qris_qbiz`) — 🚀 UPCOMING TARGET
+### 📌 Phase 6: Dynamic QRIS Invoicing & POS (`account_qris_qbiz`) — ✅ COMPLETED
 > **Goal:** Integrate dynamic QRIS payments into customer invoices, web portal, and POS terminals, powered by the open-source engine of [ardianryan/qbiz-qrisdinamis](https://github.com/ardianryan/qbiz-qrisdinamis).
-* [ ] **Dual-Engine Architecture:**
-  * **Mode A (Standalone Local Engine):** Native EMVCo TLV parser/serializer injecting Tag 54 (Transaction Amount) and recalculating CRC16 checksum directly in pure Python (0 external dependencies).
+* [x] **Dual-Engine Architecture:**
+  * **Mode A (Standalone Local Engine):** Native EMVCo TLV parser/serializer injecting Tag 54 (Transaction Amount) and recalculating CCITT-16 CRC checksum directly in pure Python (0 external dependencies).
   * **Mode B (QBiz Middleware Connector):** REST API integration (`POST /api/v1/invoices`) generating unique 3-digit anti-collision suffixes (e.g., Rp 50,002).
-* [ ] **Webhook Auto-Reconciliation:** Controller at `/api/v1/webhook/qris` receiving payment confirmation from QBiz and instantly registering payment to mark invoice `paid`.
-* [ ] **QWeb PDF & POS Presentation:** Scannable 2D barcode block with payment instructions on PDF invoices and POS receipt.
+* [x] **Webhook Auto-Reconciliation:** Controller at `/api/v1/webhook/qris` receiving payment confirmation from QBiz and instantly registering payment to mark invoice `paid`.
+* [x] **QWeb PDF & POS Presentation:** Scannable 2D barcode block with payment instructions on PDF invoices and POS receipt.
+* [x] **Unit & Regression Testing:** 6 unit tests with known EMVCo test vectors and checksum invariance passing 100%.
 
 ---
 
-### 📌 Phase 7: Opening Balance Setup Wizard (`account_opening_balance_wizard`) — 📋 PLANNED
-> **Goal:** Eliminate confusion during new business onboarding with a streamlined, 1-page financial balance setup wizard.
-* [ ] **Cash & Bank Activation:** Quick saldo card input with 1-click bank account activation toggle.
-* [ ] **Historical Partner Breakdown:** Tabular input for historical receivables (AR) and payables (AP) with due dates, automatically establishing individual tracking cards.
-* [ ] **Fixed Assets & Auto-Amortization:** Input asset cost, acquisition date, and useful life with automated future monthly depreciation scheduling.
-* [ ] **Automatic Equity Balancing:** Real-time formula balancing `Total Assets - Total Liabilities` directly into Equity (3100 Owner's Capital), eliminating suspense account confusion.
+### 📌 Phase 7: Opening Balance Setup Wizard (`account_opening_balance_wizard`) — ✅ COMPLETED
+> **Goal:** Eliminate confusion during new business onboarding with a single-window financial balance setup wizard, multi-sheet Excel import/export, and Indonesian tax asset register.
+* [x] **Live Real-Time Dynamic Balance Bar:** Real-time computation of Debits, Credits, and Net Difference directly on the form view with visual status indicators.
+* [x] **Multi-Sheet Excel Engine:** Pre-formatted XLSX export/import template covering Cash/Bank, Customers (AR), Vendors (AP), Inventory, and Fixed Assets.
+* [x] **Indonesian Tax Asset Register (UU PPh Pasal 11):** Lightweight asset register model (`account.simple.asset`) with straight-line monthly depreciation scheduler across Kelompok 1 to 4 and Bangunan Permanen.
+* [x] **Clearing Account Invariant:** Generates posted customer invoices and vendor bills tagged `is_opening_balance=True` counterbalanced against opening clearing accounts with zero net variance.
+* [x] **Live Verification:** 5 unit tests passing 100% and validated end-to-end inside Docker container `odoo18_web`.
 
 ---
 
-### 📌 Phase 8: 1-Click WhatsApp Document Dispatcher (`account_whatsapp_notifier`) — 📋 PLANNED
+### 📌 Phase 8: 1-Click WhatsApp Document Dispatcher (`account_whatsapp_notifier`) — 🚀 UPCOMING TARGET
 > **Goal:** Send invoices, bills, purchase orders, and delivery slips directly to customer/vendor WhatsApp numbers.
 * [ ] **One-Click WhatsApp Action:** Smart button on `account.move` and `sale.order` opening pre-filled WhatsApp message.
 * [ ] **Dual Gateway Support:** WhatsApp Web click-to-chat URL link + direct API connector (WhatsApp Cloud API / local gateways like Fonnte/Wablas).

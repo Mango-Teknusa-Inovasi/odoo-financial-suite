@@ -18,6 +18,7 @@ MODULES = [
     "account_stamp_signature",
     "financial_health_kpi",
     "account_qris_qbiz",
+    "account_opening_balance_wizard",
 ]
 
 def validate_suite():
@@ -151,7 +152,7 @@ def validate_suite():
     print("=" * 65)
     
     if not failed_modules:
-        print("🎉 ALL 5 MODULES 100% COMPLIANT WITH ODOO APPS VENDOR GUIDELINES!")
+        print(f"🎉 ALL {len(MODULES)} MODULES 100% COMPLIANT WITH ODOO APPS VENDOR GUIDELINES!")
         print("🌟 Ready for immediate submission to apps.odoo.com (Score: 5.0 / 5.0)")
         return 0
     else:

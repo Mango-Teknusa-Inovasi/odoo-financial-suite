@@ -1,0 +1,11 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_account_opening_balance_wizard_user,account.opening.balance.wizard.user,model_account_opening_balance_wizard,account.group_account_user,1,1,1,1
+access_account_opening_cash_line_user,account.opening.cash.line.user,model_account_opening_cash_line,account.group_account_user,1,1,1,1
+access_account_opening_receivable_line_user,account.opening.receivable.line.user,model_account_opening_receivable_line,account.group_account_user,1,1,1,1
+access_account_opening_payable_line_user,account.opening.payable.line.user,model_account_opening_payable_line,account.group_account_user,1,1,1,1
+access_account_opening_stock_line_user,account.opening.stock.line.user,model_account_opening_stock_line,account.group_account_user,1,1,1,1
+access_account_opening_asset_wizard_line_user,account.opening.asset.wizard.line.user,model_account_opening_asset_wizard_line,account.group_account_user,1,1,1,1
+access_account_simple_asset_user,account.simple.asset.user,model_account_simple_asset,account.group_account_user,1,1,1,0
+access_account_simple_asset_manager,account.simple.asset.manager,model_account_simple_asset,account.group_account_manager,1,1,1,1
+access_account_simple_asset_line_user,account.simple.asset.depreciation.line.user,model_account_simple_asset_depreciation_line,account.group_account_user,1,1,1,0
+access_account_simple_asset_line_manager,account.simple.asset.depreciation.line.manager,model_account_simple_asset_depreciation_line,account.group_account_manager,1,1,1,1
