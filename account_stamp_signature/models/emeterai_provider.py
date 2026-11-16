@@ -29,6 +29,8 @@ class EmeteraiProvider(models.Model):
     api_url = fields.Char(string='API Base Endpoint URL', default='https://api.emeterai.peruri.co.id')
     client_id = fields.Char(string='Client ID / App Key')
     client_secret = fields.Char(string='Client Secret / API Token')
+    api_key = fields.Char(string='API Key', related='client_id', readonly=False)
+    api_secret = fields.Char(string='API Secret', related='client_secret', readonly=False)
     quota_balance = fields.Integer(string='Available Quota (Stamps)', default=100)
     active = fields.Boolean(default=True)
 
