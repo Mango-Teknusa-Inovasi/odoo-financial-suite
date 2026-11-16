@@ -18,25 +18,19 @@
 
 ---
 
-## 2. Master Logo Anatomy: The MangoTek Geometric Gem
+## 2. Master Logo Anatomy: The MangoTek Geometric Prism
 
-The master logo of **MangoTek Financial Suite** synthesizes the organic warmth of a **Mango fruit** with the crystalline precision of **Odoo's geometric facets** and a bold negative-space **M** monogram.
+The master logo of **MangoTek Financial Suite** embodies the crisp, multi-faceted geometric design language of native Odoo applications: a precision interlocking squircle prism composed of six harmonic facet polygons.
 
 ```
-                  [ Top Emerald Leaf ]
-                     (#1AD3BB / #005E7A)
-                           \
-                            \
-        [ Mango Tangerine ]     [ Odoo Aubergine ]
-           Facet (#F86126)         Facet (#985184)
-                 \                     /
-                  \                   /
-                [ Central Monogram "M" ]
-                 Crisp White (#FFFFFF)
-                  /                   \
-                 /                     \
-       [ Sunflower Gold ]       [ Deep Slate Petrol ]
-        Facet (#FBB945)           Facet (#005E7A)
+          [ Odoo Plum #985184 ] --- [ Sunflower Gold #FBB945 ]
+                    \                      /
+                     \                    /
+                      [ Mint Gem #1AD3BB ]
+                      [ Shadow #005E7A  ]
+                     /                    \
+                    /                      \
+        [ Tangerine #F86126 ] --- [ Royal Azure #088BF5 ]
 ```
 
 ### Geometric Principles
