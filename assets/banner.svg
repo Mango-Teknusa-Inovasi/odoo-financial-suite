@@ -37,81 +37,75 @@
 
     <line x1="0" y1="100" x2="1200" y2="100"/>
     <line x1="0" y1="240" x2="1200" y2="240"/>
-    <line x1="0" y1="420" x2="1200" y2="420"/>
+    <line x1="0" y1="410" x2="1200" y2="410"/>
   </g>
 
   <!-- 3. TOP PILL: 100% Free & Open Source -->
   <g transform="translate(600, 48)">
-    <rect x="-145" y="-16" width="290" height="32" rx="16" fill="#064E3B" fill-opacity="0.7" stroke="#059669" stroke-width="1.2"/>
-    <circle cx="-118" cy="0" r="4.5" fill="#10B981"/>
-    <circle cx="-118" cy="0" r="8" fill="#10B981" fill-opacity="0.25"/>
-    <text x="-98" y="5" font-size="12" font-weight="700" fill="#34D399" letter-spacing="0.8">100% FREE &amp; OPEN SOURCE</text>
-    <text x="82" y="5" font-size="11" font-weight="600" fill="#A7F3D0">· LGPL-3</text>
+    <rect x="-135" y="-14" width="270" height="28" rx="14" fill="#064E3B" fill-opacity="0.8" stroke="#10B981" stroke-width="1"/>
+    <circle cx="-110" cy="0" r="4" fill="#34D399"/>
+    <text x="-96" y="4" font-size="11" font-weight="700" fill="#A7F3D0" letter-spacing="0.5">100% FREE &amp; OPEN SOURCE · LGPL-3</text>
   </g>
 
-  <!-- 4. CENTER HERO BLOCK (Logo + Titles) -->
-  <g transform="translate(600, 195)">
-    <!-- Master Logo (Scaled 100x100, Centered at x=-50, y=-112) -->
-    <g transform="translate(-50, -112)">
-      <svg width="100" height="100" viewBox="0 0 50 50">
-        <!-- Top Left Facet: Odoo Amethyst / Plum #985184 -->
+  <!-- 4. HERO BRANDING: Interlocking Prism Logo & Typography -->
+  <g transform="translate(600, 150)">
+    <!-- Interlocking Geometric Prism Logo (80x80) -->
+    <g transform="translate(-40, -68)">
+      <svg width="80" height="80" viewBox="0 0 50 50">
         <path d="M9 7h16l-8 18H5a4 4 0 0 1-4-4V11a4 4 0 0 1 4-4h4Z" fill="#985184"/>
-        <!-- Top Right Facet: Sunflower Gold #FBB945 -->
         <path d="M25 7h16a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H33l-8-18Z" fill="#FBB945"/>
-        <!-- Center Diagonal Prism: Emerald Mint #1AD3BB -->
         <path d="M17 25l8-18 16 18-8 18H17Z" fill="#1AD3BB"/>
-        <!-- Center Shadow: Deep Slate Petrol #005E7A -->
         <path d="M25 25l8 18H17l8-18Z" fill="#005E7A"/>
-        <!-- Bottom Right Facet: Royal Azure #088BF5 -->
         <path d="M33 25h12a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H25l8-18Z" fill="#088BF5"/>
-        <!-- Bottom Left Facet: Mango Tangerine #F86126 -->
         <path d="M5 25h12l-8 18H5a4 4 0 0 1-4-4V29a4 4 0 0 1 4-4Z" fill="#F86126"/>
       </svg>
     </g>
 
-    <!-- Overline Category -->
-    <text x="0" y="16" font-size="12" font-weight="700" fill="#1AD3BB" letter-spacing="2.5" text-anchor="middle">OFFICIAL FINANCIAL &amp; LOCALIZATION ENGINE</text>
+    <!-- Overline -->
+    <text x="0" y="38" font-size="11" font-weight="700" fill="#0EA5E9" letter-spacing="3" text-anchor="middle">OFFICIAL FINANCIAL &amp; LOCALIZATION SUITE</text>
 
     <!-- Main Title -->
-    <text x="0" y="56" font-size="42" font-weight="800" fill="#FFFFFF" letter-spacing="-0.5" text-anchor="middle">MangoTek Financial Suite</text>
+    <text x="0" y="80" font-size="44" font-weight="800" fill="#FFFFFF" text-anchor="middle" letter-spacing="-0.5">MangoTek Financial Suite</text>
 
     <!-- Subtitle -->
-    <text x="0" y="88" font-size="16" font-weight="400" fill="#94A3B8" text-anchor="middle">Indonesian DJP Coretax 2026, e-Faktur 4.0, Multichannel Marketplace Sync &amp; Recipe Costing</text>
+    <text x="0" y="112" font-size="15" font-weight="500" fill="#94A3B8" text-anchor="middle">
+      Indonesian DJP Coretax 2026, Dynamic QRIS, Multichannel Marketplace Sync &amp; Recipe Costing
+    </text>
 
-    <!-- Compatibility Badge Chips Row (Centered) -->
-    <g transform="translate(0, 118)">
-      <!-- Pill 1: Odoo Version -->
-      <g transform="translate(-385, 0)">
-        <rect width="195" height="28" rx="14" fill="#714B67" fill-opacity="0.9" stroke="#985184" stroke-width="1"/>
-        <text x="97" y="18" font-size="11" font-weight="700" fill="#FFFFFF" text-anchor="middle">🟣 Odoo 18.0, 19.0 &amp; 20.0</text>
+    <!-- Version & Feature Pills Row -->
+    <g transform="translate(0, 134)">
+      <!-- Pill 1: Versions -->
+      <g transform="translate(-305, 0)">
+        <rect width="180" height="28" rx="14" fill="#1E293B" stroke="#985184" stroke-width="1"/>
+        <text x="90" y="18" font-size="11" font-weight="600" fill="#D8B4FE" text-anchor="middle">🎯 Odoo 18.0, 19.0 &amp; 20.0</text>
       </g>
       <!-- Pill 2: DJP Coretax -->
-      <g transform="translate(-178, 0)">
-        <rect width="180" height="28" rx="14" fill="#1E293B" stroke="#059669" stroke-width="1"/>
-        <text x="90" y="18" font-size="11" font-weight="600" fill="#34D399" text-anchor="middle">⚡ DJP Coretax &amp; e-Faktur</text>
+      <g transform="translate(-115, 0)">
+        <rect width="175" height="28" rx="14" fill="#1E293B" stroke="#059669" stroke-width="1"/>
+        <text x="87" y="18" font-size="11" font-weight="600" fill="#34D399" text-anchor="middle">⚡ Coretax &amp; Dynamic QRIS</text>
       </g>
       <!-- Pill 3: E-Commerce -->
-      <g transform="translate(14, 0)">
-        <rect width="185" height="28" rx="14" fill="#1E293B" stroke="#F86126" stroke-width="1"/>
-        <text x="92" y="18" font-size="11" font-weight="600" fill="#FB923C" text-anchor="middle">🛒 Shopee · Toped · TikTok</text>
+      <g transform="translate(70, 0)">
+        <rect width="180" height="28" rx="14" fill="#1E293B" stroke="#F86126" stroke-width="1"/>
+        <text x="90" y="18" font-size="11" font-weight="600" fill="#FB923C" text-anchor="middle">🛒 Shopee · Toped · TikTok</text>
       </g>
       <!-- Pill 4: Edition -->
-      <g transform="translate(211, 0)">
-        <rect width="165" height="28" rx="14" fill="#1E293B" stroke="#475569" stroke-width="1"/>
-        <text x="82" y="18" font-size="11" font-weight="600" fill="#E2E8F0" text-anchor="middle">⚖️ Community &amp; EE</text>
+      <g transform="translate(260, 0)">
+        <rect width="150" height="28" rx="14" fill="#1E293B" stroke="#475569" stroke-width="1"/>
+        <text x="75" y="18" font-size="11" font-weight="600" fill="#E2E8F0" text-anchor="middle">⚖️ Community &amp; EE</text>
       </g>
     </g>
   </g>
 
-  <!-- 5. BOTTOM 5-MODULE SHOWCASE (Centered 5-column grid) -->
-  <!-- Total width: 5 * 186 + 4 * 12 = 978px. Centered start at x = (1200 - 978)/2 = 111px -->
-  <g transform="translate(111, 410)">
+  <!-- 5. BOTTOM 6-MODULE SHOWCASE (Centered 6-column grid) -->
+  <!-- Total width: 6 * 164 + 5 * 14 = 984 + 70 = 1054px. Centered start at x = (1200 - 1054)/2 = 73px -->
+  <g transform="translate(73, 420)">
 
     <!-- Card 1: Indonesian Tax -->
     <g transform="translate(0, 0)">
-      <rect width="186" height="150" rx="12" fill="url(#cardGrad)" stroke="#334155" stroke-width="1"/>
-      <rect width="186" height="3" rx="1.5" fill="#1AD3BB"/>
-      <g transform="translate(71, 16)">
+      <rect width="164" height="150" rx="12" fill="url(#cardGrad)" stroke="#334155" stroke-width="1"/>
+      <rect width="164" height="3" rx="1.5" fill="#1AD3BB"/>
+      <g transform="translate(60, 16)">
         <svg width="44" height="44" viewBox="0 0 50 50">
           <path d="M36 46H10c-3.314 0-6-2.686-6-6V6a2 2 0 0 1 2-2h20l16 16v20c0 3.314-2.686 6-6 6Z" fill="#1AD3BB"/>
           <path d="M26 4v12a4 4 0 0 0 4 4h12L26 4Z" fill="#005E7A"/>
@@ -124,16 +118,16 @@
           <path d="M36.5 28.5l-7 9" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/>
         </svg>
       </g>
-      <text x="93" y="85" font-size="13" font-weight="700" fill="#F8FAFC" text-anchor="middle">Indonesian Tax</text>
-      <text x="93" y="103" font-size="11" font-weight="600" fill="#1AD3BB" text-anchor="middle">Coretax &amp; e-Faktur</text>
-      <text x="93" y="126" font-size="10" font-weight="400" fill="#94A3B8" text-anchor="middle">Auto NSFP &amp; PPh 21-23</text>
+      <text x="82" y="85" font-size="12" font-weight="700" fill="#F8FAFC" text-anchor="middle">Indonesian Tax</text>
+      <text x="82" y="103" font-size="10" font-weight="600" fill="#1AD3BB" text-anchor="middle">Coretax &amp; e-Faktur</text>
+      <text x="82" y="126" font-size="9" font-weight="400" fill="#94A3B8" text-anchor="middle">Auto NSFP &amp; PPh 21-23</text>
     </g>
 
     <!-- Card 2: Marketplace Sync -->
-    <g transform="translate(198, 0)">
-      <rect width="186" height="150" rx="12" fill="url(#cardGrad)" stroke="#334155" stroke-width="1"/>
-      <rect width="186" height="3" rx="1.5" fill="#F86126"/>
-      <g transform="translate(71, 16)">
+    <g transform="translate(178, 0)">
+      <rect width="164" height="150" rx="12" fill="url(#cardGrad)" stroke="#334155" stroke-width="1"/>
+      <rect width="164" height="3" rx="1.5" fill="#F86126"/>
+      <g transform="translate(60, 16)">
         <svg width="44" height="44" viewBox="0 0 50 50">
           <path d="M8 17h24a4 4 0 0 1 4 4v21a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4V21a4 4 0 0 1 4-4Z" fill="#F86126"/>
           <path d="M14 17V11a6 6 0 0 1 12 0v6h-4v-6a2 2 0 0 0-4 0v6h-4Z" fill="#FBB945"/>
@@ -144,16 +138,16 @@
           <path d="M40 36H23v3.5l-6-5.5 6-5.5V32h17v4Z" fill="#2EBCFA"/>
         </svg>
       </g>
-      <text x="93" y="85" font-size="13" font-weight="700" fill="#F8FAFC" text-anchor="middle">Marketplace Sync</text>
-      <text x="93" y="103" font-size="11" font-weight="600" fill="#F86126" text-anchor="middle">Shopee · Toped · TikTok</text>
-      <text x="93" y="126" font-size="10" font-weight="400" fill="#94A3B8" text-anchor="middle">Fee &amp; Escrow Splits</text>
+      <text x="82" y="85" font-size="12" font-weight="700" fill="#F8FAFC" text-anchor="middle">Marketplace Sync</text>
+      <text x="82" y="103" font-size="10" font-weight="600" fill="#F86126" text-anchor="middle">Shopee · Toped · TikTok</text>
+      <text x="82" y="126" font-size="9" font-weight="400" fill="#94A3B8" text-anchor="middle">Fee &amp; Escrow Splits</text>
     </g>
 
     <!-- Card 3: F&B Recipe HPP -->
-    <g transform="translate(396, 0)">
-      <rect width="186" height="150" rx="12" fill="url(#cardGrad)" stroke="#334155" stroke-width="1"/>
-      <rect width="186" height="3" rx="1.5" fill="#FBB945"/>
-      <g transform="translate(71, 16)">
+    <g transform="translate(356, 0)">
+      <rect width="164" height="150" rx="12" fill="url(#cardGrad)" stroke="#334155" stroke-width="1"/>
+      <rect width="164" height="3" rx="1.5" fill="#FBB945"/>
+      <g transform="translate(60, 16)">
         <svg width="44" height="44" viewBox="0 0 50 50">
           <path d="M6 34h38a3 3 0 0 1 3 3v2a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4v-2a3 3 0 0 1 3-3Z" fill="#985184"/>
           <path d="M9 33C9 20 16 10 25 10s16 10 16 23H9Z" fill="#FBB945"/>
@@ -168,16 +162,16 @@
           <path d="M37.5 32.5l-4 6" stroke="#FFFFFF" stroke-width="1.2" stroke-linecap="round"/>
         </svg>
       </g>
-      <text x="93" y="85" font-size="13" font-weight="700" fill="#F8FAFC" text-anchor="middle">F&amp;B Recipe HPP</text>
-      <text x="93" y="103" font-size="11" font-weight="600" fill="#FBB945" text-anchor="middle">Costing &amp; Margins</text>
-      <text x="93" y="126" font-size="10" font-weight="400" fill="#94A3B8" text-anchor="middle">Culinary BOM &amp; Waste</text>
+      <text x="82" y="85" font-size="12" font-weight="700" fill="#F8FAFC" text-anchor="middle">F&amp;B Recipe HPP</text>
+      <text x="82" y="103" font-size="10" font-weight="600" fill="#FBB945" text-anchor="middle">Costing &amp; Margins</text>
+      <text x="82" y="126" font-size="9" font-weight="400" fill="#94A3B8" text-anchor="middle">Culinary BOM &amp; Waste</text>
     </g>
 
     <!-- Card 4: Stamp & Signature -->
-    <g transform="translate(594, 0)">
-      <rect width="186" height="150" rx="12" fill="url(#cardGrad)" stroke="#334155" stroke-width="1"/>
-      <rect width="186" height="3" rx="1.5" fill="#088BF5"/>
-      <g transform="translate(71, 16)">
+    <g transform="translate(534, 0)">
+      <rect width="164" height="150" rx="12" fill="url(#cardGrad)" stroke="#334155" stroke-width="1"/>
+      <rect width="164" height="3" rx="1.5" fill="#088BF5"/>
+      <g transform="translate(60, 16)">
         <svg width="44" height="44" viewBox="0 0 50 50">
           <path d="M8 6h24a4 4 0 0 1 4 4v34a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4V10a4 4 0 0 1 4-4Z" fill="#088BF5"/>
           <path d="M8 6h16l12 12v14H8V6Z" fill="#2EBCFA"/>
@@ -188,16 +182,16 @@
           <path d="M33 30.2l1 2.2 2.4.3-1.8 1.6.5 2.3-2.1-1.2-2.1 1.2.5-2.3-1.8-1.6 2.4-.3z" fill="#FFFFFF"/>
         </svg>
       </g>
-      <text x="93" y="85" font-size="13" font-weight="700" fill="#F8FAFC" text-anchor="middle">Stamp &amp; Signature</text>
-      <text x="93" y="103" font-size="11" font-weight="600" fill="#2EBCFA" text-anchor="middle">Official e-Meterai</text>
-      <text x="93" y="126" font-size="10" font-weight="400" fill="#94A3B8" text-anchor="middle">PDF Document Overlay</text>
+      <text x="82" y="85" font-size="12" font-weight="700" fill="#F8FAFC" text-anchor="middle">Stamp &amp; Signature</text>
+      <text x="82" y="103" font-size="10" font-weight="600" fill="#2EBCFA" text-anchor="middle">Official e-Meterai</text>
+      <text x="82" y="126" font-size="9" font-weight="400" fill="#94A3B8" text-anchor="middle">PDF Document Overlay</text>
     </g>
 
     <!-- Card 5: Financial Health KPI -->
-    <g transform="translate(792, 0)">
-      <rect width="186" height="150" rx="12" fill="url(#cardGrad)" stroke="#334155" stroke-width="1"/>
-      <rect width="186" height="3" rx="1.5" fill="#985184"/>
-      <g transform="translate(71, 16)">
+    <g transform="translate(712, 0)">
+      <rect width="164" height="150" rx="12" fill="url(#cardGrad)" stroke="#334155" stroke-width="1"/>
+      <rect width="164" height="3" rx="1.5" fill="#985184"/>
+      <g transform="translate(60, 16)">
         <svg width="44" height="44" viewBox="0 0 50 50">
           <path d="M5 26a4 4 0 0 1 4-4h7v22a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V26Z" fill="#985184"/>
           <path d="M18 16a4 4 0 0 1 4-4h7v32a2 2 0 0 1-2 2h-7a2 2 0 0 1-2-2V16Z" fill="#1AD3BB"/>
@@ -208,13 +202,38 @@
           <circle cx="40" cy="4" r="2.5" fill="#F06050"/>
         </svg>
       </g>
-      <text x="93" y="85" font-size="13" font-weight="700" fill="#F8FAFC" text-anchor="middle">Financial Health</text>
-      <text x="93" y="103" font-size="11" font-weight="600" fill="#A855F7" text-anchor="middle">KPIs &amp; Solvency</text>
-      <text x="93" y="126" font-size="10" font-weight="400" fill="#94A3B8" text-anchor="middle">Executive Ratios</text>
+      <text x="82" y="85" font-size="12" font-weight="700" fill="#F8FAFC" text-anchor="middle">Financial Health</text>
+      <text x="82" y="103" font-size="10" font-weight="600" fill="#D8B4FE" text-anchor="middle">KPIs &amp; Solvency</text>
+      <text x="82" y="126" font-size="9" font-weight="400" fill="#94A3B8" text-anchor="middle">Executive Ratios</text>
+    </g>
+
+    <!-- Card 6: QBiz Dynamic QRIS -->
+    <g transform="translate(890, 0)">
+      <rect width="164" height="150" rx="12" fill="url(#cardGrad)" stroke="#334155" stroke-width="1"/>
+      <rect width="164" height="3" rx="1.5" fill="#FBB945"/>
+      <g transform="translate(60, 16)">
+        <svg width="44" height="44" viewBox="0 0 50 50">
+          <rect x="7" y="4" width="36" height="42" rx="6" fill="#088BF5"/>
+          <rect x="10" y="8" width="30" height="34" rx="3" fill="#005E7A"/>
+          <rect x="13" y="11" width="24" height="24" rx="2" fill="#FFFFFF"/>
+          <rect x="15" y="13" width="7" height="7" rx="1.5" fill="#985184"/>
+          <rect x="17" y="15" width="3" height="3" fill="#FFFFFF"/>
+          <rect x="28" y="13" width="7" height="7" rx="1.5" fill="#F86126"/>
+          <rect x="30" y="15" width="3" height="3" fill="#FFFFFF"/>
+          <rect x="15" y="26" width="7" height="7" rx="1.5" fill="#FBB945"/>
+          <rect x="17" y="28" width="3" height="3" fill="#FFFFFF"/>
+          <path d="M25 20l3 5h-3l2 4-4-5h3z" fill="#1AD3BB"/>
+          <rect x="13" y="37" width="24" height="4" rx="2" fill="#2EBCFA"/>
+          <rect x="21" y="43" width="8" height="1.5" rx="0.75" fill="#FFFFFF"/>
+        </svg>
+      </g>
+      <text x="82" y="85" font-size="12" font-weight="700" fill="#F8FAFC" text-anchor="middle">Dynamic QRIS</text>
+      <text x="82" y="103" font-size="10" font-weight="600" fill="#FBB945" text-anchor="middle">QBiz &amp; Auto-Reconcile</text>
+      <text x="82" y="126" font-size="9" font-weight="400" fill="#94A3B8" text-anchor="middle">Tag 54 &amp; Unique Code</text>
     </g>
 
   </g>
 
   <!-- 6. Bottom Meta Line (Centered) -->
-  <text x="600" y="600" font-size="11" font-weight="500" fill="#64748B" text-anchor="middle">Maintained by Mango Teknusa Inovasi (@Mango-Teknusa-Inovasi) · LGPL-3.0 Open Source</text>
+  <text x="600" y="605" font-size="11" font-weight="500" fill="#64748B" text-anchor="middle">Maintained by Mango Teknusa Inovasi (@Mango-Teknusa-Inovasi) · LGPL-3.0 Open Source</text>
 </svg>

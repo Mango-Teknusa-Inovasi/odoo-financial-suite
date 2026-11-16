@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_move_form_inherit_qris_qbiz" model="ir.ui.view">
+        <field name="name">account.move.form.inherit.qris.qbiz</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+            <!-- Header Action Button -->
+            <xpath expr="//header" position="inside">
+                <button name="action_generate_dynamic_qris"
+                        string="Generate Dynamic QRIS"
+                        type="object"
+                        class="btn-secondary"
+                        invisible="move_type not in ('out_invoice', 'out_refund') or state != 'posted' or payment_state in ('paid', 'in_payment')"/>
+            </xpath>
+
+            <!-- Dedicated QRIS Payment Notebook Page -->
+            <xpath expr="//notebook" position="inside">
+                <page string="Dynamic QRIS (QBiz)" name="page_qris_payment" invisible="move_type not in ('out_invoice', 'out_refund')">
+                    <group>
+                        <group string="QRIS Payment Status">
+                            <field name="qris_status" widget="badge"
+                                   decoration-success="qris_status == 'paid'"
+                                   decoration-info="qris_status == 'pending'"
+                                   decoration-muted="qris_status == 'none'"
+                                   decoration-danger="qris_status == 'expired'"/>
+                            <field name="qris_total_amount" readonly="1" widget="monetary"/>
+                            <field name="qris_unique_code" readonly="1" invisible="qris_unique_code == 0"/>
+                            <field name="qris_expiry_date" readonly="1"/>
+                            <field name="qris_invoice_id" readonly="1" invisible="not qris_invoice_id"/>
+                            <field name="qris_checkout_url" widget="url" readonly="1" invisible="not qris_checkout_url"/>
+                        </group>
+                        <group string="Scannable 2D Barcode">
+                            <field name="qris_image" widget="image" class="oe_avatar" readonly="1" invisible="not qris_image"/>
+                            <field name="qris_payload" readonly="1" invisible="not qris_payload"/>
+                        </group>
+                    </group>
+                    <div class="alert alert-info" role="alert" invisible="qris_status != 'pending'">
+                        <strong>Payment Instructions:</strong> Customer must scan the QR code using any Indonesian mobile banking (BCA, Mandiri, BRI, BNI) or e-wallet (GoPay, OVO, DANA, ShopeePay). The exact amount is pre-filled.
+                        <button name="action_qris_mark_paid"
+                                string="Register Settlement Manually"
+                                type="object"
+                                class="btn btn-sm btn-outline-success ms-3"
+                                confirm="Simulate payment confirmation and mark this invoice as PAID?"/>
+                    </div>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Tree View QRIS Status Pill Extension -->
+    <record id="view_invoice_tree_inherit_qris_qbiz" model="ir.ui.view">
+        <field name="name">account.invoice.tree.inherit.qris.qbiz</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_invoice_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='status_in_payment']" position="after">
+                <field name="qris_status" widget="badge" optional="show"
+                       decoration-success="qris_status == 'paid'"
+                       decoration-info="qris_status == 'pending'"
+                       decoration-muted="qris_status == 'none'"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

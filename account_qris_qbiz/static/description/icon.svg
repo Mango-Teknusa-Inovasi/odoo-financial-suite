@@ -1,0 +1,23 @@
+<svg width="50" height="50" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
+  <!-- POS Device / Phone Frame in Royal Azure #088BF5 -->
+  <rect x="7" y="4" width="36" height="42" rx="6" fill="#088BF5"/>
+  <!-- Phone Screen Display in Deep Slate Petrol #005E7A -->
+  <rect x="10" y="8" width="30" height="34" rx="3" fill="#005E7A"/>
+  <!-- QR Canvas White Plate -->
+  <rect x="13" y="11" width="24" height="24" rx="2" fill="#FFFFFF"/>
+  <!-- Top-Left QR Finder Pattern in Odoo Plum #985184 -->
+  <rect x="15" y="13" width="7" height="7" rx="1.5" fill="#985184"/>
+  <rect x="17" y="15" width="3" height="3" fill="#FFFFFF"/>
+  <!-- Top-Right QR Finder Pattern in Tangerine #F86126 -->
+  <rect x="28" y="13" width="7" height="7" rx="1.5" fill="#F86126"/>
+  <rect x="30" y="15" width="3" height="3" fill="#FFFFFF"/>
+  <!-- Bottom-Left QR Finder Pattern in Sunflower Gold #FBB945 -->
+  <rect x="15" y="26" width="7" height="7" rx="1.5" fill="#FBB945"/>
+  <rect x="17" y="28" width="3" height="3" fill="#FFFFFF"/>
+  <!-- Center Dynamic Lightning / Instant Pay Diamond in Emerald Mint #1AD3BB -->
+  <path d="M25 20l3 5h-3l2 4-4-5h3z" fill="#1AD3BB"/>
+  <!-- Bottom Amount Badge Pill in Sky Cyan #2EBCFA -->
+  <rect x="13" y="37" width="24" height="4" rx="2" fill="#2EBCFA"/>
+  <!-- Home Indicator Bar in Crisp White -->
+  <rect x="21" y="43" width="8" height="1.5" rx="0.75" fill="#FFFFFF"/>
+</svg>
