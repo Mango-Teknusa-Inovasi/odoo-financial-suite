@@ -1,0 +1,19 @@
+<svg width="50" height="50" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
+  <!-- Blueprint Clipboard Base in Tangerine #F86126 -->
+  <rect x="7" y="8" width="36" height="38" rx="5" fill="#F86126"/>
+  <!-- Top Brass Clip in Sunflower Gold #FBB945 -->
+  <path d="M19 5h12a2 2 0 0 1 2 2v4H17V7a2 2 0 0 1 2-2Z" fill="#FBB945"/>
+  <!-- Sheet Plate in Deep Petrol #005E7A -->
+  <rect x="11" y="14" width="28" height="28" rx="3" fill="#005E7A"/>
+  <!-- Dual-Metric Chart Donut (Accrual Profit in Mint, Uncollected Cash in Gold) -->
+  <circle cx="25" cy="27" r="9" fill="none" stroke="#985184" stroke-width="3"/>
+  <path d="M25 18 A9 9 0 0 1 34 27" fill="none" stroke="#1AD3BB" stroke-width="3.5" stroke-linecap="round"/>
+  <path d="M34 27 A9 9 0 0 1 25 36" fill="none" stroke="#FBB945" stroke-width="3.5" stroke-linecap="round"/>
+  <!-- Center Project Milestone Flag in Crisp White -->
+  <circle cx="25" cy="27" r="3.5" fill="#088BF5"/>
+  <polygon points="25,24 28,26 25,28" fill="#FFFFFF"/>
+  <line x1="25" y1="24" x2="25" y2="30" stroke="#FFFFFF" stroke-width="1"/>
+  <!-- Bottom Budget Progress Bar -->
+  <rect x="14" y="38" width="22" height="2.5" rx="1.25" fill="#1E293B"/>
+  <rect x="14" y="38" width="16" height="2.5" rx="1.25" fill="#1AD3BB"/>
+</svg>
