@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Marketplace Root Menu under Invoicing / Operations -->
+    <menuitem id="menu_marketplace_root"
+              name="Marketplace Sync"
+              parent="account.menu_finance_entries"
+              sequence="25"/>
+
+    <menuitem id="menu_action_marketplace_settlement_batch"
+              name="Settlement Ingestion"
+              parent="menu_marketplace_root"
+              action="action_marketplace_settlement_batch"
+              sequence="10"/>
+
+    <menuitem id="menu_action_marketplace_channel"
+              name="Sales Channels"
+              parent="menu_marketplace_root"
+              action="action_marketplace_channel"
+              sequence="20"/>
+</odoo>

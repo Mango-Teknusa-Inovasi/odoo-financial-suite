@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Settlement Batch List View -->
+    <record id="view_marketplace_settlement_batch_list" model="ir.ui.view">
+        <field name="name">marketplace.settlement.batch.list</field>
+        <field name="model">marketplace.settlement.batch</field>
+        <field name="arch" type="xml">
+            <list string="Marketplace Settlement Batches">
+                <field name="name"/>
+                <field name="date"/>
+                <field name="channel_id"/>
+                <field name="total_orders"/>
+                <field name="total_gross_amount" sum="Total Gross"/>
+                <field name="total_service_fee" sum="Total Fees"/>
+                <field name="total_net_amount" sum="Total Net"/>
+                <field name="state" widget="badge"
+                       decoration-info="state == 'draft'"
+                       decoration-warning="state == 'parsed'"
+                       decoration-success="state == 'posted'"
+                       decoration-danger="state == 'cancelled'"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Settlement Batch Form View -->
+    <record id="view_marketplace_settlement_batch_form" model="ir.ui.view">
+        <field name="name">marketplace.settlement.batch.form</field>
+        <field name="model">marketplace.settlement.batch</field>
+        <field name="arch" type="xml">
+            <form string="Settlement Batch">
+                <header>
+                    <button name="action_parse_file" string="Parse Settlement File"
+                            type="object" class="btn-primary" invisible="state != 'draft'"/>
+                    <button name="action_create_journal_entry" string="Generate Journal Entry"
+                            type="object" class="btn-primary" invisible="state != 'parsed'"/>
+                    <button name="action_reset_draft" string="Re-parse / Reset"
+                            type="object" class="btn-secondary" invisible="state not in ('parsed', 'cancelled')"/>
+                    <button name="action_cancel" string="Cancel Batch"
+                            type="object" invisible="state in ('draft', 'cancelled')"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,parsed,posted"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_view_journal_entry" type="object"
+                                class="oe_stat_button" icon="fa-book"
+                                invisible="not move_id">
+                            <field name="move_id" string="Journal Entry" widget="statinfo"/>
+                        </button>
+                    </div>
+
+                    <div class="oe_title">
+                        <label for="name" string="Batch Reference"/>
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                    </div>
+
+                    <group>
+                        <group string="Upload Settlement">
+                            <field name="channel_id" readonly="state != 'draft'"/>
+                            <field name="date" readonly="state != 'draft'"/>
+                            <field name="file_name" invisible="1"/>
+                            <field name="file_data" filename="file_name" readonly="state != 'draft'"/>
+                        </group>
+                        <group string="Batch Metrics">
+                            <field name="currency_id" invisible="1"/>
+                            <field name="total_orders"/>
+                            <field name="total_gross_amount" widget="monetary"/>
+                            <field name="total_service_fee" widget="monetary"/>
+                            <field name="total_shipping_fee" widget="monetary"/>
+                            <field name="total_net_amount" widget="monetary" class="oe_subtotal_footer_separator font-weight-bold"/>
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <page string="Parsed Order Lines" name="order_lines">
+                            <field name="line_ids">
+                                <list string="Order Lines" create="0">
+                                    <field name="order_ref"/>
+                                    <field name="order_date"/>
+                                    <field name="customer_name"/>
+                                    <field name="gross_amount" sum="Gross Total"/>
+                                    <field name="service_fee" sum="Fee Total"/>
+                                    <field name="shipping_fee" sum="Shipping Total"/>
+                                    <field name="net_amount" sum="Net Total"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action Window -->
+    <record id="action_marketplace_settlement_batch" model="ir.actions.act_window">
+        <field name="name">Settlement Batches</field>
+        <field name="res_model">marketplace.settlement.batch</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Upload your marketplace settlement report!
+            </p>
+            <p>
+                Drop your raw Shopee, Tokopedia, or TikTok Shop Excel/CSV statement here to instantly parse orders and create balanced accounting entries.
+            </p>
+        </field>
+    </record>
+</odoo>
