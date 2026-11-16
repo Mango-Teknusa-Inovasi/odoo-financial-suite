@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- 1. Opening Balance Wizard under Accounting > Configuration -->
+    <menuitem id="menu_account_opening_balance_wizard"
+              name="Setup Saldo Awal"
+              parent="account.menu_finance_configuration"
+              action="action_account_opening_balance_wizard"
+              sequence="1"/>
+
+    <!-- 2. Fixed Asset Register under Accounting > Accounting Entries -->
+    <menuitem id="menu_account_simple_asset"
+              name="Kartu Aktiva Tetap"
+              parent="account.menu_finance_entries"
+              action="action_account_simple_asset"
+              sequence="35"/>
+</odoo>

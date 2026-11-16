@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_account_opening_balance_wizard_form" model="ir.ui.view">
+        <field name="name">account.opening.balance.wizard.form</field>
+        <field name="model">account.opening.balance.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Setup Saldo Awal Akuntansi Indonesia">
+                <sheet>
+                    <div class="oe_title">
+                        <label for="date_cut_off" string="Tanggal Cut-off Pembukuan"/>
+                        <h1>
+                            <field name="date_cut_off"/>
+                        </h1>
+                    </div>
+
+                    <!-- Live Dynamic Balance Bar -->
+                    <div class="alert alert-secondary p-3 mb-4 rounded border" role="status" aria-label="Ringkasan Saldo Neraca">
+                        <div class="row text-center">
+                            <div class="col-md-3 border-end">
+                                <span class="text-muted d-block small text-uppercase">Total Aktiva (Aset)</span>
+                                <h4 class="text-primary fw-bold mb-0">
+                                    <field name="total_assets" widget="monetary"/>
+                                </h4>
+                            </div>
+                            <div class="col-md-3 border-end">
+                                <span class="text-muted d-block small text-uppercase">Total Kewajiban (Hutang)</span>
+                                <h4 class="text-danger fw-bold mb-0">
+                                    <field name="total_liabilities" widget="monetary"/>
+                                </h4>
+                            </div>
+                            <div class="col-md-3 border-end">
+                                <span class="text-muted d-block small text-uppercase">Ekuitas Penyeimbang</span>
+                                <h4 class="text-success fw-bold mb-0">
+                                    <field name="calculated_equity" widget="monetary"/>
+                                </h4>
+                            </div>
+                            <div class="col-md-3 d-flex flex-column justify-content-center align-items-center">
+                                <span class="badge bg-success p-2 fs-6" invisible="not is_balanced">
+                                    <i class="fa fa-check-circle me-1"/> Neraca Seimbang
+                                </span>
+                                <span class="badge bg-warning text-dark p-2 fs-6" invisible="is_balanced">
+                                    <i class="fa fa-info-circle me-1"/> Menunggu Pengisian
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <group>
+                        <group string="Konfigurasi Pembukuan">
+                            <field name="company_id" groups="base.group_multi_company"/>
+                            <field name="currency_id" invisible="1"/>
+                            <field name="journal_id"/>
+                        </group>
+                        <group string="Pengaturan Ekuitas">
+                            <field name="equity_choice" widget="radio"/>
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <!-- Tab 1: Kas & Bank -->
+                        <page string="1. Kas &amp; Bank" name="tab_cash">
+                            <p class="text-muted small">
+                                Masukkan saldo awal kas tunai (kas kecil, kas kasir) dan saldo rekening koran bank per tanggal cut-off.
+                            </p>
+                            <field name="cash_line_ids">
+                                <list editable="bottom">
+                                    <field name="journal_id"/>
+                                    <field name="account_id"/>
+                                    <field name="amount" sum="Total Kas"/>
+                                    <field name="currency_id" invisible="1"/>
+                                </list>
+                            </field>
+                        </page>
+
+                        <!-- Tab 2: Piutang Pelanggan -->
+                        <page string="2. Piutang Usaha (AR)" name="tab_receivable">
+                            <p class="text-muted small">
+                                Rincian faktur penjualan masa lalu yang belum dibayar pelanggan. Sistem otomatis membuat faktur berstatus Posted untuk Register Payment.
+                            </p>
+                            <field name="receivable_line_ids">
+                                <list editable="bottom">
+                                    <field name="partner_id"/>
+                                    <field name="invoice_ref" placeholder="INV-2025-001"/>
+                                    <field name="invoice_date"/>
+                                    <field name="due_date"/>
+                                    <field name="amount" sum="Total Piutang"/>
+                                    <field name="currency_id" invisible="1"/>
+                                </list>
+                            </field>
+                        </page>
+
+                        <!-- Tab 3: Hutang Pemasok -->
+                        <page string="3. Hutang Usaha (AP)" name="tab_payable">
+                            <p class="text-muted small">
+                                Rincian tagihan pembelian masa lalu yang belum dibayarkan ke pemasok. Sistem otomatis membuat tagihan berstatus Posted.
+                            </p>
+                            <field name="payable_line_ids">
+                                <list editable="bottom">
+                                    <field name="partner_id"/>
+                                    <field name="bill_ref" placeholder="BILL-SUPP-001"/>
+                                    <field name="bill_date"/>
+                                    <field name="due_date"/>
+                                    <field name="amount" sum="Total Hutang"/>
+                                    <field name="currency_id" invisible="1"/>
+                                </list>
+                            </field>
+                        </page>
+
+                        <!-- Tab 4: Persediaan Barang -->
+                        <page string="4. Persediaan Stok" name="tab_stock">
+                            <p class="text-muted small">
+                                Saldo kuantitas fisik dan nilai perolehan (HPP) barang dagang saat cut-off.
+                            </p>
+                            <field name="stock_line_ids">
+                                <list editable="bottom">
+                                    <field name="product_id"/>
+                                    <field name="location_id"/>
+                                    <field name="quantity"/>
+                                    <field name="unit_cost"/>
+                                    <field name="total_value" sum="Total Nilai Stok"/>
+                                    <field name="currency_id" invisible="1"/>
+                                </list>
+                            </field>
+                        </page>
+
+                        <!-- Tab 5: Aktiva Tetap -->
+                        <page string="5. Aktiva Tetap &amp; Akumulasi" name="tab_asset">
+                            <p class="text-muted small">
+                                Daftar aset tetap, harga perolehan awal, dan akumulasi penyusutan masa lalu. Sistem otomatis membentuk jadwal amortisasi PPh 11.
+                            </p>
+                            <field name="asset_line_ids">
+                                <list editable="bottom">
+                                    <field name="name"/>
+                                    <field name="asset_group"/>
+                                    <field name="acquisition_date"/>
+                                    <field name="original_cost" sum="Total Biaya Perolehan"/>
+                                    <field name="past_accumulated_depreciation" sum="Total Akumulasi"/>
+                                    <field name="net_book_value" sum="Total Nilai Buku"/>
+                                    <field name="asset_account_id"/>
+                                    <field name="accumulated_account_id"/>
+                                    <field name="currency_id" invisible="1"/>
+                                </list>
+                            </field>
+                        </page>
+
+                        <!-- Tab 6: Opsi Lanjutan -->
+                        <page string="6. Akun Ekuitas &amp; Opsi" name="tab_options">
+                            <group>
+                                <group string="Pemetaan Akun Ekuitas">
+                                    <field name="equity_account_id" invisible="equity_choice not in ('owner_equity', 'split')"/>
+                                    <field name="retained_earnings_account_id" invisible="equity_choice not in ('retained_earnings', 'split')"/>
+                                    <field name="equity_split_percent" invisible="equity_choice != 'split'"/>
+                                </group>
+                                <group string="Integrasi Fisik &amp; Kunci Periode">
+                                    <field name="update_physical_stock"/>
+                                    <field name="warehouse_id" invisible="not update_physical_stock"/>
+                                    <field name="lock_fiscal_date"/>
+                                </group>
+                            </group>
+                        </page>
+
+                        <!-- Tab 7: Impor & Ekspor Excel -->
+                        <page string="7. Impor Massal Excel" name="tab_excel">
+                            <div class="p-3 bg-light rounded border">
+                                <h5 class="fw-bold mb-2">Panduan Impor Data Massal Excel</h5>
+                                <p class="text-muted mb-3">
+                                    Bila Anda memiliki ratusan baris data dari Accurate, Zahir, atau Excel lama, unduh template resmi di bawah ini, isi sheet yang sesuai, lalu unggah kembali berkas tersebut.
+                                </p>
+                                <div class="mb-3">
+                                    <button name="action_download_excel_template" string="Unduh Template Excel Saldo Awal (.xlsx)" type="object" class="btn btn-outline-primary" icon="fa-download"/>
+                                </div>
+                                <hr/>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label for="excel_file" string="Pilih Berkas Excel untuk Diimpor"/>
+                                        <field name="excel_file" filename="excel_filename"/>
+                                        <field name="excel_filename" invisible="1"/>
+                                    </div>
+                                    <div class="col-md-6 d-flex align-items-end">
+                                        <button name="action_import_excel" string="Mulai Impor Berkas Excel" type="object" class="btn btn-primary" icon="fa-upload"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </page>
+                    </notebook>
+                </sheet>
+                <footer>
+                    <button name="action_validate_and_post" string="Posting Saldo Awal ke Buku Besar" type="object" class="btn-primary" icon="fa-check-circle" confirm="Apakah Anda yakin ingin memposting saldo awal ini ke Buku Besar? Dokumen invoice piutang, hutang, dan kartu aset akan langsung terbentuk."/>
+                    <button string="Batal" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action Window for Opening Balance Wizard -->
+    <record id="action_account_opening_balance_wizard" model="ir.actions.act_window">
+        <field name="name">Setup Saldo Awal</field>
+        <field name="res_model">account.opening.balance.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>
