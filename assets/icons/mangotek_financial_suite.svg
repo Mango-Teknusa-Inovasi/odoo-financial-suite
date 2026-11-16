@@ -1,18 +1,22 @@
 <svg width="50" height="50" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
-  <!-- Left Wing / Stem: Mango Tangerine #F86126 -->
-  <path d="M5 10a4 4 0 0 1 4-4h6l-5 18H5a4 4 0 0 1-4-4V14a4 4 0 0 1 4-4Z" fill="#F86126"/>
-  <!-- Left Center Diagonal: Sunflower Amber #FBB945 -->
-  <path d="M15 6h7l-7 24H8l7-24Z" fill="#FBB945"/>
-  <!-- Central Growth Diamond / Prism: Indonesian Emerald / Mint #1AD3BB -->
-  <path d="M22 6h6l7 20-10 18-10-18 7-20Z" fill="#1AD3BB"/>
-  <!-- Central Inner Shading: Deep Teal Petrol #005E7A -->
-  <path d="M25 26l7 18H18l7-18Z" fill="#005E7A"/>
-  <!-- Right Center Diagonal: Odoo Amethyst / Plum #985184 -->
-  <path d="M28 6h7l7 24h-7l-7-24Z" fill="#985184"/>
-  <!-- Right Wing / Stem: Corporate Azure Blue #088BF5 -->
-  <path d="M35 6h6a4 4 0 0 1 4 4v6a4 4 0 0 1-4 4h-5l5-18h-6Z" fill="#088BF5"/>
-  <!-- Lower Right Support Facet: Sky Cyan #2EBCFA -->
-  <path d="M35 24h6a4 4 0 0 1 4 4v8a4 4 0 0 1-4 4h-7l5-16h-4Z" fill="#2EBCFA"/>
-  <!-- Lower Left Base Facet: Deep Mango Coral #E84518 -->
-  <path d="M5 24h6l-4 16a4 4 0 0 1-4-4v-8a4 4 0 0 1 2-4Z" fill="#E84518"/>
+  <!-- Fresh Top Emerald Leaf (#1AD3BB) -->
+  <path d="M25 4 C29 1 37 3 38 9 C33 10 28 8 25 4 Z" fill="#1AD3BB"/>
+  <!-- Leaf Vein / Stem (#005E7A) -->
+  <path d="M25 7 C27 8 30 8 33 7" stroke="#005E7A" stroke-width="1.2" stroke-linecap="round"/>
+
+  <!-- Left Upper Facet: Warm Tangerine (#F86126) -->
+  <path d="M25 8 C15 8 8 15 8 26 C8 34 13 41 21 44 L25 26 Z" fill="#F86126"/>
+
+  <!-- Left Center Facet: Sunflower Gold (#FBB945) -->
+  <path d="M25 8 L25 26 L21 44 C23 45 25 45.5 27 45.5 L25 8 Z" fill="#FBB945"/>
+
+  <!-- Right Upper Facet: Iconic Odoo Plum (#985184) -->
+  <path d="M25 8 L25 28 L42 28 C42 17 35 8 25 8 Z" fill="#985184"/>
+
+  <!-- Right Lower Facet: Deep Petrol Shadow (#005E7A) -->
+  <path d="M25 28 L27 45.5 C34 45 42 38 42 28 Z" fill="#005E7A"/>
+
+  <!-- Center Floating Monogram 'M' in Crisp White (#FFFFFF) -->
+  <!-- Bold, modern, perfectly balanced capital M -->
+  <path d="M16 35 V20 L21 28 L25 21 L29 28 L34 20 V35 H30.5 V26 L27 31.5 H23 L19.5 26 V35 Z" fill="#FFFFFF"/>
 </svg>

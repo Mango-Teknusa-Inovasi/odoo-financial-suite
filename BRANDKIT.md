@@ -18,29 +18,32 @@
 
 ---
 
-## 2. Visual Architecture & Logo Anatomy
+## 2. Master Logo Anatomy: The MangoTek Geometric Gem
 
-The master logo of **MangoTek Financial Suite** represents the seamless synthesis of **MangoTek's** dynamic commercial drive with **Odoo's** iconic geometric facet design language.
+The master logo of **MangoTek Financial Suite** synthesizes the organic warmth of a **Mango fruit** with the crystalline precision of **Odoo's geometric facets** and a bold negative-space **M** monogram.
 
 ```
-       [ Mango Tangerine ]       [ Odoo Aubergine ]
-          Facet (#F86126)           Facet (#985184)
-               \                         /
-                \                       /
-                 [ Central Fiscal Prism ]
-                  Emerald Mint (#1AD3BB)
-                  + Deep Petrol (#005E7A)
-                /                       \
-               /                         \
-      [ Sunflower Gold ]         [ Enterprise Azure ]
-       Facet (#FBB945)             Facet (#088BF5)
+                  [ Top Emerald Leaf ]
+                     (#1AD3BB / #005E7A)
+                           \
+                            \
+        [ Mango Tangerine ]     [ Odoo Aubergine ]
+           Facet (#F86126)         Facet (#985184)
+                 \                     /
+                  \                   /
+                [ Central Monogram "M" ]
+                 Crisp White (#FFFFFF)
+                  /                   \
+                 /                     \
+       [ Sunflower Gold ]       [ Deep Slate Petrol ]
+        Facet (#FBB945)           Facet (#005E7A)
 ```
 
 ### Geometric Principles
-1. **Base Canvas:** `50x50` standard Odoo grid (`viewBox="0 0 50 50"`).
-2. **Corner Radii:** Outer boundary corners utilize `rx="4"` (or `r="4"`) for friendly curvature matching Odoo's backend UI.
-3. **Facet Angles:** Precise diagonal cuts (angled at $45^\circ$ or $26.5^\circ$ / slope $1:2$) create dynamic depth without relying on blurry drop-shadows.
-4. **Plane Hierarchy:** Flat solid fills placed on overlapping coordinate planes simulate three-dimensional refraction.
+1. **Silhouette Test:** Instantly recognizable as a stylized, premium Mango fruit silhouette with a top emerald leaf.
+2. **Base Canvas:** `50x50` standard Odoo grid (`viewBox="0 0 50 50"`).
+3. **Core Monogram:** Symmetrical capital letter "M" anchored in the center, ensuring strong identity even at 16px favicon scale.
+4. **Facet Angles:** Clean diagonal cuts ($45^\circ$ and $60^\circ$) create dynamic depth without using skeuomorphic gradients or drop-shadows.
 
 ---
 
@@ -51,13 +54,13 @@ The color system directly incorporates and complements Odoo's official branding 
 | Role | Color Name | Hex Code | RGB | Semantic Function |
 |:---|:---|:---|:---|:---|
 | **Primary Odoo** | Amethyst Aubergine | `#985184` | `rgb(152, 81, 132)` | Odoo heritage, accounting ledger facets, core stability |
-| **Fiscal Accent** | Emerald Mint | `#1AD3BB` | `rgb(26, 211, 187)` | DJP Coretax certification, positive cashflow, reconciliation |
+| **Fiscal Accent** | Emerald Mint | `#1AD3BB` | `rgb(26, 211, 187)` | DJP Coretax certification, positive cashflow, leaf accent |
 | **Commerce Warm** | Mango Tangerine | `#F86126` | `rgb(248, 97, 38)` | Indonesian marketplace energy, Shopee settlement, retail |
 | **Gold Standard** | Sunflower Amber | `#FBB945` | `rgb(251, 185, 69)` | Official seals, Tokopedia gold, recipe costing valuation |
 | **Corporate Tech** | Royal Azure | `#088BF5` | `rgb(8, 139, 245)` | Document stamping, official e-Meterai, cloud automation |
 | **Light Accent** | Sky Cyan | `#2EBCFA` | `rgb(46, 188, 250)` | Secondary highlights, digital flow arrows, trendlines |
 | **Depth Shading** | Deep Petrol Slate | `#005E7A` | `rgb(0, 94, 122)` | Facet shading, high-contrast borders, technical elements |
-| **Canvas Dark** | Midnight Navy | `#0B0F19` | `rgb(11, 15, 25)` | GitHub banners, hero cards, dark-mode backgrounds |
+| **Canvas Dark** | Midnight Navy | `#090D16` | `rgb(9, 13, 22)` | GitHub banners, hero cards, dark-mode backgrounds |
 
 ---
 
@@ -99,23 +102,21 @@ Each module in the MangoTek Financial Suite possesses a distinct, cohesive 50x50
   font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   ```
 * **Type Hierarchy:**
-  * **Hero Title:** 40px–44px, ExtraBold (800), letter-spacing `-0.5px`
+  * **Hero Title:** 40px–42px, ExtraBold (800), letter-spacing `-0.5px`
   * **Section Heading:** 24px–28px, Bold (700)
-  * **Subheading / Card Title:** 14px–16px, SemiBold (600)
-  * **Category / Overline:** 11px–12px, Bold (700), letter-spacing `+1.5px` (All-caps)
+  * **Subheading / Card Title:** 13px–15px, SemiBold (600)
+  * **Category / Overline:** 11px–12px, Bold (700), letter-spacing `+2.5px` (All-caps)
   * **Body Copy:** 13px–15px, Regular (400), line-height `1.5`
 
 ---
 
 ## 6. Sizing & Export Specifications
 
-All icons and brand assets are maintained in vector SVG and exported to raster PNG formats for diverse consumption channels:
-
 | Asset | Resolution | Format | Purpose |
 |:---|:---|:---|:---|
 | **App Launcher Icon** | `50x50` (or `100x100` @2x) | PNG / SVG | Odoo 9-dots App Drawer & Kanban Views |
 | **Odoo Apps Store Thumbnail** | `512x512` | PNG / SVG | Odoo Apps Store Listing & Vendor Portal |
-| **GitHub Master Banner** | `1280x640` | PNG / SVG | GitHub Social Card & README Hero Header |
+| **GitHub Master Banner** | `1200x630` | PNG / SVG | GitHub Social Card & README Centered Hero |
 | **Favicon** | `32x32` / `16x16` | PNG / ICO | Web browser tab indicator |
 
 ---
@@ -123,8 +124,8 @@ All icons and brand assets are maintained in vector SVG and exported to raster P
 ## 7. Anti-Slop Brand Rules
 
 * **DO:** Use solid geometric shapes with sharp crisp lines and mathematical corner radii.
-* **DO:** Maintain high-contrast facet boundaries so icons remain legible down to 24px.
+* **DO:** Keep banners centered with ample side margins so no content is clipped on 13-inch or mobile displays.
 * **DO:** Always display the official `100% Free & Open Source · LGPL-3.0` badge on public listings.
-* **DON'T:** Never apply generic AI gradient bubbles, glossy chrome reflections, or skeuomorphic glassmorphism.
-* **DON'T:** Never distort the aspect ratio ($1:1$ for icons, $2:1$ for the repository banner).
-* **DON'T:** Never introduce third-party proprietary vendor logos into open-source core assets.
+* **DON'T:** Never generate shapeless asymmetrical blobs or accidental animal contours.
+* **DON'T:** Never distort the aspect ratio ($1:1$ for icons, $1.91:1$ / $1200\times630$ for banner).
+* **DON'T:** Never use low-contrast text on colored badges.
