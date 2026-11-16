@@ -8,10 +8,10 @@
                         <h6 class="fw-bold mb-1" style="color: #088BF5;">Pembayaran Cepat via QRIS Dinamis</h6>
                         <p class="small text-muted mb-1">
                             Scan kode QR ini menggunakan aplikasi m-Banking (BCA, Mandiri, BRI, BNI) atau E-Wallet (GoPay, OVO, DANA, ShopeePay).
-                            Nominal pembayaran sebesar <strong>Rp <t t-esc="'{0:,.0f}'.format(o.qris_total_amount or o.amount_residual)"/></strong> sudah terisi otomatis tanpa perlu input manual.
+                            Nominal pembayaran sebesar <strong>Rp <t t-out="'{0:,.0f}'.format(o.qris_total_amount or o.amount_residual)"/></strong> sudah terisi otomatis tanpa perlu input manual.
                         </p>
                         <p class="small text-muted mb-0" t-if="o.qris_unique_code">
-                            <em>Termasuk kode unik anti-bentrok: +<t t-esc="o.qris_unique_code"/> untuk rekonsiliasi otomatis.</em>
+                            <em>Termasuk kode unik anti-bentrok: +<t t-out="o.qris_unique_code"/> untuk rekonsiliasi otomatis.</em>
                         </p>
                     </div>
                     <div class="col-4 text-end">

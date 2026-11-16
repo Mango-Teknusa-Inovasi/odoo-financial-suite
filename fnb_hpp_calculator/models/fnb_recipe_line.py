@@ -22,8 +22,11 @@ class FnbRecipeLine(models.Model):
     unit_cost = fields.Monetary(
         string='Unit Cost',
         currency_field='currency_id',
-        required=True,
-        default=0.0
+        compute='_compute_unit_cost',
+        store=True,
+        readonly=False,
+        precompute=True,
+        help='Unit cost of ingredient. Pre-populated automatically from product purchase cost / standard price.'
     )
     waste_percent = fields.Float(
         string='Waste / Shrinkage (%)',
@@ -37,6 +40,14 @@ class FnbRecipeLine(models.Model):
         store=True,
         help='Net cost adjusted for preparation waste factor'
     )
+
+    @api.depends('product_id')
+    def _compute_unit_cost(self):
+        for line in self:
+            if line.product_id and not line.unit_cost:
+                line.unit_cost = line.product_id.standard_price
+            elif not line.product_id:
+                line.unit_cost = 0.0
 
     @api.onchange('product_id')
     def _onchange_product_id(self):
