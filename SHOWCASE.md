@@ -1,6 +1,6 @@
 <div align="center">
 
-![MangoTek Financial Suite Banner](assets/banner.png)
+![MangoTek Financial Suite Banner](assets/banner_v2.png)
 
 # 📸 MangoTek Financial Suite — Visual Showcase & Live Verification Gallery
 ### *Enterprise Indonesian Tax Localization, Marketplace Settlement, Recipe Costing & CFO Diagnostics for Odoo 18.0, 19.0 & 20.0*

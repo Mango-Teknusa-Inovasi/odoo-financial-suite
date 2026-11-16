@@ -97,13 +97,14 @@ class AccountMove(models.Model):
                 ))
 
             raw_serial = pool.allocate_next_nsfp()
-            full_nsfp = f"{move.l10n_id_tax_transaction_code}.{raw_serial}"
+            # 16-digit standard NSFP: 2-digit trx code + 1-digit status ('0') + 3-digit prefix + 2-digit year + 8-digit serial
+            full_nsfp = f"{move.l10n_id_tax_transaction_code}0.{raw_serial}"
             vals = {
                 'l10n_id_faktur_pajak_number': full_nsfp,
                 'l10n_id_efaktur_status': 'assigned',
                 'l10n_id_faktur_date': move.invoice_date or fields.Date.today(),
             }
-            # Bridge synchronization with standard Odoo l10n_id field if present
+            # Bridge synchronization with standard Odoo l10n_id field (strictly requires 16 digits)
             if 'l10n_id_tax_number' in move._fields:
                 vals['l10n_id_tax_number'] = full_nsfp
             move.write(vals)
