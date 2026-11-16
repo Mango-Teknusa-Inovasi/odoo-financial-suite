@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Kanban View -->
+    <record id="view_fnb_recipe_kanban" model="ir.ui.view">
+        <field name="name">fnb.recipe.kanban</field>
+        <field name="model">fnb.recipe</field>
+        <field name="arch" type="xml">
+            <kanban class="o_kanban_dashboard" sample="1">
+                <field name="id"/>
+                <field name="name"/>
+                <field name="category_id"/>
+                <field name="cost_per_portion"/>
+                <field name="selling_price"/>
+                <field name="gross_margin_percent"/>
+                <field name="food_cost_percent"/>
+                <field name="margin_status"/>
+                <field name="currency_id"/>
+                <templates>
+                    <t t-name="card">
+                        <div class="oe_kanban_global_click p-3">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <span class="badge bg-secondary">
+                                    <field name="category_id"/>
+                                </span>
+                                <t t-if="record.margin_status.raw_value == 'optimal'">
+                                    <span class="badge text-bg-success">Optimal Margin</span>
+                                </t>
+                                <t t-elif="record.margin_status.raw_value == 'moderate'">
+                                    <span class="badge text-bg-warning">Moderate</span>
+                                </t>
+                                <t t-else="">
+                                    <span class="badge text-bg-danger">Low Margin</span>
+                                </t>
+                            </div>
+                            <div class="fw-bold fs-5 mb-2">
+                                <field name="name"/>
+                            </div>
+                            <div class="row g-2 text-center my-2">
+                                <div class="col-6 bg-light p-2 rounded">
+                                    <div class="small text-muted">HPP / Portion</div>
+                                    <div class="fw-bold text-primary">
+                                        <field name="cost_per_portion" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                                    </div>
+                                </div>
+                                <div class="col-6 bg-light p-2 rounded">
+                                    <div class="small text-muted">Selling Price</div>
+                                    <div class="fw-bold text-success">
+                                        <field name="selling_price" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-between small text-muted pt-2 border-top">
+                                <span>Margin: <strong class="text-dark"><field name="gross_margin_percent"/>%</strong></span>
+                                <span>Food Cost: <strong class="text-dark"><field name="food_cost_percent"/>%</strong></span>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- List (Tree) View -->
+    <record id="view_fnb_recipe_list" model="ir.ui.view">
+        <field name="name">fnb.recipe.list</field>
+        <field name="model">fnb.recipe</field>
+        <field name="arch" type="xml">
+            <list string="Recipe Costing Cards" decoration-success="margin_status == 'optimal'" decoration-warning="margin_status == 'moderate'" decoration-danger="margin_status == 'warning'">
+                <field name="name"/>
+                <field name="code"/>
+                <field name="category_id"/>
+                <field name="portion_yield" string="Yield"/>
+                <field name="cost_per_portion" string="HPP / Portion" widget="monetary"/>
+                <field name="selling_price" string="Selling Price" widget="monetary"/>
+                <field name="gross_profit" string="Gross Profit" widget="monetary"/>
+                <field name="gross_margin_percent" string="Margin (%)" widget="percentage" options="{'precision': 1}"/>
+                <field name="food_cost_percent" string="Food Cost (%)" widget="percentage" options="{'precision': 1}"/>
+                <field name="margin_status" widget="badge" decoration-success="margin_status == 'optimal'" decoration-warning="margin_status == 'moderate'" decoration-danger="margin_status == 'warning'"/>
+                <field name="currency_id" column_invisible="True"/>
+                <field name="company_id" groups="base.group_multi_company"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_fnb_recipe_form" model="ir.ui.view">
+        <field name="name">fnb.recipe.form</field>
+        <field name="model">fnb.recipe</field>
+        <field name="arch" type="xml">
+            <form string="Recipe Costing Card">
+                <header>
+                    <button name="action_open_simulator" string="Simulate Price &amp; Margin" type="object" class="btn-primary" icon="fa-calculator"/>
+                    <button name="action_sync_to_product" string="Sync to Catalog Product" type="object" class="btn-secondary" icon="fa-refresh" invisible="not product_id"/>
+                    <button name="action_refresh_ingredient_costs" string="Update Ingredient Prices" type="object" class="btn-link" icon="fa-retweet"/>
+                    <field name="margin_status" widget="statusbar" statusbar_visible="optimal,moderate,warning"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button class="oe_stat_button" icon="fa-pie-chart" disabled="1">
+                            <div class="o_field_widget o_stat_info">
+                                <span class="o_stat_value">
+                                    <field name="gross_margin_percent"/>%
+                                </span>
+                                <span class="o_stat_text">Gross Margin</span>
+                            </div>
+                        </button>
+                        <button class="oe_stat_button" icon="fa-cutlery" disabled="1">
+                            <div class="o_field_widget o_stat_info">
+                                <span class="o_stat_value">
+                                    <field name="food_cost_percent"/>%
+                                </span>
+                                <span class="o_stat_text">Food Cost</span>
+                            </div>
+                        </button>
+                    </div>
+
+                    <widget name="web_ribbon" title="Optimal Margin" bg_color="text-bg-success" invisible="margin_status != 'optimal'"/>
+                    <widget name="web_ribbon" title="Low Margin" bg_color="text-bg-danger" invisible="margin_status != 'warning'"/>
+
+                    <div class="oe_title">
+                        <label for="name" string="Menu / Recipe Name"/>
+                        <h1>
+                            <field name="name" placeholder="e.g. Iced Caramel Macchiato 16oz"/>
+                        </h1>
+                    </div>
+
+                    <group>
+                        <group name="meta_left">
+                            <field name="category_id"/>
+                            <field name="code"/>
+                            <field name="product_id" options="{'no_create': True}"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                            <field name="currency_id" invisible="1"/>
+                        </group>
+                        <group name="meta_right">
+                            <field name="portion_yield"/>
+                            <field name="overhead_percent"/>
+                            <field name="selling_price" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                            <field name="cost_per_portion" widget="monetary" options="{'currency_field': 'currency_id'}" class="fw-bold fs-5 text-primary"/>
+                            <field name="gross_profit" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <!-- Tab 1: Raw Ingredients -->
+                        <page string="Ingredients &amp; Formulation" name="ingredients">
+                            <field name="line_ids">
+                                <list editable="bottom">
+                                    <field name="sequence" widget="handle"/>
+                                    <field name="product_id" options="{'no_create_edit': True}"/>
+                                    <field name="name" string="Specification"/>
+                                    <field name="quantity"/>
+                                    <field name="uom_id"/>
+                                    <field name="unit_cost" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                                    <field name="waste_percent" string="Waste (%)"/>
+                                    <field name="effective_cost" widget="monetary" options="{'currency_field': 'currency_id'}" sum="Total Ingredients"/>
+                                    <field name="currency_id" column_invisible="True"/>
+                                </list>
+                            </field>
+                        </page>
+
+                        <!-- Tab 2: Packaging & Disposables -->
+                        <page string="Packaging &amp; Disposables" name="packaging">
+                            <field name="packaging_line_ids">
+                                <list editable="bottom">
+                                    <field name="sequence" widget="handle"/>
+                                    <field name="product_id" options="{'no_create_edit': True}"/>
+                                    <field name="name" string="Description"/>
+                                    <field name="quantity"/>
+                                    <field name="uom_id"/>
+                                    <field name="unit_cost" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                                    <field name="subtotal_cost" widget="monetary" options="{'currency_field': 'currency_id'}" sum="Total Packaging"/>
+                                    <field name="currency_id" column_invisible="True"/>
+                                </list>
+                            </field>
+                        </page>
+
+                        <!-- Tab 3: Cost Accounting Summary -->
+                        <page string="Cost Breakdown" name="cost_summary">
+                            <group>
+                                <group string="Cost Components">
+                                    <field name="cost_ingredients" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                                    <field name="cost_packaging" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                                    <field name="cost_overhead" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                                    <field name="cost_total_batch" widget="monetary" options="{'currency_field': 'currency_id'}" class="fw-bold"/>
+                                </group>
+                                <group string="Portion Metrics">
+                                    <field name="portion_yield"/>
+                                    <field name="cost_per_portion" widget="monetary" options="{'currency_field': 'currency_id'}" class="fw-bold text-primary"/>
+                                    <field name="selling_price" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                                    <field name="gross_profit" widget="monetary" options="{'currency_field': 'currency_id'}" class="fw-bold text-success"/>
+                                </group>
+                            </group>
+                        </page>
+
+                        <!-- Tab 4: Preparation Guide -->
+                        <page string="Preparation Guide / SOP" name="sop">
+                            <field name="notes" placeholder="Step-by-step culinary preparation instructions, brewing parameters, baking temperatures, and plating specifications..."/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="view_fnb_recipe_search" model="ir.ui.view">
+        <field name="name">fnb.recipe.search</field>
+        <field name="model">fnb.recipe</field>
+        <field name="arch" type="xml">
+            <search string="Search Recipes">
+                <field name="name" string="Recipe" filter_domain="['|', ('name', 'ilike', self), ('code', 'ilike', self)]"/>
+                <field name="category_id"/>
+                <field name="product_id"/>
+                <separator/>
+                <filter string="Optimal Margin (>= 65%)" name="optimal" domain="[('margin_status', '=', 'optimal')]"/>
+                <filter string="Moderate Margin (50% - 64%)" name="moderate" domain="[('margin_status', '=', 'moderate')]"/>
+                <filter string="Low / Underpriced (&lt; 50%)" name="warning" domain="[('margin_status', '=', 'warning')]"/>
+                <group expand="0" string="Group By">
+                    <filter string="Category" name="group_category" context="{'group_by': 'category_id'}"/>
+                    <filter string="Margin Status" name="group_status" context="{'group_by': 'margin_status'}"/>
+                    <filter string="Company" name="group_company" context="{'group_by': 'company_id'}" groups="base.group_multi_company"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_fnb_recipe" model="ir.actions.act_window">
+        <field name="name">Recipe Costing Cards</field>
+        <field name="res_model">fnb.recipe</field>
+        <field name="view_mode">kanban,list,form</field>
+        <field name="search_view_id" ref="view_fnb_recipe_search"/>
+        <field name="context">{'search_default_group_category': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first F&amp;B Recipe Costing Card!
+            </p>
+            <p>
+                Define ingredient measurements, wastage factors, packaging supplies, and monitor real-time HPP and gross margins.
+            </p>
+        </field>
+    </record>
+</odoo>

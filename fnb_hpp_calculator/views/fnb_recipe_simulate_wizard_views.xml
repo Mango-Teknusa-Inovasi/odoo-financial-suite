@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_fnb_recipe_simulate_wizard_form" model="ir.ui.view">
+        <field name="name">fnb.recipe.simulate.wizard.form</field>
+        <field name="model">fnb.recipe.simulate.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Price &amp; Margin Simulator">
+                <sheet>
+                    <div class="alert alert-info" role="alert">
+                        <strong>Simulate culinary menu pricing</strong>: Adjust target margins or proposed selling prices to analyze your food cost percentage before launching to your menu.
+                    </div>
+
+                    <group>
+                        <group string="Current Recipe Metrics">
+                            <field name="recipe_id" readonly="1"/>
+                            <field name="currency_id" invisible="1"/>
+                            <field name="current_cost_per_portion" widget="monetary" options="{'currency_field': 'currency_id'}" class="fw-bold text-primary"/>
+                            <field name="current_selling_price" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                            <field name="current_margin_percent" string="Current Margin (%)"/>
+                        </group>
+                        <group string="Simulation Parameters">
+                            <field name="simulation_mode" widget="radio"/>
+                            <field name="target_margin_percent" invisible="simulation_mode != 'target_margin'"/>
+                            <field name="target_selling_price" widget="monetary" options="{'currency_field': 'currency_id'}" invisible="simulation_mode != 'target_price'"/>
+                        </group>
+                    </group>
+
+                    <div class="card bg-light p-3 my-3 rounded-3">
+                        <h5 class="fw-bold text-dark mb-3">Projected Financial Outcome</h5>
+                        <div class="row g-3 text-center">
+                            <div class="col-md-3">
+                                <div class="small text-muted">Suggested Retail Price</div>
+                                <div class="fs-4 fw-bold text-success">
+                                    <field name="simulated_selling_price" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="small text-muted">Projected Gross Profit</div>
+                                <div class="fs-4 fw-bold text-primary">
+                                    <field name="simulated_gross_profit" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="small text-muted">Gross Margin</div>
+                                <div class="fs-4 fw-bold text-dark">
+                                    <field name="simulated_margin_percent"/>%
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="small text-muted">Food Cost %</div>
+                                <div class="fs-4 fw-bold text-warning">
+                                    <field name="simulated_food_cost_percent"/>%
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </sheet>
+                <footer>
+                    <button name="action_apply_to_recipe" string="Apply Suggested Price to Recipe Card" type="object" class="btn-primary" icon="fa-check"/>
+                    <button string="Close" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_fnb_recipe_simulate_wizard" model="ir.actions.act_window">
+        <field name="name">Menu Price Simulator</field>
+        <field name="res_model">fnb.recipe.simulate.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

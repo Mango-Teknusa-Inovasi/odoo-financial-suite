@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Recipe Categories -->
+        <record id="fnb_cat_coffee" model="fnb.recipe.category">
+            <field name="name">Specialty Coffee &amp; Beverages</field>
+            <field name="sequence">10</field>
+            <field name="target_food_cost_percent">25.0</field>
+            <field name="description">Espresso-based coffees, cold brews, and handcrafted teas.</field>
+        </record>
+
+        <record id="fnb_cat_bakery" model="fnb.recipe.category">
+            <field name="name">Artisanal Bakery &amp; Pastry</field>
+            <field name="sequence">20</field>
+            <field name="target_food_cost_percent">30.0</field>
+            <field name="description">Croissants, brioches, cakes, and morning bakery items.</field>
+        </record>
+
+        <record id="fnb_cat_kitchen" model="fnb.recipe.category">
+            <field name="name">Gourmet Kitchen &amp; Mains</field>
+            <field name="sequence">30</field>
+            <field name="target_food_cost_percent">35.0</field>
+            <field name="description">Signature burgers, pasta, mains, and café dining.</field>
+        </record>
+
+        <!-- Raw Ingredients Products -->
+        <record id="fnb_ing_espresso_beans" model="product.product">
+            <field name="name">Arabica Specialty Coffee Beans</field>
+            <field name="default_code">ING-COF-01</field>
+            <field name="type">consu</field>
+            <field name="standard_price">250.0</field> <!-- IDR 250 per gram -->
+        </record>
+
+        <record id="fnb_ing_fresh_milk" model="product.product">
+            <field name="name">Full Cream Dairy Fresh Milk</field>
+            <field name="default_code">ING-MLK-01</field>
+            <field name="type">consu</field>
+            <field name="standard_price">22.0</field> <!-- IDR 22 per ml -->
+        </record>
+
+        <record id="fnb_ing_caramel_syrup" model="product.product">
+            <field name="name">Salted Caramel Artisanal Syrup</field>
+            <field name="default_code">ING-SYR-01</field>
+            <field name="type">consu</field>
+            <field name="standard_price">120.0</field> <!-- IDR 120 per ml -->
+        </record>
+
+        <record id="fnb_ing_ice_cubes" model="product.product">
+            <field name="name">Purified Tube Ice Cubes</field>
+            <field name="default_code">ING-ICE-01</field>
+            <field name="type">consu</field>
+            <field name="standard_price">2.0</field> <!-- IDR 2 per gram -->
+        </record>
+
+        <record id="fnb_ing_wagyu_patty" model="product.product">
+            <field name="name">Wagyu Beef Burger Patty 150g</field>
+            <field name="default_code">ING-PAT-01</field>
+            <field name="type">consu</field>
+            <field name="standard_price">32000.0</field> <!-- IDR 32,000 per patty -->
+        </record>
+
+        <record id="fnb_ing_brioche_bun" model="product.product">
+            <field name="name">Golden Brioche Burger Bun</field>
+            <field name="default_code">ING-BUN-01</field>
+            <field name="type">consu</field>
+            <field name="standard_price">6500.0</field> <!-- IDR 6,500 per bun -->
+        </record>
+
+        <record id="fnb_ing_cheddar_slice" model="product.product">
+            <field name="name">Red Cheddar Cheese Slice</field>
+            <field name="default_code">ING-CHS-01</field>
+            <field name="type">consu</field>
+            <field name="standard_price">2800.0</field> <!-- IDR 2,800 per slice -->
+        </record>
+
+        <!-- Packaging Products -->
+        <record id="fnb_pkg_pet_cup" model="product.product">
+            <field name="name">Clear PET Cold Cup 16oz</field>
+            <field name="default_code">PKG-CUP-16</field>
+            <field name="type">consu</field>
+            <field name="standard_price">850.0</field>
+        </record>
+
+        <record id="fnb_pkg_domed_lid" model="product.product">
+            <field name="name">PET Domed Sip Lid</field>
+            <field name="default_code">PKG-LID-16</field>
+            <field name="type">consu</field>
+            <field name="standard_price">350.0</field>
+        </record>
+
+        <record id="fnb_pkg_paper_straw" model="product.product">
+            <field name="name">Individually Wrapped Paper Straw</field>
+            <field name="default_code">PKG-STR-01</field>
+            <field name="type">consu</field>
+            <field name="standard_price">150.0</field>
+        </record>
+
+        <record id="fnb_pkg_burger_box" model="product.product">
+            <field name="name">Kraft Clamshell Burger Box</field>
+            <field name="default_code">PKG-BOX-01</field>
+            <field name="type">consu</field>
+            <field name="standard_price">1600.0</field>
+        </record>
+
+        <!-- Recipe 1: Iced Salted Caramel Macchiato 16oz -->
+        <record id="fnb_recipe_caramel_macchiato" model="fnb.recipe">
+            <field name="name">Iced Caramel Macchiato 16oz</field>
+            <field name="code">RCP-DRK-001</field>
+            <field name="category_id" ref="fnb_cat_coffee"/>
+            <field name="portion_yield">1.0</field>
+            <field name="overhead_percent">5.0</field>
+            <field name="selling_price">38000.0</field>
+            <field name="notes">&lt;p&gt;1. Pull double shot espresso (18g fine grind).&lt;/p&gt;&lt;p&gt;2. Add 20ml caramel syrup to cup bottom.&lt;/p&gt;&lt;p&gt;3. Pour 150ml cold fresh milk over ice.&lt;/p&gt;&lt;p&gt;4. Layer espresso on top and seal with sip lid.&lt;/p&gt;</field>
+        </record>
+
+        <record id="fnb_line_macchiato_espresso" model="fnb.recipe.line">
+            <field name="recipe_id" ref="fnb_recipe_caramel_macchiato"/>
+            <field name="product_id" ref="fnb_ing_espresso_beans"/>
+            <field name="quantity">18.0</field>
+            <field name="unit_cost">250.0</field>
+            <field name="waste_percent">5.0</field> <!-- 5% grinder retention -->
+        </record>
+
+        <record id="fnb_line_macchiato_milk" model="fnb.recipe.line">
+            <field name="recipe_id" ref="fnb_recipe_caramel_macchiato"/>
+            <field name="product_id" ref="fnb_ing_fresh_milk"/>
+            <field name="quantity">150.0</field>
+            <field name="unit_cost">22.0</field>
+            <field name="waste_percent">2.0</field>
+        </record>
+
+        <record id="fnb_line_macchiato_syrup" model="fnb.recipe.line">
+            <field name="recipe_id" ref="fnb_recipe_caramel_macchiato"/>
+            <field name="product_id" ref="fnb_ing_caramel_syrup"/>
+            <field name="quantity">20.0</field>
+            <field name="unit_cost">120.0</field>
+            <field name="waste_percent">0.0</field>
+        </record>
+
+        <record id="fnb_line_macchiato_ice" model="fnb.recipe.line">
+            <field name="recipe_id" ref="fnb_recipe_caramel_macchiato"/>
+            <field name="product_id" ref="fnb_ing_ice_cubes"/>
+            <field name="quantity">120.0</field>
+            <field name="unit_cost">2.0</field>
+            <field name="waste_percent">5.0</field>
+        </record>
+
+        <record id="fnb_pkg_macchiato_cup" model="fnb.recipe.packaging.line">
+            <field name="recipe_id" ref="fnb_recipe_caramel_macchiato"/>
+            <field name="product_id" ref="fnb_pkg_pet_cup"/>
+            <field name="quantity">1.0</field>
+            <field name="unit_cost">850.0</field>
+        </record>
+
+        <record id="fnb_pkg_macchiato_lid" model="fnb.recipe.packaging.line">
+            <field name="recipe_id" ref="fnb_recipe_caramel_macchiato"/>
+            <field name="product_id" ref="fnb_pkg_domed_lid"/>
+            <field name="quantity">1.0</field>
+            <field name="unit_cost">350.0</field>
+        </record>
+
+        <record id="fnb_pkg_macchiato_straw" model="fnb.recipe.packaging.line">
+            <field name="recipe_id" ref="fnb_recipe_caramel_macchiato"/>
+            <field name="product_id" ref="fnb_pkg_paper_straw"/>
+            <field name="quantity">1.0</field>
+            <field name="unit_cost">150.0</field>
+        </record>
+
+        <!-- Recipe 2: Gourmet Wagyu Brioche Burger -->
+        <record id="fnb_recipe_wagyu_burger" model="fnb.recipe">
+            <field name="name">Gourmet Wagyu Brioche Burger</field>
+            <field name="code">RCP-KIT-001</field>
+            <field name="category_id" ref="fnb_cat_kitchen"/>
+            <field name="portion_yield">1.0</field>
+            <field name="overhead_percent">8.0</field>
+            <field name="selling_price">68000.0</field>
+            <field name="notes">&lt;p&gt;1. Toast brioche bun with clarified butter.&lt;/p&gt;&lt;p&gt;2. Sear wagyu patty medium-well (3 mins per side).&lt;/p&gt;&lt;p&gt;3. Melt cheddar slice over patty.&lt;/p&gt;&lt;p&gt;4. Assemble in kraft burger box.&lt;/p&gt;</field>
+        </record>
+
+        <record id="fnb_line_burger_patty" model="fnb.recipe.line">
+            <field name="recipe_id" ref="fnb_recipe_wagyu_burger"/>
+            <field name="product_id" ref="fnb_ing_wagyu_patty"/>
+            <field name="quantity">1.0</field>
+            <field name="unit_cost">32000.0</field>
+            <field name="waste_percent">0.0</field>
+        </record>
+
+        <record id="fnb_line_burger_bun" model="fnb.recipe.line">
+            <field name="recipe_id" ref="fnb_recipe_wagyu_burger"/>
+            <field name="product_id" ref="fnb_ing_brioche_bun"/>
+            <field name="quantity">1.0</field>
+            <field name="unit_cost">6500.0</field>
+            <field name="waste_percent">0.0</field>
+        </record>
+
+        <record id="fnb_line_burger_cheese" model="fnb.recipe.line">
+            <field name="recipe_id" ref="fnb_recipe_wagyu_burger"/>
+            <field name="product_id" ref="fnb_ing_cheddar_slice"/>
+            <field name="quantity">1.0</field>
+            <field name="unit_cost">2800.0</field>
+            <field name="waste_percent">0.0</field>
+        </record>
+
+        <record id="fnb_pkg_burger_box_line" model="fnb.recipe.packaging.line">
+            <field name="recipe_id" ref="fnb_recipe_wagyu_burger"/>
+            <field name="product_id" ref="fnb_pkg_burger_box"/>
+            <field name="quantity">1.0</field>
+            <field name="unit_cost">1600.0</field>
+        </record>
+    </data>
+</odoo>

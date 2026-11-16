@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_fnb_recipe_category_tree" model="ir.ui.view">
+        <field name="name">fnb.recipe.category.list</field>
+        <field name="model">fnb.recipe.category</field>
+        <field name="arch" type="xml">
+            <list string="Recipe Categories">
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+                <field name="target_food_cost_percent" string="Target Food Cost (%)"/>
+                <field name="recipe_count" string="Active Recipes"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_fnb_recipe_category_form" model="ir.ui.view">
+        <field name="name">fnb.recipe.category.form</field>
+        <field name="model">fnb.recipe.category</field>
+        <field name="arch" type="xml">
+            <form string="Recipe Category">
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" string="Category Name"/>
+                        <h1>
+                            <field name="name" placeholder="e.g. Signature Coffee, Pastry, Main Course"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="target_food_cost_percent"/>
+                            <field name="sequence"/>
+                        </group>
+                        <group>
+                            <field name="recipe_count"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Description">
+                            <field name="description" placeholder="Internal notes or guidelines for this category..."/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_fnb_recipe_category" model="ir.actions.act_window">
+        <field name="name">Recipe Categories</field>
+        <field name="res_model">fnb.recipe.category</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first F&amp;B Recipe Category
+            </p>
+        </field>
+    </record>
+</odoo>

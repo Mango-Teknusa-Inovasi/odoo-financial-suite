@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Root App Launcher Menu -->
+    <menuitem id="menu_fnb_recipe_root"
+              name="F&amp;B Recipe HPP"
+              web_icon="fnb_hpp_calculator,static/description/icon.png"
+              sequence="35"/>
+
+    <!-- Operational Submenus -->
+    <menuitem id="menu_fnb_recipe_operations"
+              name="Culinary Costing"
+              parent="menu_fnb_recipe_root"
+              sequence="10"/>
+
+    <menuitem id="menu_fnb_recipe_main"
+              name="Recipe Costing Cards"
+              parent="menu_fnb_recipe_operations"
+              action="action_fnb_recipe"
+              sequence="10"/>
+
+    <!-- Configuration Submenus -->
+    <menuitem id="menu_fnb_recipe_config"
+              name="Configuration"
+              parent="menu_fnb_recipe_root"
+              sequence="50"/>
+
+    <menuitem id="menu_fnb_recipe_category"
+              name="Recipe Categories"
+              parent="menu_fnb_recipe_config"
+              action="action_fnb_recipe_category"
+              sequence="10"/>
+</odoo>
