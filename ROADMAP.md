@@ -172,17 +172,20 @@ flowchart TD
 
 ---
 
-### 📌 Phase 9: Lightweight Project Job Costing (`account_project_job_costing`) — 🚀 UPCOMING TARGET
+### 📌 Phase 9: Lightweight Project Job Costing (`account_project_job_costing`) — ✅ COMPLETED
 > **Goal:** Provide agile profit & loss tracking per project without requiring Odoo's complex Analytic Accounting structure.
-* [ ] **Tagging Architecture:** Lightweight project tag dropdown on sales invoices, vendor bills, and operational expenses.
-* [ ] **Dual-Metric Realtime Dashboard:**
-  * **Accrual Profit:** Actual revenue minus direct COGS and project expenses.
-  * **Cash Position:** Visual alert separating uncollected customer receivables from unpaid vendor bills.
-* [ ] **Project Lifecycle:** Track status (`Draft`, `In Progress`, `Completed`) with closure audit checks.
+* [x] **Tagging Architecture:** Lightweight project tag on sales invoices, vendor bills, and line-level cost classification (`material`, `labor`, `overhead`).
+* [x] **Dual-Metric Realtime Dashboard:**
+  * **Accrual Profit:** Actual invoiced revenue minus direct COGS and project expenses.
+  * **Cash Position:** Visual cashflow separating real customer cash received from real vendor cash paid, with uncollected AR and unpaid AP.
+* [x] **Budget Plafon & Burn Rate:** Multi-category budget tracking with automated variance calculation and traffic-light health gauges (🟢 Sehat, 🟡 Perhatian, 🔴 Over Budget).
+* [x] **Indonesian WHT Sensitivity:** PPh 23 (2%) and PPh Final Konstruksi (PP 9/2021) calculator estimating net cash received after tax.
+* [x] **Outputs & Governance:** Executive QWeb PDF Project Cost Sheet, Excel (.xlsx) transaction export, and smart closure audit wizard.
+* [x] **Live Testing:** 6 unit tests passing 100% and verified live in Docker container `odoo18_web`.
 
 ---
 
-### 📌 Phase 10: Visual POS Thermal Receipt Designer (`pos_thermal_receipt_designer`) — 📋 PLANNED
+### 📌 Phase 10: Visual POS Thermal Receipt Designer (`pos_thermal_receipt_designer`) — 🚀 UPCOMING TARGET
 > **Goal:** Provide a no-code visual designer for POS receipt printing on Bluetooth thermal printers.
 * [ ] **Dual Width Presets:** One-click layout switching between **58 mm** (portable belt printers) and **80 mm** (desktop counter printers).
 * [ ] **Live Monochrome Preview:** Real-time paper preview while typing headers, footers, return policies, or social media handles.
@@ -213,11 +216,11 @@ flowchart TD
 | **3** | `fnb_hpp_calculator` | 1-2 Days | Medium | Recipe card costing, live margin simulation | **✅ Completed** |
 | **4** | `account_stamp_signature` | 1 Day | Low | QWeb PDF stamp overlay & Peruri e-Meterai gateway | **✅ Completed** |
 | **5** | `financial_health_kpi` | 1-2 Days | Medium | Interactive executive ratio widget & status badges | **✅ Completed** |
-| **6** | `account_qris_qbiz` | 1-2 Days | Medium | Dynamic QRIS (QBiz engine), auto-reconciliation webhook | **🚀 Ready to Build** |
-| **7** | `account_opening_balance_wizard` | 1-2 Days | Low-Med | 1-page onboarding wizard, auto-balance to equity | **📋 Planned** |
-| **8** | `account_whatsapp_notifier` | 1 Day | Low | 1-click WhatsApp document dispatch & PDF link | **📋 Planned** |
-| **9** | `account_project_job_costing` | 1-2 Days | Medium | Tagging job costing, dual-metric cashflow dashboard | **📋 Planned** |
-| **10** | `pos_thermal_receipt_designer` | 1-2 Days | Low-Med | Visual 58mm/80mm thermal receipt designer & live preview | **📋 Planned** |
+| **6** | `account_qris_qbiz` | 1-2 Days | Medium | Dynamic QRIS (QBiz engine), auto-reconciliation webhook | **✅ Completed** |
+| **7** | `account_opening_balance_wizard` | 1-2 Days | Low-Med | 1-page onboarding wizard, auto-balance to equity | **✅ Completed** |
+| **8** | `account_whatsapp_notifier` | 1 Day | Low | 1-click WhatsApp document dispatch & GOWA bridge | **✅ Completed** |
+| **9** | `account_project_job_costing` | 1-2 Days | Medium | Tagging job costing, dual-metric cashflow dashboard | **✅ Completed** |
+| **10** | `pos_thermal_receipt_designer` | 1-2 Days | Low-Med | Visual 58mm/80mm thermal receipt designer & live preview | **🚀 Upcoming Target** |
 | **11** | `l10n_id_bi_currency_rate` | 1 Day | Low | Daily Bank Indonesia JISDOR official rate auto-sync | **📋 Planned** |
 | **12** | `account_simple_budgeting` | 1 Day | Low-Med | Monthly revenue target & expense progress gauges | **📋 Planned** |
 
