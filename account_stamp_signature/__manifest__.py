@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'Stamp & e-Meterai',
-    'version': '18.0.1.0.0',
+    'version': '19.0.1.0.0',
     'category': 'Accounting/Localizations',
     'summary': 'Dual-engine official company stamp, authorized signature overlay & Peruri e-Meterai gateway for Odoo invoices',
     'description': """

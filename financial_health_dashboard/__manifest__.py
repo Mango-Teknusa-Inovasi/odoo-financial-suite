@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'Financial Health KPI',
-    'version': '18.0.1.0.0',
+    'version': '19.0.1.0.0',
     'category': 'Accounting/Reporting',
     'summary': 'Executive financial ratio indicators (Liquidity, Solvency, Margins) with visual traffic-light status cards',
     'description': """

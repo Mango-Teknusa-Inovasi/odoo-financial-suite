@@ -1,6 +1,6 @@
 {
     'name': 'Indonesian Tax Coretax',
-    'version': '18.0.1.0.0',
+    'version': '19.0.1.0.0',
     'category': 'Accounting/Localizations',
     'summary': 'Indonesian DJP Coretax & e-Faktur Engine: PPN 12%, NSFP Allocator, Withholding Tax (PPh 21/22/23/4(2)/Final UMKM PP 20/2026), 16-Digit NPWP/NIK & Coretax CSV',
     'description': """

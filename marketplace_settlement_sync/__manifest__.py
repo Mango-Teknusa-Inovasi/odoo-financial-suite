@@ -1,6 +1,6 @@
 {
     'name': 'Marketplace Settlement',
-    'version': '18.0.1.0.0',
+    'version': '19.0.1.0.0',
     'category': 'Accounting/Localizations',
     'summary': 'Automated settlement ingestion and journal generation for Shopee, Tokopedia, TikTok Shop & Indonesian marketplaces',
     'description': """
