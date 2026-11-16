@@ -65,6 +65,7 @@ flowchart TD
 7. **`account_opening_balance_wizard`**: Depends on `base`, `account`, `stock`, `mail`. Single-window onboarding wizard, multi-sheet Excel engine, and `account.simple.asset` (PPh 11 register).
 8. **`account_whatsapp_notifier`**: Depends on `base`, `account`, `mail`. Multi-engine dispatcher (GOWA self-hosted, Meta Cloud API, wa.me fallback), template engine, and interactive composer.
 9. **`account_project_job_costing`**: Depends on `base`, `account`, `mail`. Agile project cost sheet, dual-metric P&L (Accrual vs Real Cashflow), budget variance, and Indonesian WHT sensitivity.
+10. **`pos_thermal_receipt_designer`**: Depends on `base`, `account`, `mail`. Visual 58mm & 80mm thermal receipt designer, pure ESC/POS byte generator, 1-bit monochrome dithering, and dynamic QRIS.
 
 ---
 

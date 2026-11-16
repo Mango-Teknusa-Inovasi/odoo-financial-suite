@@ -107,6 +107,11 @@ Each module in the MangoTek Financial Suite possesses a distinct, cohesive 50x50
 * **Palette:** Royal Sky Azure (`#0284C7`), Midnight Slate (`#0F172A`), Emerald Mint (`#1AD3BB`), Tangerine (`#F86126`).
 * **Source:** `account_project_job_costing/static/description/icon.png`
 
+### 10. `pos_thermal_receipt_designer` (POS Thermal Receipt)
+* **Concept:** Continuous thermal receipt paper roll featuring zigzag tear edges, monospace line grid, monochrome barcode/QRIS, and printer feed roll.
+* **Palette:** Sunflower Amber (`#F59E0B`), Midnight Slate (`#0F172A`), Pure Paper White (`#FFFFF8`), Emerald Mint (`#1AD3BB`).
+* **Source:** `pos_thermal_receipt_designer/static/description/icon.png`
+
 ---
 
 ## 5. Typography Standards

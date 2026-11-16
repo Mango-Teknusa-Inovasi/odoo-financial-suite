@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Report Actions for Invoices -->
+    <record id="action_report_thermal_58mm" model="ir.actions.report">
+        <field name="name">Struk Kasir Thermal (58 mm)</field>
+        <field name="model">account.move</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">pos_thermal_receipt_designer.report_thermal_invoice_document</field>
+        <field name="report_file">pos_thermal_receipt_designer.report_thermal_invoice_document</field>
+        <field name="paperformat_id" ref="paperformat_thermal_58mm"/>
+        <field name="print_report_name">'Receipt_58mm_' + (object.name or '').replace('/', '_')</field>
+        <field name="binding_model_id" ref="account.model_account_move"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <record id="action_report_thermal_80mm" model="ir.actions.report">
+        <field name="name">Struk Kasir Thermal (80 mm)</field>
+        <field name="model">account.move</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">pos_thermal_receipt_designer.report_thermal_invoice_document</field>
+        <field name="report_file">pos_thermal_receipt_designer.report_thermal_invoice_document</field>
+        <field name="paperformat_id" ref="paperformat_thermal_80mm"/>
+        <field name="print_report_name">'Receipt_80mm_' + (object.name or '').replace('/', '_')</field>
+        <field name="binding_model_id" ref="account.model_account_move"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <!-- Report Actions for Sample Preview -->
+    <record id="action_report_sample_thermal_58mm" model="ir.actions.report">
+        <field name="name">Cetak Struk Sampel (58 mm)</field>
+        <field name="model">pos.thermal.template</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">pos_thermal_receipt_designer.report_thermal_sample_document</field>
+        <field name="report_file">pos_thermal_receipt_designer.report_thermal_sample_document</field>
+        <field name="paperformat_id" ref="paperformat_thermal_58mm"/>
+    </record>
+
+    <record id="action_report_sample_thermal_80mm" model="ir.actions.report">
+        <field name="name">Cetak Struk Sampel (80 mm)</field>
+        <field name="model">pos.thermal.template</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">pos_thermal_receipt_designer.report_thermal_sample_document</field>
+        <field name="report_file">pos_thermal_receipt_designer.report_thermal_sample_document</field>
+        <field name="paperformat_id" ref="paperformat_thermal_80mm"/>
+    </record>
+
+    <!-- QWeb Document Template for Live Invoice -->
+    <template id="report_thermal_invoice_document">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-set="tmpl" t-value="doc.thermal_template_id or env['pos.thermal.template'].search([('company_id', '=', doc.company_id.id), ('is_default', '=', True)], limit=1) or env['pos.thermal.template'].search([('company_id', '=', doc.company_id.id)], limit=1)"/>
+                <div class="article" style="font-family: 'Courier New', Courier, monospace; font-size: 11px; color: #000; line-height: 1.35; padding: 2px;">
+                    <!-- Header -->
+                    <div style="text-align: center; margin-bottom: 6px;">
+                        <t t-if="tmpl and tmpl.show_logo and (tmpl.logo_dithered or tmpl.logo_image)">
+                            <img t-att-src="'data:image/png;base64,' + (tmpl.logo_dithered or tmpl.logo_image).decode()" style="max-width: 120px; max-height: 50px; margin-bottom: 4px;"/>
+                        </t>
+                        <div style="font-weight: bold; font-size: 13px; text-transform: uppercase;">
+                            <t t-esc="(tmpl and tmpl.header_title) or doc.company_id.name"/>
+                        </div>
+                        <t t-if="tmpl and tmpl.store_address">
+                            <div style="font-size: 10px;"><t t-esc="tmpl.store_address"/></div>
+                        </t>
+                        <t t-if="tmpl and tmpl.store_phone">
+                            <div style="font-size: 10px;">Telp: <t t-esc="tmpl.store_phone"/></div>
+                        </t>
+                        <t t-if="tmpl and tmpl.store_npwp">
+                            <div style="font-size: 9px;">NPWP: <t t-esc="tmpl.store_npwp"/></div>
+                        </t>
+                    </div>
+
+                    <div style="border-top: 1px dashed #000; margin: 4px 0;"></div>
+
+                    <!-- Metadata -->
+                    <div style="font-size: 10px; margin-bottom: 4px;">
+                        <div style="display: flex; justify-content: space-between;">
+                            <span>No: <t t-esc="doc.name or '-'"/></span>
+                            <span><t t-esc="doc.invoice_date or doc.date"/></span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between;">
+                            <span>Kasir: <t t-esc="doc.user_id.name or 'Kasir'"/></span>
+                            <span><t t-esc="doc.partner_id.name or 'Umum'"/></span>
+                        </div>
+                    </div>
+
+                    <div style="border-top: 1px solid #000; margin: 4px 0;"></div>
+
+                    <!-- Order Lines -->
+                    <div style="margin-bottom: 6px;">
+                        <t t-foreach="doc.invoice_line_ids" t-as="line">
+                            <t t-if="not line.display_type">
+                                <t t-if="not tmpl or tmpl.line_style == 'adaptive_dual'">
+                                    <div style="margin-bottom: 3px;">
+                                        <div><t t-esc="line.name"/></div>
+                                        <div style="display: flex; justify-content: space-between;">
+                                            <span>&nbsp;&nbsp;<t t-esc="line.quantity"/> x <t t-esc="doc.currency_id.symbol"/> <t t-esc="'{:,.0f}'.format(line.price_unit)"/></span>
+                                            <span><t t-esc="doc.currency_id.symbol"/> <t t-esc="'{:,.0f}'.format(line.price_subtotal)"/></span>
+                                        </div>
+                                    </div>
+                                </t>
+                                <t t-else="">
+                                    <div style="display: flex; justify-content: space-between; margin-bottom: 3px;">
+                                        <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 65%;">
+                                            <t t-esc="line.quantity"/>x <t t-esc="line.product_id.name or line.name"/>
+                                        </span>
+                                        <span><t t-esc="doc.currency_id.symbol"/> <t t-esc="'{:,.0f}'.format(line.price_subtotal)"/></span>
+                                    </div>
+                                </t>
+                            </t>
+                        </t>
+                    </div>
+
+                    <div style="border-top: 1px dashed #000; margin: 4px 0;"></div>
+
+                    <!-- Totals -->
+                    <div style="font-size: 11px;">
+                        <div style="display: flex; justify-content: space-between;">
+                            <span>Subtotal:</span>
+                            <span><t t-esc="doc.currency_id.symbol"/> <t t-esc="'{:,.0f}'.format(doc.amount_untaxed)"/></span>
+                        </div>
+                        <t t-if="not tmpl or tmpl.show_tax_detail">
+                            <div style="display: flex; justify-content: space-between;">
+                                <span>Pajak (PPN):</span>
+                                <span><t t-esc="doc.currency_id.symbol"/> <t t-esc="'{:,.0f}'.format(doc.amount_tax)"/></span>
+                            </div>
+                        </t>
+                        <div style="display: flex; justify-content: space-between; font-weight: bold; font-size: 12px; margin-top: 2px;">
+                            <span>TOTAL:</span>
+                            <span><t t-esc="doc.currency_id.symbol"/> <t t-esc="'{:,.0f}'.format(doc.amount_total)"/></span>
+                        </div>
+                    </div>
+
+                    <!-- Dynamic QRIS Block if enabled -->
+                    <t t-if="tmpl and tmpl.show_qris and hasattr(doc, 'qris_image') and doc.qris_image">
+                        <div style="text-align: center; margin: 8px 0;">
+                            <img t-att-src="'data:image/png;base64,' + doc.qris_image.decode()" style="width: 110px; height: 110px;"/>
+                            <div style="font-size: 9px; margin-top: 2px;">SCAN QRIS UNTUK BAYAR</div>
+                        </div>
+                    </t>
+
+                    <div style="border-top: 1px dashed #000; margin: 6px 0;"></div>
+
+                    <!-- Footer -->
+                    <div style="text-align: center; font-size: 10px;">
+                        <t t-if="tmpl and tmpl.footer_message">
+                            <div style="white-space: pre-line; margin-bottom: 3px;"><t t-esc="tmpl.footer_message"/></div>
+                        </t>
+                        <t t-if="tmpl and tmpl.wifi_ssid">
+                            <div>WiFi: <strong><t t-esc="tmpl.wifi_ssid"/></strong> (<t t-esc="tmpl.wifi_password or '-'"/>)</div>
+                        </t>
+                        <t t-if="tmpl and (tmpl.instagram_handle or tmpl.tiktok_handle)">
+                            <div>
+                                <t t-if="tmpl.instagram_handle">IG: <t t-esc="tmpl.instagram_handle"/></t>
+                                <t t-if="tmpl.tiktok_handle"> · TikTok: <t t-esc="tmpl.tiktok_handle"/></t>
+                            </div>
+                        </t>
+                        <t t-if="tmpl and tmpl.return_policy">
+                            <div style="font-size: 8px; margin-top: 4px; color: #444;"><t t-esc="tmpl.return_policy"/></div>
+                        </t>
+                    </div>
+                </div>
+            </t>
+        </t>
+    </template>
+
+    <!-- QWeb Document Template for Sample Print -->
+    <template id="report_thermal_sample_document">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <div class="article" style="font-family: 'Courier New', Courier, monospace; font-size: 11px; color: #000; line-height: 1.35; padding: 2px;">
+                    <div style="text-align: center; margin-bottom: 6px;">
+                        <div style="font-weight: bold; font-size: 13px; text-transform: uppercase;">
+                            <t t-esc="doc.header_title or 'NAMA TOKO'"/>
+                        </div>
+                        <div style="font-size: 10px;"><t t-esc="doc.store_address or ''"/></div>
+                        <div style="font-size: 10px;">Telp: <t t-esc="doc.store_phone or '-'"/></div>
+                    </div>
+                    <div style="border-top: 1px dashed #000; margin: 4px 0;"></div>
+                    <div style="text-align: center; font-weight: bold; margin: 4px 0;">*** STRUK UJI COBA PRINTER ***</div>
+                    <div style="display: flex; justify-content: space-between; font-size: 10px;">
+                        <span>Kertas: <t t-esc="doc.paper_width"/></span>
+                        <span>Kolom: <t t-esc="doc.char_per_line"/> char</span>
+                    </div>
+                    <div style="border-top: 1px dashed #000; margin: 4px 0;"></div>
+                    <div style="text-align: center; font-size: 10px;">
+                        <t t-esc="doc.footer_message or 'Terima kasih!'"/>
+                    </div>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>

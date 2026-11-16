@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- List View -->
+    <record id="view_pos_thermal_template_list" model="ir.ui.view">
+        <field name="name">pos.thermal.template.list</field>
+        <field name="model">pos.thermal.template</field>
+        <field name="arch" type="xml">
+            <list decoration-success="is_default">
+                <field name="name"/>
+                <field name="code"/>
+                <field name="paper_width"/>
+                <field name="char_per_line"/>
+                <field name="header_title"/>
+                <field name="is_default" widget="boolean_toggle"/>
+                <field name="company_id" groups="base.group_multi_company"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_pos_thermal_template_form" model="ir.ui.view">
+        <field name="name">pos.thermal.template.form</field>
+        <field name="model">pos.thermal.template</field>
+        <field name="arch" type="xml">
+            <form string="Perancang Struk Kasir Thermal">
+                <header>
+                    <button name="action_print_sample" string="Cetak Struk Sampel" type="object" class="btn-primary" icon="fa-print"/>
+                    <button name="action_set_as_default" string="Tetapkan Sebagai Default" type="object" class="btn-secondary" invisible="is_default"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <span class="text-muted font-weight-bold"><field name="code"/></span>
+                        <h1>
+                            <field name="name" placeholder="Nama Template (misal: Struk Kasir 58mm Portable)..."/>
+                        </h1>
+                    </div>
+
+                    <div class="row">
+                        <!-- Left Pane: Configuration Controls -->
+                        <div class="col-lg-7">
+                            <group string="Format Kertas &amp; Printer">
+                                <group>
+                                    <field name="paper_width"/>
+                                    <field name="font_family"/>
+                                </group>
+                                <group>
+                                    <field name="char_per_line"/>
+                                    <field name="is_default"/>
+                                    <field name="company_id" groups="base.group_multi_company"/>
+                                </group>
+                            </group>
+
+                            <notebook>
+                                <!-- TAB 1: Header & Toko -->
+                                <page name="tab_header" string="Header &amp; Toko">
+                                    <group>
+                                        <field name="show_logo"/>
+                                        <field name="logo_image" widget="image" options="{'size': [120, 120]}" invisible="not show_logo"/>
+                                        <field name="header_title"/>
+                                        <field name="store_address"/>
+                                        <field name="store_phone"/>
+                                        <field name="store_npwp"/>
+                                    </group>
+                                    <group string="Metadata Kasir">
+                                        <group>
+                                            <field name="show_order_number"/>
+                                            <field name="show_timestamp"/>
+                                        </group>
+                                        <group>
+                                            <field name="show_cashier_name"/>
+                                            <field name="show_customer_name"/>
+                                        </group>
+                                    </group>
+                                </page>
+
+                                <!-- TAB 2: Format Produk -->
+                                <page name="tab_products" string="Format Produk">
+                                    <group string="Penataan Baris Transaksi">
+                                        <field name="line_style"/>
+                                        <field name="show_discount"/>
+                                        <field name="show_tax_detail"/>
+                                    </group>
+                                    <div class="alert alert-info mt-2" role="status">
+                                        <strong>💡 Rekomendasi Format:</strong>
+                                        Gunakan <em>Mode 2 Baris</em> untuk printer 58 mm agar nama produk yang panjang tidak terpotong atau tumpang tindih dengan kolom harga.
+                                    </div>
+                                </page>
+
+                                <!-- TAB 3: Footer & Socials -->
+                                <page name="tab_footer" string="Footer &amp; Media Sosial">
+                                    <group string="Pesan Penutup &amp; Fasilitas Toko">
+                                        <field name="footer_message" placeholder="Terima kasih atas kunjungan Anda..."/>
+                                        <group string="Akses WiFi">
+                                            <field name="wifi_ssid" placeholder="Nama WiFi Toko"/>
+                                            <field name="wifi_password" placeholder="Password"/>
+                                        </group>
+                                        <group string="Akun Media Sosial">
+                                            <field name="instagram_handle" placeholder="@tokosukses"/>
+                                            <field name="tiktok_handle" placeholder="@tokosukses"/>
+                                        </group>
+                                    </group>
+                                    <group string="Kebijakan Toko &amp; Printer">
+                                        <field name="return_policy" placeholder="Syarat penukaran barang..."/>
+                                        <field name="cut_paper"/>
+                                    </group>
+                                </page>
+
+                                <!-- TAB 4: QRIS & Barcode -->
+                                <page name="tab_qris" string="QRIS &amp; Promo">
+                                    <group string="Integrasi Pembayaran QRIS">
+                                        <field name="show_qris"/>
+                                        <field name="qris_image_source" invisible="not show_qris"/>
+                                        <field name="custom_qr_payload" invisible="not show_qris or qris_image_source != 'custom_qr'"/>
+                                    </group>
+                                    <p class="text-muted small">
+                                        * Jika opsi <em>Otomatis dari Modul QBiz Dynamic QRIS</em> dipilih, QRIS yang tertera di struk akan otomatis disesuaikan dengan nominal unik dan CRC16 faktur terkait.
+                                    </p>
+                                </page>
+                            </notebook>
+                        </div>
+
+                        <!-- Right Pane: WYSIWYG Real-Time Monochrome Simulation -->
+                        <div class="col-lg-5">
+                            <div class="card p-3 shadow-sm bg-light" style="position: sticky; top: 15px;">
+                                <div class="d-flex justify-content-between align-items-center mb-2 pb-2 border-bottom">
+                                    <span class="font-weight-bold" style="font-size: 13px;">🖨️ SIMULASI KERTAS STRUK THERMAL</span>
+                                    <button name="action_print_sample" type="object" class="btn btn-sm btn-outline-primary" icon="fa-print" title="Cetak Sampel"/>
+                                </div>
+                                <div class="d-flex justify-content-center p-2" style="background: #E2E8F0; border-radius: 6px; min-height: 400px; overflow-y: auto;">
+                                    <field name="preview_html" nolabel="1"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="view_pos_thermal_template_search" model="ir.ui.view">
+        <field name="name">pos.thermal.template.search</field>
+        <field name="model">pos.thermal.template</field>
+        <field name="arch" type="xml">
+            <search string="Cari Template Struk">
+                <field name="name"/>
+                <field name="code"/>
+                <field name="header_title"/>
+                <filter string="Default Perusahaan" name="filter_default" domain="[('is_default', '=', True)]"/>
+                <separator/>
+                <filter string="Format 58 mm" name="filter_58mm" domain="[('paper_width', '=', '58mm')]"/>
+                <filter string="Format 80 mm" name="filter_80mm" domain="[('paper_width', '=', '80mm')]"/>
+                <group expand="0" string="Kelompokkan Berdasarkan">
+                    <filter string="Lebar Kertas" name="group_by_width" context="{'group_by': 'paper_width'}"/>
+                    <filter string="Perusahaan" name="group_by_company" context="{'group_by': 'company_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_pos_thermal_template" model="ir.actions.act_window">
+        <field name="name">Template Struk Kasir Thermal</field>
+        <field name="res_model">pos.thermal.template</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_pos_thermal_template_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Buat template struk kasir thermal baru untuk printer Bluetooth 58mm atau 80mm.
+            </p>
+        </field>
+    </record>
+</odoo>

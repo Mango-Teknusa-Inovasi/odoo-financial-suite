@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- 58mm Default Template -->
+        <record id="template_thermal_58mm_default" model="pos.thermal.template">
+            <field name="name">Struk Kasir 58 mm (Default)</field>
+            <field name="code">RCP/58MM/DEF</field>
+            <field name="paper_width">58mm</field>
+            <field name="font_family">monospace</field>
+            <field name="header_title">MANGO STORE INDONESIA</field>
+            <field name="store_address">Jl. Senopati No. 45, Kebayoran Baru, Jakarta Selatan</field>
+            <field name="store_phone">0812-3456-7890</field>
+            <field name="store_npwp">01.234.567.8-012.000</field>
+            <field name="line_style">adaptive_dual</field>
+            <field name="show_discount">True</field>
+            <field name="show_tax_detail">True</field>
+            <field name="show_qris">True</field>
+            <field name="qris_image_source">auto_qbiz</field>
+            <field name="footer_message">Terima kasih atas kunjungan Anda!
+Barang yang sudah dibeli tidak dapat ditukar.</field>
+            <field name="wifi_ssid">MangoGuest</field>
+            <field name="wifi_password">kopiindonesia</field>
+            <field name="instagram_handle">@mangostore.id</field>
+            <field name="cut_paper">True</field>
+            <field name="is_default">True</field>
+        </record>
+
+        <!-- 80mm Counter Desktop Template -->
+        <record id="template_thermal_80mm_desktop" model="pos.thermal.template">
+            <field name="name">Struk Kasir 80 mm Counter Desktop</field>
+            <field name="code">RCP/80MM/DESK</field>
+            <field name="paper_width">80mm</field>
+            <field name="font_family">monospace</field>
+            <field name="header_title">MANGO RESTO &amp; CAFE</field>
+            <field name="store_address">Grand Indonesia Mall Lt. 3, Jakarta Pusat</field>
+            <field name="store_phone">021-5001234</field>
+            <field name="store_npwp">01.987.654.3-014.000</field>
+            <field name="line_style">single_line</field>
+            <field name="show_discount">True</field>
+            <field name="show_tax_detail">True</field>
+            <field name="show_qris">True</field>
+            <field name="qris_image_source">auto_qbiz</field>
+            <field name="footer_message">Selamat menikmati hidangan kami!
+Kritik &amp; Saran: cs@mangotek.id</field>
+            <field name="wifi_ssid">MangoResto_VIP</field>
+            <field name="wifi_password">makanenak123</field>
+            <field name="instagram_handle">@mangoresto.id</field>
+            <field name="cut_paper">True</field>
+            <field name="is_default">False</field>
+        </record>
+    </data>
+</odoo>
