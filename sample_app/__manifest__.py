@@ -1,6 +1,6 @@
 {
     'name': 'Sample App',
-    'version': '20.0.1.0.0',
+    'version': '1.0.0',
     'summary': 'Starter template modul Odoo 20 untuk testing & development',
     'description': """
 Sample App Module

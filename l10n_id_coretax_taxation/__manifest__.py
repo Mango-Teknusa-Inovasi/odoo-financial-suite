@@ -1,6 +1,6 @@
 {
     'name': 'Indonesian Taxation & Coretax Compliance',
-    'version': '20.0.1.0.0',
+    'version': '1.0.0',
     'category': 'Accounting/Localizations',
     'summary': 'Indonesian Withholding Tax (PPh 21/22/23/4(2)/Final UMKM PP 20/2026), 16-Digit NPWP, NITKU & Coretax Export',
     'description': """
