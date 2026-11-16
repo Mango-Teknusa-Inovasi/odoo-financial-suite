@@ -66,6 +66,7 @@ flowchart TD
 8. **`account_whatsapp_notifier`**: Depends on `base`, `account`, `mail`. Multi-engine dispatcher (GOWA self-hosted, Meta Cloud API, wa.me fallback), template engine, and interactive composer.
 9. **`account_project_job_costing`**: Depends on `base`, `account`, `mail`. Agile project cost sheet, dual-metric P&L (Accrual vs Real Cashflow), budget variance, and Indonesian WHT sensitivity.
 10. **`pos_thermal_receipt_designer`**: Depends on `base`, `account`, `mail`. Visual 58mm & 80mm thermal receipt designer, pure ESC/POS byte generator, 1-bit monochrome dithering, and dynamic QRIS.
+11. **`l10n_id_bi_currency_rate`**: Depends on `base`, `account`. Official Bank Indonesia JISDOR and Kurs Transaksi BI currency rate auto-sync with multi-provider fallback.
 
 ---
 

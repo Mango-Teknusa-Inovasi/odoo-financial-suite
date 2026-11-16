@@ -107,6 +107,14 @@ MODULE_SPECIFICATIONS = [
         "accent": (245, 158, 11), # Sunflower Amber
         "highlight": "🖨️ ESC/POS & 58/80mm Thermal",
     },
+    {
+        "dir": "l10n_id_bi_currency_rate",
+        "icon": "l10n_id_bi_currency_rate_512.png",
+        "title": "BI Currency Rate Sync",
+        "subtitle": "Official Bank Indonesia JISDOR · Kurs Transaksi BI · KMK Tax Rates",
+        "accent": (16, 185, 129), # Emerald Green (#10B981)
+        "highlight": "🏛️ BI JISDOR & KMK Tax Rates",
+    },
 ]
 
 def get_font(font_name, size):
