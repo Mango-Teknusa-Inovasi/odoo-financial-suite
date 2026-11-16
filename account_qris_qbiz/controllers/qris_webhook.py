@@ -64,6 +64,19 @@ class QBizQRISWebhookController(http.Controller):
             _logger.warning("QBiz Webhook: No matching invoice found for order_id=%s, invoice_id=%s", order_id, invoice_id)
             return {"success": False, "message": "Invoice not found"}
 
+        # OWASP A01 & A07: Verify API key authentication if company has configured QBiz API Key
+        if move.company_id.qbiz_api_key:
+            auth_header = request.httprequest.headers.get('X-QBiz-Api-Key') or request.httprequest.headers.get('Authorization')
+            payload_token = data.get('api_key') or data.get('secret')
+            expected_key = move.company_id.qbiz_api_key
+
+            if auth_header and auth_header.startswith('Bearer '):
+                auth_header = auth_header[7:].strip()
+
+            if auth_header != expected_key and payload_token != expected_key:
+                _logger.warning("QBiz Webhook: Unauthorized payload rejected for invoice %s (invalid or missing secret)", move.name)
+                return {"success": False, "error": "Unauthorized: Invalid or missing API key"}
+
         if move.payment_state in ('paid', 'in_payment'):
             return {"success": True, "message": "Invoice already settled"}
 
