@@ -50,7 +50,7 @@
                         <page string="API Connection Settings" name="api_settings">
                             <group>
                                 <field name="api_url" placeholder="https://api.emeterai.peruri.co.id"/>
-                                <field name="client_id" placeholder="Your Client ID / Public Key"/>
+                                <field name="client_id" password="True" placeholder="Your Client ID / API Key"/>
                                 <field name="client_secret" password="True" placeholder="API Secret Key / Token"/>
                             </group>
                             <div class="alert alert-info mt-3" role="alert" invisible="provider_type != 'mock'">
