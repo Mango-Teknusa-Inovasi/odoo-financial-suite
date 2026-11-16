@@ -17,6 +17,7 @@ Eliminates manual bookkeeping of online marketplace orders and payouts:
     'license': 'LGPL-3',
     'depends': ['base', 'account', 'mail'],
     'data': [
+        'security/marketplace_security.xml',
         'security/ir.model.access.csv',
         'data/channel_data.xml',
         'views/marketplace_channel_views.xml',

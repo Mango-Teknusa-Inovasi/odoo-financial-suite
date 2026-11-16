@@ -7,6 +7,7 @@ class AccountMove(models.Model):
     l10n_id_bupot_number = fields.Char(
         string='No. Bukti Potong (Bupot)',
         copy=False,
+        index=True,
         help='Official withholding tax slip number issued by DJP / counterparty.'
     )
     l10n_id_bupot_date = fields.Date(

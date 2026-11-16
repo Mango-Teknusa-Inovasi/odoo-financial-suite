@@ -12,8 +12,8 @@ Fitur:
 - Hak akses Security (ir.model.access.csv)
     """,
     'category': 'Extra Tools',
-    'author': 'Your Name / Team',
-    'website': 'https://www.odoo.com',
+    'author': 'Mango Teknusa Inovasi',
+    'website': 'https://github.com/Mango-Teknusa-Inovasi/odoo-financial-suite',
     'license': 'LGPL-3',
     'depends': ['base'],
     'data': [

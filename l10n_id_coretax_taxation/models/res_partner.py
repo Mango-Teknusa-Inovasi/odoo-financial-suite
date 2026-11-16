@@ -9,11 +9,13 @@ class ResPartner(models.Model):
     l10n_id_npwp16 = fields.Char(
         string='NPWP 16 Digits',
         size=16,
+        index=True,
         help='16-digit format Indonesian Tax Identification Number (NIK / NPWP 16).'
     )
     l10n_id_nitku = fields.Char(
         string='NITKU (22 Digits)',
         size=22,
+        index=True,
         help='Nomor Induk Tempat Kegiatan Usaha (22 Digits) for branch or workplace identification.'
     )
     l10n_id_taxpayer_type = fields.Selection([
@@ -50,11 +52,13 @@ class ResPartner(models.Model):
     @api.constrains('l10n_id_npwp16')
     def _check_l10n_id_npwp16(self):
         for partner in self:
-            if partner.l10n_id_npwp16 and len(partner.l10n_id_npwp16) != 16:
-                raise ValidationError(_("NPWP 16 must consist of exactly 16 numeric digits."))
+            if partner.l10n_id_npwp16:
+                if len(partner.l10n_id_npwp16) != 16 or not partner.l10n_id_npwp16.isdigit():
+                    raise ValidationError(_("NPWP 16 must consist of exactly 16 numeric digits."))
 
     @api.constrains('l10n_id_nitku')
     def _check_l10n_id_nitku(self):
         for partner in self:
-            if partner.l10n_id_nitku and len(partner.l10n_id_nitku) != 22:
-                raise ValidationError(_("NITKU must consist of exactly 22 numeric digits."))
+            if partner.l10n_id_nitku:
+                if len(partner.l10n_id_nitku) != 22 or not partner.l10n_id_nitku.isdigit():
+                    raise ValidationError(_("NITKU must consist of exactly 22 numeric digits."))
