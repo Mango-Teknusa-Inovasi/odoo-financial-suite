@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_invoice_document_inherit_qris_qbiz" inherit_id="account.report_invoice_document">
+        <xpath expr="//div[hasclass('page')]" position="inside">
+            <t t-if="o.qris_payload and o.qris_status == 'pending'">
+                <div class="row mt-4 pt-3 border-top" style="page-break-inside: avoid;">
+                    <div class="col-8">
+                        <h6 class="fw-bold mb-1" style="color: #088BF5;">Pembayaran Cepat via QRIS Dinamis</h6>
+                        <p class="small text-muted mb-1">
+                            Scan kode QR ini menggunakan aplikasi m-Banking (BCA, Mandiri, BRI, BNI) atau E-Wallet (GoPay, OVO, DANA, ShopeePay).
+                            Nominal pembayaran sebesar <strong>Rp <t t-esc="'{0:,.0f}'.format(o.qris_total_amount or o.amount_residual)"/></strong> sudah terisi otomatis tanpa perlu input manual.
+                        </p>
+                        <p class="small text-muted mb-0" t-if="o.qris_unique_code">
+                            <em>Termasuk kode unik anti-bentrok: +<t t-esc="o.qris_unique_code"/> untuk rekonsiliasi otomatis.</em>
+                        </p>
+                    </div>
+                    <div class="col-4 text-end">
+                        <div style="display: inline-block; padding: 6px; border: 1px solid #CBD5E1; border-radius: 8px; background: #FFFFFF;">
+                            <img t-if="o.qris_image" t-att-src="image_data_uri(o.qris_image)" style="width: 110px; height: 110px;"/>
+                            <div class="small fw-bold text-center mt-1" style="font-size: 9px; color: #64748B;">QRIS STANDAR ASPI</div>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </xpath>
+    </template>
+</odoo>

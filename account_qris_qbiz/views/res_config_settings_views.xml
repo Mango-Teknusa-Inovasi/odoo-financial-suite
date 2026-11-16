@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_view_form_qris_qbiz" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.qris.qbiz</field>
+        <field name="model">res.config.settings</field>
+        <field name="priority" eval="85"/>
+        <field name="inherit_id" ref="account.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//app[@name='account']" position="inside">
+                <block title="QBiz Dynamic QRIS Payments" id="qris_qbiz_settings_section">
+                    <setting id="qris_mode_setting" string="Operating Mode" help="Choose between standalone local generation or cloud-connected automated mutation matching.">
+                        <field name="qris_mode" widget="radio"/>
+                    </setting>
+
+                    <setting id="qris_settlement_journal_setting" string="Settlement Journal" help="Bank or cash journal where QRIS receipts are reconciled.">
+                        <field name="qris_default_journal_id"/>
+                    </setting>
+
+                    <!-- Standalone Mode Options -->
+                    <setting id="qris_static_payload_setting" string="Static QRIS String" help="Base static QRIS string from your Indonesian merchant provider (starts with 000201010211...)." invisible="qris_mode != 'standalone'">
+                        <field name="qris_static_payload" placeholder="00020101021138590014ID.CO.QRIS.WWW..."/>
+                        <div class="text-muted small mt-1">
+                            Tag 54 (amount) will be dynamically injected before Tag 58 and CRC16 recalculated locally with zero external network requests.
+                        </div>
+                    </setting>
+
+                    <!-- QBiz Middleware API Options -->
+                    <setting id="qbiz_api_credentials_setting" string="QBiz Server Connection" help="Connect to ardianryan/qbiz-qrisdinamis middleware for anti-collision unique codes and auto-reconciliation." invisible="qris_mode != 'qbiz_api'">
+                        <div class="content-group">
+                            <div class="row mt16">
+                                <label for="qbiz_base_url" string="Server URL" class="col-lg-3 o_light_label"/>
+                                <field name="qbiz_base_url" placeholder="http://localhost:8000"/>
+                            </div>
+                            <div class="row mt8">
+                                <label for="qbiz_api_key" string="API Key" class="col-lg-3 o_light_label"/>
+                                <field name="qbiz_api_key" password="True" placeholder="qbiz_api_key_live_..."/>
+                            </div>
+                            <div class="row mt8">
+                                <label for="qbiz_merchant_id" string="Merchant ID" class="col-lg-3 o_light_label"/>
+                                <field name="qbiz_merchant_id" placeholder="mrc_toko_1"/>
+                            </div>
+                            <div class="row mt8">
+                                <field name="qbiz_auto_reconcile"/>
+                                <label for="qbiz_auto_reconcile" string="Auto-reconcile invoices upon receiving payment webhook"/>
+                            </div>
+                        </div>
+                        <div class="alert alert-info small mt-3" role="alert">
+                            <strong>Inbound Webhook Endpoint:</strong> <code>/api/v1/webhook/qris</code><br/>
+                            Configure this destination inside your QBiz Developer Hub to trigger instant invoice reconciliation.
+                        </div>
+                    </setting>
+                </block>
+            </xpath>
+        </field>
+    </record>
+</odoo>

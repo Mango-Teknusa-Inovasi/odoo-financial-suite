@@ -17,6 +17,7 @@ MODULES = [
     "fnb_hpp_calculator",
     "account_stamp_signature",
     "financial_health_kpi",
+    "account_qris_qbiz",
 ]
 
 def validate_suite():

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Action for Invoices Waiting for QRIS Payment -->
+    <record id="action_invoice_qris_pending_view" model="ir.actions.act_window">
+        <field name="name">Pending QRIS Payments</field>
+        <field name="res_model">account.move</field>
+        <field name="view_mode">list,kanban,form</field>
+        <field name="domain">[('move_type', '=', 'out_invoice'), ('qris_status', '=', 'pending')]</field>
+        <field name="context">{'default_move_type': 'out_invoice'}</field>
+    </record>
+
+    <!-- Action for Settled QRIS Invoices -->
+    <record id="action_invoice_qris_settled_view" model="ir.actions.act_window">
+        <field name="name">Settled QRIS Invoices</field>
+        <field name="res_model">account.move</field>
+        <field name="view_mode">list,kanban,form</field>
+        <field name="domain">[('move_type', '=', 'out_invoice'), ('qris_status', '=', 'paid')]</field>
+        <field name="context">{'default_move_type': 'out_invoice'}</field>
+    </record>
+
+    <!-- 1. Root App Drawer Menu -->
+    <menuitem id="menu_qris_qbiz_root"
+              name="QBiz QRIS"
+              web_icon="account_qris_qbiz,static/description/icon.png"
+              sequence="38"/>
+
+    <!-- 2. Operational Submenus -->
+    <menuitem id="menu_qris_qbiz_operations"
+              name="QRIS Payments"
+              parent="menu_qris_qbiz_root"
+              sequence="10"/>
+
+    <menuitem id="menu_qris_qbiz_pending"
+              name="Waiting Payment"
+              parent="menu_qris_qbiz_operations"
+              action="action_invoice_qris_pending_view"
+              sequence="10"/>
+
+    <menuitem id="menu_qris_qbiz_settled"
+              name="Settled / Paid"
+              parent="menu_qris_qbiz_operations"
+              action="action_invoice_qris_settled_view"
+              sequence="20"/>
+
+    <!-- 3. Invoicing Hook into Standard Customers Menu -->
+    <menuitem id="menu_qris_invoices_hook"
+              name="QRIS Invoices"
+              parent="account.menu_finance_receivables"
+              action="action_invoice_qris_pending_view"
+              sequence="25"/>
+</odoo>
