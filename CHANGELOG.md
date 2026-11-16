@@ -15,7 +15,7 @@ The format follows standard semantic versioning practices (`MAJOR.MINOR.PATCH`).
 
 ---
 
-## [1.4.0] - 2026-11-17
+## [1.3.0] - 2026-11-17
 
 ### Added (Phase 9: Lightweight Project Job Costing)
 - **Core Module `account_project_job_costing`:** Agile project cost sheet and profit tracker providing dual-metric financial performance (Accrual P&L vs Real Cashflow) without requiring complex Odoo Analytic Distribution matrices.
@@ -29,14 +29,6 @@ The format follows standard semantic versioning practices (`MAJOR.MINOR.PATCH`).
 - **Executive Reporting & Outputs:**
   - Official printable **QWeb PDF Project Cost Sheet** with dual-metric comparison and dual sign-off blocks.
   - One-click **Excel (.xlsx)** transaction export generator with universal CSV UTF-8 BOM fallback.
-- **Quality & Apps Store Compliance:**
-  - `scripts/validate_apps_store.py`: 72/72 checks passed (Score 5.0 / 5.0 across all 9 modules).
-  - `tests/run_all_tests.py`: 47/47 tests passed (0 failures, 0 errors).
-  - Live Docker Verification: Installed, verified, and rendered QWeb PDF & Excel export in container `odoo18_web`.
-
----
-
-## [1.3.0] - 2026-11-17
 
 ### Added (Phase 8: WhatsApp Financial Notifier & Document Dispatcher)
 - **Core Module `account_whatsapp_notifier`:** Universal multi-engine WhatsApp notification dispatcher for Invoices, Bills, and Customer Follow-ups supporting self-hosted GOWA (Go WhatsApp Web Multidevice), official Meta Cloud API, and native `wa.me` Click-to-Chat.
@@ -47,10 +39,11 @@ The format follows standard semantic versioning practices (`MAJOR.MINOR.PATCH`).
 - **Companion Interoperability & Zero-Crash Coexistence:** Soft integration with `account_qris_qbiz` (appending QRIS payment instructions) and `account_stamp_signature` (e-Meterai status badge) without declaring hard dependencies.
 - **Security & Multi-Company:** Granular access controls (`security/ir.model.access.csv`) and multi-company record rules (`security/whatsapp_security.xml`).
 - **Odoo Apps Store Assets:** Complete compliance assets with 100x100 squircle icon, standard 1200x630 banner, and responsive store description page (`static/description/index.html`).
-- **Quality Verification:**
-  - `scripts/validate_apps_store.py`: 64/64 checks passed (Score 5.0 / 5.0 across all 8 modules).
-  - `tests/run_all_tests.py`: 41/41 tests passed (0 failures, 0 errors).
-  - Live Docker Verification: Installed, upgraded, and verified end-to-end on container `odoo18_web` running Odoo 18.0.
+
+### Quality Verification
+- `scripts/validate_apps_store.py`: 72/72 checks passed (Score 5.0 / 5.0 across all 9 modules).
+- `tests/run_all_tests.py`: 47/47 tests passed (0 failures, 0 errors).
+- Live Docker Verification: Installed, upgraded, and verified end-to-end on container `odoo18_web` running Odoo 18.0.
 
 ---
 
