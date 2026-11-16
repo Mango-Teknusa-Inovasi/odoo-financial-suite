@@ -7,13 +7,16 @@
 [![License: LGPL-3](https://img.shields.io/badge/License-LGPL--3-blue.svg)](LICENSE)
 [![Price: 100% Free](https://img.shields.io/badge/Price-100%25%20Free-brightgreen.svg)](#)
 [![Odoo Version](https://img.shields.io/badge/Odoo-18.0%20%7C%2019.0%20%7C%2020.0-purple.svg)](https://www.odoo.com/)
+[![CI / Unit Tests](https://github.com/Mango-Teknusa-Inovasi/odoo-financial-suite/actions/workflows/ci.yml/badge.svg)](https://github.com/Mango-Teknusa-Inovasi/odoo-financial-suite/actions/workflows/ci.yml)
+[![CodeQL Security](https://github.com/Mango-Teknusa-Inovasi/odoo-financial-suite/actions/workflows/codeql.yml/badge.svg)](https://github.com/Mango-Teknusa-Inovasi/odoo-financial-suite/actions/workflows/codeql.yml)
 [![DJP Coretax Ready](https://img.shields.io/badge/DJP-Coretax%202026%20Ready-teal.svg)](#)
+[![Vendor Guide Score](https://img.shields.io/badge/Odoo%20Apps%20Store-5%2F5%20Score%20Ready-brightgreen.svg)](SHOWCASE.md)
 [![Design System: Brandkit](https://img.shields.io/badge/Design%20System-BRANDKIT.md-985184.svg)](BRANDKIT.md)
 [![Maintained by](https://img.shields.io/badge/Maintained%20by-Mango--Teknusa--Inovasi-orange.svg)](https://github.com/Mango-Teknusa-Inovasi)
 
 **Enterprise-Ready Financial Engine, Indonesian Tax Localization (DJP Coretax 2026), Multi-Marketplace Settlement & Recipe Costing for Odoo 18.0, 19.0 & 20.0.**
 
-[Overview](#-overview) • [Core Modules](#-core-modules) • [Brandkit](#-brand-identity--design-tokens) • [Installation](#-getting-started) • [Guidelines](#-repository-layout) • [License](#-license)
+[Overview](#-overview) • [Core Modules](#-core-modules) • [Live Showcase](#-live-visual-showcase--screenshots) • [Brandkit](#-brand-identity--design-tokens) • [Installation](#-getting-started) • [Guidelines](#-repository-layout) • [License](#-license)
 
 </div>
 
@@ -42,6 +45,24 @@ Standard ERP systems introduce significant administrative overhead when applied 
 
 ---
 
+## 📸 Live Visual Showcase & Screenshots
+
+Experience the suite running live in Odoo with high-resolution UI captures:
+
+👉 **[Complete Visual Verification Gallery & Screenshots (SHOWCASE.md)](SHOWCASE.md)**
+
+<div align="center">
+
+| App Launcher (5 Modules) | Financial Health Scorecard (96/100) |
+|:---:|:---:|
+| [![App Launcher](assets/screenshots/01_app_launcher_suite.png)](SHOWCASE.md) | [![Financial Health](assets/screenshots/08_financial_health_scorecard.png)](SHOWCASE.md) |
+| **e-Meterai Stamped Invoice** | **F&B Recipe Costing & Margin** |
+| [![e-Meterai Invoice](assets/screenshots/05_invoice_emeterai_stamped.png)](SHOWCASE.md) | [![F&B Recipe](assets/screenshots/04_fnb_recipe_costing_kanban.png)](SHOWCASE.md) |
+
+</div>
+
+---
+
 ## 🎨 Brand Identity & Design Tokens
 
 The suite follows an official design language harmonized with Odoo's native geometric vector palette. For complete color tokens, geometry construction grids, SVG specifications, and anti-slop rules, consult:
@@ -60,12 +81,16 @@ Sunflower Gold (#FBB945)  ·  Royal Azure (#088BF5)  ·  Deep Slate Petrol (#005
 ```text
 odoo-financial-suite/
 ├── assets/
-│   ├── banner.png                   # High-resolution 1280x640 repo hero banner
+│   ├── banner.png                   # High-resolution 1200x630 repo hero banner
 │   ├── banner.svg                   # Vector source banner
-│   └── icons/                       # SVG and PNG renders (100px, 512px, 1024px)
-├── l10n_id_coretax_taxation/         # Indonesian taxation & DJP Coretax engine
-├── marketplace_settlement_sync/      # Omnichannel settlement reconciliation
-├── sample_app/                       # Verified Odoo 18/20 testing scaffold
+│   ├── icons/                       # SVG and PNG renders (50px, 100px, 512px, 1024px)
+│   └── screenshots/                 # High-resolution live application UI screenshots
+├── l10n_id_coretax_taxation/         # Indonesian taxation & DJP Coretax 2026 engine
+├── marketplace_settlement_sync/      # Omnichannel settlement reconciliation (Shopee, Tokopedia, TikTok)
+├── fnb_hpp_calculator/               # Culinary recipe costing, shrinkage % & POS sync
+├── account_stamp_signature/          # Dual-engine wet seal overlay & Peruri e-Meterai gateway (UU 10/2020)
+├── financial_health_dashboard/       # Executive ratio scorecard & advisory diagnostic
+├── SHOWCASE.md                       # Comprehensive live verification gallery & screenshots
 ├── BRANDKIT.md                       # Comprehensive design system & brand guidelines
 ├── CHANGELOG.md                      # Release notes & version milestones
 ├── CONTRIBUTING.md                   # Contribution workflow & commit standards

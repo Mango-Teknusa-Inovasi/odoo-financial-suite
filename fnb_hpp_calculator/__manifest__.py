@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'F&B Recipe HPP',
-    'version': '1.0.0',
+    'version': '18.0.1.0.0',
     'category': 'Point of Sale',
     'summary': 'Lightweight recipe costing, portion HPP, gross margin calculation & culinary BOM without heavy MRP',
     'description': """
@@ -20,6 +20,12 @@ Designed specifically for cafés, bakeries, cloud kitchens, and restaurants:
     'website': 'https://github.com/Mango-Teknusa-Inovasi/odoo-financial-suite',
     'support': 'billing@ppti.me',
     'license': 'LGPL-3',
+    'price': 0.0,
+    'currency': 'EUR',
+    'images': [
+        'static/description/banner.png',
+        'static/description/screenshot_1.png',
+    ],
     'depends': ['base', 'product', 'mail'],
     'data': [
         'security/fnb_security.xml',

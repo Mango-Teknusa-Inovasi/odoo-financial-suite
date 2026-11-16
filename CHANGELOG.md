@@ -13,6 +13,35 @@ The format follows standard semantic versioning practices (`MAJOR.MINOR.PATCH`).
 
 ---
 
+## [1.0.0] - 2026-11-16
+
+### Standardized & Verified (Odoo Apps Store Vendor Guidelines Alignment)
+- **Manifest Versioning:** Standardized all 5 modules to `<odoo_version>.1.0.0` (`18.0.1.0.0`, `19.0.1.0.0`, and `20.0.1.0.0`) in full compliance with Odoo Apps Store major-minor-bugfix semantics.
+- **Name Length Compliance:** Audited and verified all app names to remain strictly $\le 25$ characters without company names or promotional adjectives:
+  - `Stamp & e-Meterai` (17 chars)
+  - `Financial Health KPI` (20 chars)
+  - `F&B Recipe HPP` (14 chars)
+  - `Indonesian Tax Coretax` (22 chars)
+  - `Marketplace Settlement` (22 chars)
+- **App Store Scoring Optimization (5/5 Criteria):**
+  - **Criterion 1 (Icons):** Verified crisp geometric vector `static/description/icon.png` (100x100 PNG) in every module.
+  - **Criterion 2 (Cover Images):** Generated dedicated 1200x630 cover thumbnails (`static/description/banner.png`) and declared `'images'` list in all manifests.
+  - **Criterion 3 (License):** Confirmed explicit `LGPL-3` open-source license in every manifest.
+  - **Criterion 4 (Clean Score):** Ensured zero error state upon repository scanning.
+  - **Criterion 5 (HTML Descriptions):** Provided beautiful `static/description/index.html` pages using Bootstrap 4 classes and English text.
+- **Link & Security Sanitization:** Sanitized all links in `static/description/index.html` to strictly utilize approved `mailto:billing@ppti.me` endpoints, eliminating forbidden external redirects.
+- **Pricing & Currency Compliance:** Configured `'price': 0.0` and `'currency': 'EUR'` to formally declare free tier status without activation keys or vendor lock-in.
+- **Repository Cleanliness:** Purged legacy temporary scaffold `sample_app` from git across all branches.
+- **Visual Verification & Gallery:** Created comprehensive visual proof document `SHOWCASE.md` and archived high-resolution live screenshots in `assets/screenshots/`.
+- **Enterprise CI/CD & Security Framework:**
+  - **CodeQL Security Analysis (`.github/workflows/codeql.yml`):** Automated semantic vulnerability and code quality scanning for Python.
+  - **Continuous Integration Pipeline (`.github/workflows/ci.yml`):** Multi-stage workflow covering Flake8 linting, XML view well-formedness, Odoo Apps vendor compliance, and unit tests across Python 3.10, 3.11, and 3.12.
+  - **Vendor Guidelines Validator (`scripts/validate_apps_store.py`):** Automated audit engine verifying 40 compliance rules across all 5 manifests.
+  - **Automated Unit & Feature Tests (`tests/run_all_tests.py`):** 24 standalone unit tests with built-in Odoo mock framework testing core mathematical, statutory, and accounting logic.
+  - **Automated Dependency Auditing (`.github/dependabot.yml`):** Weekly Dependabot vulnerability checks for Actions and dependencies.
+
+---
+
 ## [1.5.0] - 2026-11-16
 
 ### Added

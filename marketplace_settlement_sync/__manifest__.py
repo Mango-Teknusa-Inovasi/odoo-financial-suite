@@ -1,6 +1,6 @@
 {
     'name': 'Marketplace Settlement',
-    'version': '1.0.0',
+    'version': '18.0.1.0.0',
     'category': 'Accounting/Localizations',
     'summary': 'Automated settlement ingestion and journal generation for Shopee, Tokopedia, TikTok Shop & Indonesian marketplaces',
     'description': """
@@ -16,6 +16,12 @@ Eliminates manual bookkeeping of online marketplace orders and payouts:
     'website': 'https://github.com/Mango-Teknusa-Inovasi/odoo-financial-suite',
     'support': 'billing@ppti.me',
     'license': 'LGPL-3',
+    'price': 0.0,
+    'currency': 'EUR',
+    'images': [
+        'static/description/banner.png',
+        'static/description/screenshot_1.png',
+    ],
     'depends': ['base', 'account', 'mail'],
     'data': [
         'security/marketplace_security.xml',

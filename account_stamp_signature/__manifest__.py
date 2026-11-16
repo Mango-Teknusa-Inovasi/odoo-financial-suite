@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'Stamp & e-Meterai',
-    'version': '1.0.0',
+    'version': '18.0.1.0.0',
     'category': 'Accounting/Localizations',
     'summary': 'Dual-engine official company stamp, authorized signature overlay & Peruri e-Meterai gateway for Odoo invoices',
     'description': """
@@ -28,6 +28,13 @@ Designed for Indonesian legal and commercial documentation standards:
     'website': 'https://github.com/Mango-Teknusa-Inovasi/odoo-financial-suite',
     'support': 'billing@ppti.me',
     'license': 'LGPL-3',
+    'price': 0.0,
+    'currency': 'EUR',
+    'images': [
+        'static/description/banner.png',
+        'static/description/screenshot_1.png',
+        'static/description/screenshot_2.png',
+    ],
     'depends': ['base', 'account', 'mail'],
     'data': [
         'security/stamp_security.xml',
