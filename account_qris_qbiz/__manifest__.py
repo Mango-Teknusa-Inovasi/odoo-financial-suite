@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'QBiz Dynamic QRIS',
-    'version': '18.0.1.0.0',
+    'version': '19.0.1.0.0',
     'category': 'Accounting/Payment Providers',
     'summary': 'Dynamic QRIS payment generation with pre-filled Tag 54 nominal and QBiz auto-reconciliation webhook',
     'description': """
