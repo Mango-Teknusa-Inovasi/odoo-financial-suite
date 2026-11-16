@@ -1,15 +1,15 @@
 {
     'name': 'Sample Task App',
     'version': '1.0.0',
-    'summary': 'Starter template modul Odoo 20 untuk testing & development',
+    'summary': 'Starter template module for testing, verification and scaffold development',
     'description': """
-Sample App Module
-=================
-Modul contoh untuk development plugin/addon Odoo 18.
-Fitur:
-- Manajemen Task sederhana
-- Model, View (Tree, Form, Search), Action, dan Menu
-- Hak akses Security (ir.model.access.csv)
+Sample Task App Module
+======================
+Lightweight baseline scaffold module for testing and verified development on Odoo 18.0 and 20.0.
+Features:
+- Task management baseline
+- Model, Views (Tree, Form, Search), Action, and Menu items
+- Security access rights configuration (ir.model.access.csv)
     """,
     'category': 'Extra Tools',
     'author': 'Mango Teknusa Inovasi',

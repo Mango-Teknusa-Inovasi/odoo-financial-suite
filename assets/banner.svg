@@ -1,0 +1,250 @@
+<svg width="1280" height="640" viewBox="0 0 1280 640" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">
+  <defs>
+    <!-- Background Linear Gradient -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0A0E17"/>
+      <stop offset="50%" stop-color="#101726"/>
+      <stop offset="100%" stop-color="#0E1624"/>
+    </linearGradient>
+
+    <!-- Radial Ambient Glows -->
+    <radialGradient id="glowViolet" cx="15%" cy="25%" r="40%">
+      <stop offset="0%" stop-color="#985184" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#985184" stop-opacity="0.0"/>
+    </radialGradient>
+    <radialGradient id="glowMint" cx="85%" cy="20%" r="45%">
+      <stop offset="0%" stop-color="#1AD3BB" stop-opacity="0.20"/>
+      <stop offset="100%" stop-color="#1AD3BB" stop-opacity="0.0"/>
+    </radialGradient>
+    <radialGradient id="glowAmber" cx="50%" cy="85%" r="50%">
+      <stop offset="0%" stop-color="#FBB945" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#FBB945" stop-opacity="0.0"/>
+    </radialGradient>
+
+    <!-- Card Background Gradient -->
+    <linearGradient id="cardGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#172033"/>
+      <stop offset="100%" stop-color="#101726"/>
+    </linearGradient>
+    
+    <!-- Hero Box Gradient -->
+    <linearGradient id="heroBoxGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1E293B" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#0F172A" stop-opacity="0.8"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 1. Background Fill -->
+  <rect width="1280" height="640" fill="url(#bgGrad)"/>
+
+  <!-- 2. Ambient Lighting Glows -->
+  <rect width="1280" height="640" fill="url(#glowViolet)"/>
+  <rect width="1280" height="640" fill="url(#glowMint)"/>
+  <rect width="1280" height="640" fill="url(#glowAmber)"/>
+
+  <!-- 3. Subtle Technical Grid Pattern -->
+  <g stroke="#334155" stroke-width="1" stroke-opacity="0.15">
+    <line x1="80" y1="0" x2="80" y2="640"/>
+    <line x1="240" y1="0" x2="240" y2="640"/>
+    <line x1="400" y1="0" x2="400" y2="640"/>
+    <line x1="560" y1="0" x2="560" y2="640"/>
+    <line x1="720" y1="0" x2="720" y2="640"/>
+    <line x1="880" y1="0" x2="880" y2="640"/>
+    <line x1="1040" y1="0" x2="1040" y2="640"/>
+    <line x1="1200" y1="0" x2="1200" y2="640"/>
+
+    <line x1="0" y1="80" x2="1280" y2="80"/>
+    <line x1="0" y1="200" x2="1280" y2="200"/>
+    <line x1="0" y1="340" x2="1280" y2="340"/>
+    <line x1="0" y1="460" x2="1280" y2="460"/>
+    <line x1="0" y1="580" x2="1280" y2="580"/>
+  </g>
+
+  <!-- 4. Top Badges & Indicators -->
+  <!-- Free & Open Source Badge -->
+  <g transform="translate(80, 50)">
+    <rect width="260" height="34" rx="17" fill="#064E3B" fill-opacity="0.6" stroke="#059669" stroke-width="1.2"/>
+    <circle cx="20" cy="17" r="5" fill="#10B981"/>
+    <circle cx="20" cy="17" r="9" fill="#10B981" fill-opacity="0.25"/>
+    <text x="36" y="22" font-size="12" font-weight="700" fill="#34D399" letter-spacing="0.8">100% FREE &amp; OPEN SOURCE</text>
+    <text x="210" y="22" font-size="11" font-weight="600" fill="#A7F3D0">· LGPL-3</text>
+  </g>
+
+  <!-- Odoo Compatibility Badges -->
+  <g transform="translate(930, 50)">
+    <rect width="270" height="34" rx="17" fill="#1E293B" fill-opacity="0.8" stroke="#334155" stroke-width="1.2"/>
+    <rect x="6" y="5" width="118" height="24" rx="12" fill="#714B67"/>
+    <text x="65" y="21" font-size="12" font-weight="700" fill="#FFFFFF" text-anchor="middle">Odoo 18.0 &amp; 20.0</text>
+    <text x="195" y="21" font-size="12" font-weight="600" fill="#94A3B8" text-anchor="middle">Community &amp; EE</text>
+  </g>
+
+  <!-- 5. Hero Center Container -->
+  <g transform="translate(80, 115)">
+    <!-- Master Logo Container Box -->
+    <g transform="translate(0, 5)">
+      <!-- Master Icon Graphic (Scaled to 130x130) -->
+      <svg width="130" height="130" viewBox="0 0 50 50">
+        <!-- Left Wing: Mango Tangerine #F86126 -->
+        <path d="M5 10a4 4 0 0 1 4-4h6l-5 18H5a4 4 0 0 1-4-4V14a4 4 0 0 1 4-4Z" fill="#F86126"/>
+        <!-- Left Center Diagonal: Sunflower Amber #FBB945 -->
+        <path d="M15 6h7l-7 24H8l7-24Z" fill="#FBB945"/>
+        <!-- Central Growth Diamond / Prism: Indonesian Emerald / Mint #1AD3BB -->
+        <path d="M22 6h6l7 20-10 18-10-18 7-20Z" fill="#1AD3BB"/>
+        <!-- Central Inner Shading: Deep Teal Petrol #005E7A -->
+        <path d="M25 26l7 18H18l7-18Z" fill="#005E7A"/>
+        <!-- Right Center Diagonal: Odoo Amethyst / Plum #985184 -->
+        <path d="M28 6h7l7 24h-7l-7-24Z" fill="#985184"/>
+        <!-- Right Wing / Stem: Corporate Azure Blue #088BF5 -->
+        <path d="M35 6h6a4 4 0 0 1 4 4v6a4 4 0 0 1-4 4h-5l5-18h-6Z" fill="#088BF5"/>
+        <!-- Lower Right Support Facet: Sky Cyan #2EBCFA -->
+        <path d="M35 24h6a4 4 0 0 1 4 4v8a4 4 0 0 1-4 4h-7l5-16h-4Z" fill="#2EBCFA"/>
+        <!-- Lower Left Base Facet: Deep Mango Coral #E84518 -->
+        <path d="M5 24h6l-4 16a4 4 0 0 1-4-4v-8a4 4 0 0 1 2-4Z" fill="#E84518"/>
+      </svg>
+    </g>
+
+    <!-- Typography Block -->
+    <g transform="translate(160, 10)">
+      <text x="0" y="24" font-size="13" font-weight="700" fill="#1AD3BB" letter-spacing="2" text-transform="uppercase">ENTERPRISE FINANCIAL &amp; LOCALIZATION SUITE</text>
+      <text x="0" y="70" font-size="44" font-weight="800" fill="#FFFFFF" letter-spacing="-0.5">MangoTek Financial Suite</text>
+      <text x="0" y="105" font-size="17" font-weight="400" fill="#CBD5E1">Indonesian DJP Coretax 2026, e-Faktur 4.0, Multi-Marketplace Settlement &amp; Recipe Costing</text>
+
+      <!-- Key Value Feature Pills -->
+      <g transform="translate(0, 126)">
+        <rect width="180" height="26" rx="6" fill="#1E293B" stroke="#475569" stroke-width="0.8"/>
+        <text x="90" y="17" font-size="11" font-weight="600" fill="#F8FAFC" text-anchor="middle">⚡ Auto NSFP &amp; Coretax CSV</text>
+        
+        <rect x="190" y="0" width="225" height="26" rx="6" fill="#1E293B" stroke="#475569" stroke-width="0.8"/>
+        <text x="302" y="17" font-size="11" font-weight="600" fill="#F8FAFC" text-anchor="middle">🛒 Shopee · Tokopedia · TikTok Sync</text>
+
+        <rect x="425" y="0" width="165" height="26" rx="6" fill="#1E293B" stroke="#475569" stroke-width="0.8"/>
+        <text x="507" y="17" font-size="11" font-weight="600" fill="#F8FAFC" text-anchor="middle">🍳 Precision F&amp;B Recipe HPP</text>
+
+        <rect x="600" y="0" width="170" height="26" rx="6" fill="#1E293B" stroke="#475569" stroke-width="0.8"/>
+        <text x="685" y="17" font-size="11" font-weight="600" fill="#F8FAFC" text-anchor="middle">📊 Real-Time Financial Health</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- 6. Bottom Module Showcase (5 Cards Grid) -->
+  <g transform="translate(80, 395)">
+
+    <!-- Card 1: Coretax & e-Faktur -->
+    <g transform="translate(0, 0)">
+      <rect width="212" height="155" rx="12" fill="url(#cardGrad)" stroke="#1E293B" stroke-width="1.2"/>
+      <rect width="212" height="4" rx="2" fill="#1AD3BB"/>
+      <!-- Icon 44x44 -->
+      <g transform="translate(18, 18)">
+        <svg width="44" height="44" viewBox="0 0 50 50">
+          <path d="M36 46H10c-3.314 0-6-2.686-6-6V6a2 2 0 0 1 2-2h20l16 16v20c0 3.314-2.686 6-6 6Z" fill="#1AD3BB"/>
+          <path d="M26 4v12a4 4 0 0 0 4 4h12L26 4Z" fill="#005E7A"/>
+          <path d="M4 40c0 3.314 2.686 6 6 6h26a6 6 0 0 0 6-6H16c-6.627 0-12-2.686-12-6v6Z" fill="#985184"/>
+          <path d="M4 23h38v5H4v-5Z" fill="#1A6F66"/>
+          <circle cx="33" cy="33" r="11" fill="#FBB945"/>
+          <circle cx="33" cy="33" r="9" fill="#F86126"/>
+          <circle cx="30" cy="30" r="1.8" fill="#FFFFFF"/>
+          <circle cx="36" cy="36" r="1.8" fill="#FFFFFF"/>
+          <path d="M36.5 28.5l-7 9" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </g>
+      <text x="18" y="90" font-size="14" font-weight="700" fill="#F8FAFC">Indonesian Tax</text>
+      <text x="18" y="108" font-size="12" font-weight="600" fill="#1AD3BB">Coretax &amp; e-Faktur 4.0</text>
+      <text x="18" y="132" font-size="11" font-weight="400" fill="#94A3B8">NSFP pool, PPh 21/23/4(2)</text>
+    </g>
+
+    <!-- Card 2: Marketplace Settlement -->
+    <g transform="translate(227, 0)">
+      <rect width="212" height="155" rx="12" fill="url(#cardGrad)" stroke="#1E293B" stroke-width="1.2"/>
+      <rect width="212" height="4" rx="2" fill="#F86126"/>
+      <!-- Icon 44x44 -->
+      <g transform="translate(18, 18)">
+        <svg width="44" height="44" viewBox="0 0 50 50">
+          <path d="M8 17h24a4 4 0 0 1 4 4v21a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4V21a4 4 0 0 1 4-4Z" fill="#F86126"/>
+          <path d="M14 17V11a6 6 0 0 1 12 0v6h-4v-6a2 2 0 0 0-4 0v6h-4Z" fill="#FBB945"/>
+          <path d="M4 21h32v6H4v-6Z" fill="#FBB945"/>
+          <path d="M18 20h24a4 4 0 0 1 4 4v20a4 4 0 0 1-4 4H22a4 4 0 0 1-4-4V20Z" fill="#985184"/>
+          <path d="M18 40h28v4a4 4 0 0 1-4 4H22a4 4 0 0 1-4-4v-4Z" fill="#712258"/>
+          <path d="M12 28h17v-3.5l6 5.5-6 5.5V32H12v-4Z" fill="#1AD3BB"/>
+          <path d="M40 36H23v3.5l-6-5.5 6-5.5V32h17v4Z" fill="#2EBCFA"/>
+        </svg>
+      </g>
+      <text x="18" y="90" font-size="14" font-weight="700" fill="#F8FAFC">Marketplace Sync</text>
+      <text x="18" y="108" font-size="12" font-weight="600" fill="#F86126">Shopee · Toped · TikTok</text>
+      <text x="18" y="132" font-size="11" font-weight="400" fill="#94A3B8">Escrow, MDR &amp; fee splits</text>
+    </g>
+
+    <!-- Card 3: F&B Recipe HPP -->
+    <g transform="translate(454, 0)">
+      <rect width="212" height="155" rx="12" fill="url(#cardGrad)" stroke="#1E293B" stroke-width="1.2"/>
+      <rect width="212" height="4" rx="2" fill="#FBB945"/>
+      <!-- Icon 44x44 -->
+      <g transform="translate(18, 18)">
+        <svg width="44" height="44" viewBox="0 0 50 50">
+          <path d="M6 34h38a3 3 0 0 1 3 3v2a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4v-2a3 3 0 0 1 3-3Z" fill="#985184"/>
+          <path d="M9 33C9 20 16 10 25 10s16 10 16 23H9Z" fill="#FBB945"/>
+          <circle cx="25" cy="8" r="3.5" fill="#F78613"/>
+          <path d="M9 33c0-3 2-6 5-8l16 8H9Z" fill="#F78613"/>
+          <path d="M21 21h19a3 3 0 0 1 3 3v16a3 3 0 0 1-3 3H21a3 3 0 0 1-3-3V24a3 3 0 0 1 3-3Z" fill="#1AD3BB"/>
+          <rect x="22" y="24" width="17" height="6" rx="1.5" fill="#005E7A"/>
+          <rect x="24" y="34" width="4" height="2" rx="0.5" fill="#FFFFFF"/>
+          <rect x="25" y="33" width="2" height="4" rx="0.5" fill="#FFFFFF"/>
+          <circle cx="34" cy="33.5" r="1.2" fill="#FFFFFF"/>
+          <circle cx="37" cy="37.5" r="1.2" fill="#FFFFFF"/>
+          <path d="M37.5 32.5l-4 6" stroke="#FFFFFF" stroke-width="1.2" stroke-linecap="round"/>
+        </svg>
+      </g>
+      <text x="18" y="90" font-size="14" font-weight="700" fill="#F8FAFC">F&amp;B Recipe HPP</text>
+      <text x="18" y="108" font-size="12" font-weight="600" fill="#FBB945">Costing &amp; Margins</text>
+      <text x="18" y="132" font-size="11" font-weight="400" fill="#94A3B8">Wastage, ingredients, BOM</text>
+    </g>
+
+    <!-- Card 4: Document Stamp & Signature -->
+    <g transform="translate(681, 0)">
+      <rect width="212" height="155" rx="12" fill="url(#cardGrad)" stroke="#1E293B" stroke-width="1.2"/>
+      <rect width="212" height="4" rx="2" fill="#088BF5"/>
+      <!-- Icon 44x44 -->
+      <g transform="translate(18, 18)">
+        <svg width="44" height="44" viewBox="0 0 50 50">
+          <path d="M8 6h24a4 4 0 0 1 4 4v34a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4V10a4 4 0 0 1 4-4Z" fill="#088BF5"/>
+          <path d="M8 6h16l12 12v14H8V6Z" fill="#2EBCFA"/>
+          <path d="M4 36h28a4 4 0 0 1 4 4v4H8a4 4 0 0 1-4-4v-4Z" fill="#144496"/>
+          <rect x="22" y="22" width="22" height="22" rx="5" fill="#FC868B"/>
+          <rect x="25" y="25" width="16" height="16" rx="3" fill="#F06050"/>
+          <circle cx="33" cy="33" r="5" fill="#FBB945"/>
+          <path d="M33 30.2l1 2.2 2.4.3-1.8 1.6.5 2.3-2.1-1.2-2.1 1.2.5-2.3-1.8-1.6 2.4-.3z" fill="#FFFFFF"/>
+        </svg>
+      </g>
+      <text x="18" y="90" font-size="14" font-weight="700" fill="#F8FAFC">Stamp &amp; Signature</text>
+      <text x="18" y="108" font-size="12" font-weight="600" fill="#2EBCFA">Official e-Meterai</text>
+      <text x="18" y="132" font-size="11" font-weight="400" fill="#94A3B8">PDF invoice stamp overlay</text>
+    </g>
+
+    <!-- Card 5: Financial Health KPI -->
+    <g transform="translate(908, 0)">
+      <rect width="212" height="155" rx="12" fill="url(#cardGrad)" stroke="#1E293B" stroke-width="1.2"/>
+      <rect width="212" height="4" rx="2" fill="#985184"/>
+      <!-- Icon 44x44 -->
+      <g transform="translate(18, 18)">
+        <svg width="44" height="44" viewBox="0 0 50 50">
+          <path d="M5 26a4 4 0 0 1 4-4h7v22a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V26Z" fill="#985184"/>
+          <path d="M18 16a4 4 0 0 1 4-4h7v32a2 2 0 0 1-2 2h-7a2 2 0 0 1-2-2V16Z" fill="#1AD3BB"/>
+          <path d="M18 36h11v8a2 2 0 0 1-2 2h-7a2 2 0 0 1-2-2V36Z" fill="#005E7A"/>
+          <path d="M31 6a4 4 0 0 1 4-4h7a4 4 0 0 1 4 4v40H31V6Z" fill="#FBB945"/>
+          <path d="M31 32h15v14h-15V32Z" fill="#F86126"/>
+          <path d="M8 16l14-8 18-4-4 8-14 4-14 0Z" fill="#FC868B"/>
+          <circle cx="40" cy="4" r="2.5" fill="#F06050"/>
+        </svg>
+      </g>
+      <text x="18" y="90" font-size="14" font-weight="700" fill="#F8FAFC">Financial Health</text>
+      <text x="18" y="108" font-size="12" font-weight="600" fill="#A855F7">KPIs &amp; Ratios</text>
+      <text x="18" y="132" font-size="11" font-weight="400" fill="#94A3B8">Liquidity &amp; solvency audit</text>
+    </g>
+
+  </g>
+
+  <!-- 7. Footer Meta Line -->
+  <g transform="translate(80, 595)">
+    <text x="0" y="0" font-size="12" font-weight="500" fill="#64748B">Maintained by Mango Teknusa Inovasi (@Mango-Teknusa-Inovasi)</text>
+    <text x="1120" y="0" font-size="12" font-weight="500" fill="#64748B" text-anchor="end">Clean Architecture · Zero Vendor Lock-in · Enterprise Ready</text>
+  </g>
+</svg>

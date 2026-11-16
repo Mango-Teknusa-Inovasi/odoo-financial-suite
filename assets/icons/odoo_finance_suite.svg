@@ -1,14 +1,18 @@
 <svg width="50" height="50" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
-  <!-- Top Left Facet in Plum #985184 -->
-  <path d="M8 8h17l-8 17H4a4 4 0 0 1-4-4V12a4 4 0 0 1 4-4h4Z" fill="#985184"/>
-  <!-- Top Right Facet in Sunflower Gold #FBB945 -->
-  <path d="M25 8h17a4 4 0 0 1 4 4v9a4 4 0 0 1-4 4H33l-8-17Z" fill="#FBB945"/>
-  <!-- Center Diagonal Prism in Mint #1AD3BB -->
-  <path d="M17 25l8-17 17 17-8 17H17Z" fill="#1AD3BB"/>
-  <!-- Center Shadow in Deep Petrol #005E7A -->
-  <path d="M25 25l8 17H17l8-17Z" fill="#005E7A"/>
-  <!-- Bottom Right Facet in Sky Cyan #2EBCFA -->
-  <path d="M33 25h9a4 4 0 0 1 4 4v9a4 4 0 0 1-4 4H25l8-17Z" fill="#2EBCFA"/>
-  <!-- Bottom Left Facet in Tangerine #F86126 -->
-  <path d="M4 25h13l-8 17H4a4 4 0 0 1-4-4v-9a4 4 0 0 1 4-4Z" fill="#F86126"/>
+  <!-- Left Wing / Stem: Mango Tangerine #F86126 -->
+  <path d="M5 10a4 4 0 0 1 4-4h6l-5 18H5a4 4 0 0 1-4-4V14a4 4 0 0 1 4-4Z" fill="#F86126"/>
+  <!-- Left Center Diagonal: Sunflower Amber #FBB945 -->
+  <path d="M15 6h7l-7 24H8l7-24Z" fill="#FBB945"/>
+  <!-- Central Growth Diamond / Prism: Indonesian Emerald / Mint #1AD3BB -->
+  <path d="M22 6h6l7 20-10 18-10-18 7-20Z" fill="#1AD3BB"/>
+  <!-- Central Inner Shading: Deep Teal Petrol #005E7A -->
+  <path d="M25 26l7 18H18l7-18Z" fill="#005E7A"/>
+  <!-- Right Center Diagonal: Odoo Amethyst / Plum #985184 -->
+  <path d="M28 6h7l7 24h-7l-7-24Z" fill="#985184"/>
+  <!-- Right Wing / Stem: Corporate Azure Blue #088BF5 -->
+  <path d="M35 6h6a4 4 0 0 1 4 4v6a4 4 0 0 1-4 4h-5l5-18h-6Z" fill="#088BF5"/>
+  <!-- Lower Right Support Facet: Sky Cyan #2EBCFA -->
+  <path d="M35 24h6a4 4 0 0 1 4 4v8a4 4 0 0 1-4 4h-7l5-16h-4Z" fill="#2EBCFA"/>
+  <!-- Lower Left Base Facet: Deep Mango Coral #E84518 -->
+  <path d="M5 24h6l-4 16a4 4 0 0 1-4-4v-8a4 4 0 0 1 2-4Z" fill="#E84518"/>
 </svg>
