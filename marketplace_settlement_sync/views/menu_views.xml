@@ -1,20 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- Marketplace Root Menu under Invoicing / Operations -->
-    <menuitem id="menu_marketplace_root"
+    <!-- Standalone Top-Level App Menu with Web Icon (Appears directly in Odoo App Drawer) -->
+    <menuitem id="menu_marketplace_root_app"
+              name="Marketplace Sync"
+              web_icon="marketplace_settlement_sync,static/description/icon.png"
+              sequence="46"/>
+
+    <menuitem id="menu_action_marketplace_settlement_batch_app"
+              name="Settlement Ingestion"
+              parent="menu_marketplace_root_app"
+              action="action_marketplace_settlement_batch"
+              sequence="10"/>
+
+    <menuitem id="menu_action_marketplace_channel_app"
+              name="Sales Channels"
+              parent="menu_marketplace_root_app"
+              action="action_marketplace_channel"
+              sequence="20"/>
+
+    <!-- Also keep sub-menus accessible from Invoicing module -->
+    <menuitem id="menu_marketplace_invoicing_sub"
               name="Marketplace Sync"
               parent="account.menu_finance_entries"
               sequence="25"/>
 
-    <menuitem id="menu_action_marketplace_settlement_batch"
+    <menuitem id="menu_action_marketplace_settlement_batch_invoicing"
               name="Settlement Ingestion"
-              parent="menu_marketplace_root"
+              parent="menu_marketplace_invoicing_sub"
               action="action_marketplace_settlement_batch"
               sequence="10"/>
 
-    <menuitem id="menu_action_marketplace_channel"
+    <menuitem id="menu_action_marketplace_channel_invoicing"
               name="Sales Channels"
-              parent="menu_marketplace_root"
+              parent="menu_marketplace_invoicing_sub"
               action="action_marketplace_channel"
               sequence="20"/>
 </odoo>

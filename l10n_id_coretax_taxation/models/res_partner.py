@@ -18,6 +18,14 @@ class ResPartner(models.Model):
         index=True,
         help='Nomor Induk Tempat Kegiatan Usaha (22 Digits) for branch or workplace identification.'
     )
+    l10n_id_tax_name = fields.Char(
+        string='Nama NPWP Resmi',
+        help='Official registered legal name on NPWP / DJP database.'
+    )
+    l10n_id_tax_address = fields.Text(
+        string='Alamat NPWP Resmi',
+        help='Official registered tax address for e-Faktur issuance.'
+    )
     l10n_id_taxpayer_type = fields.Selection([
         ('badan', 'Corporate (Badan)'),
         ('orang_pribadi', 'Individual (Orang Pribadi)'),

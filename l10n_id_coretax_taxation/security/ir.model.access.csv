@@ -1,3 +1,7 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_coretax_export_wizard_user,coretax.export.wizard.user,model_coretax_export_wizard,account.group_account_user,1,1,1,1
 access_coretax_export_wizard_manager,coretax.export.wizard.manager,model_coretax_export_wizard,account.group_account_manager,1,1,1,1
+access_l10n_id_nsfp_range_user,l10n_id.nsfp.range.user,model_l10n_id_nsfp_range,account.group_account_user,1,1,1,0
+access_l10n_id_nsfp_range_manager,l10n_id.nsfp.range.manager,model_l10n_id_nsfp_range,account.group_account_manager,1,1,1,1
+access_l10n_id_efaktur_export_wizard_user,l10n_id.efaktur.export.wizard.user,model_l10n_id_efaktur_export_wizard,account.group_account_user,1,1,1,1
+access_l10n_id_efaktur_export_wizard_manager,l10n_id.efaktur.export.wizard.manager,model_l10n_id_efaktur_export_wizard,account.group_account_manager,1,1,1,1

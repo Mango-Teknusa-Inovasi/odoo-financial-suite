@@ -1,14 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <!-- Top-level Menu item under Invoicing / Reporting or standalone if account is not loaded -->
-    <menuitem id="menu_l10n_id_coretax_root"
+    <!-- Standalone Top-Level App Menu with Web Icon (Appears directly in Odoo App Drawer) -->
+    <menuitem id="menu_l10n_id_coretax_root_app"
+              name="Pajak Coretax"
+              web_icon="l10n_id_coretax_taxation,static/description/icon.png"
+              sequence="45"/>
+
+    <!-- 1. Faktur Pajak & PPN Menu -->
+    <menuitem id="menu_l10n_id_efaktur_sub"
+              name="e-Faktur &amp; PPN"
+              parent="menu_l10n_id_coretax_root_app"
+              sequence="10"/>
+
+    <menuitem id="menu_action_l10n_id_nsfp_range_app"
+              name="Nomor Seri Faktur Pajak (NSFP)"
+              parent="menu_l10n_id_efaktur_sub"
+              action="action_l10n_id_nsfp_range"
+              sequence="10"/>
+
+    <menuitem id="menu_action_l10n_id_efaktur_export_app"
+              name="Ekspor e-Faktur 4.0 (CSV)"
+              parent="menu_l10n_id_efaktur_sub"
+              action="action_l10n_id_efaktur_export_wizard"
+              sequence="20"/>
+
+    <!-- 2. Bukti Potong & PPh Menu -->
+    <menuitem id="menu_l10n_id_bupot_sub"
+              name="Bukti Potong &amp; PPh"
+              parent="menu_l10n_id_coretax_root_app"
+              sequence="20"/>
+
+    <menuitem id="menu_action_coretax_export_wizard_app"
+              name="Ekspor e-Bupot Coretax (CSV)"
+              parent="menu_l10n_id_bupot_sub"
+              action="action_coretax_export_wizard"
+              sequence="10"/>
+
+    <!-- Also keep sub-menus accessible from Invoicing module -->
+    <menuitem id="menu_l10n_id_coretax_invoicing_sub"
               name="Pajak Indonesia (Coretax)"
               parent="account.menu_finance_reports"
               sequence="50"/>
 
-    <menuitem id="menu_action_coretax_export_wizard"
-              name="Ekspor Coretax DJP"
-              parent="menu_l10n_id_coretax_root"
+    <menuitem id="menu_action_coretax_export_invoicing"
+              name="Ekspor e-Bupot Coretax"
+              parent="menu_l10n_id_coretax_invoicing_sub"
               action="action_coretax_export_wizard"
               sequence="10"/>
+
+    <menuitem id="menu_action_efaktur_export_invoicing"
+              name="Ekspor e-Faktur 4.0"
+              parent="menu_l10n_id_coretax_invoicing_sub"
+              action="action_l10n_id_efaktur_export_wizard"
+              sequence="20"/>
+
+    <menuitem id="menu_action_nsfp_range_invoicing"
+              name="Pool NSFP DJP"
+              parent="menu_l10n_id_coretax_invoicing_sub"
+              action="action_l10n_id_nsfp_range"
+              sequence="30"/>
 </odoo>

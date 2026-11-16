@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- e-Faktur Export Wizard Form -->
+    <record id="view_l10n_id_efaktur_export_wizard_form" model="ir.ui.view">
+        <field name="name">l10n_id.efaktur.export.wizard.form</field>
+        <field name="model">l10n_id.efaktur.export.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Export e-Faktur 4.0 &amp; Coretax CSV">
+                <field name="state" invisible="1"/>
+
+                <div invisible="state != 'draft'">
+                    <div class="alert alert-info" role="alert">
+                        <strong>DJP e-Faktur 4.0 / Coretax Exporter:</strong> Pilih rentang tanggal faktur penjualan. Berkas CSV akan dihasilkan dengan skema FK (Faktur Keluaran) dan OF (Objek Faktur) resmi yang siap diimpor ke portal DJP.
+                    </div>
+                    <group>
+                        <group>
+                            <field name="date_from"/>
+                            <field name="date_to"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Daftar Faktur yang Akan Diekspor" name="target_invoices">
+                            <field name="invoice_ids">
+                                <list string="Faktur Penjualan" create="0">
+                                    <field name="name"/>
+                                    <field name="invoice_date"/>
+                                    <field name="partner_id"/>
+                                    <field name="l10n_id_faktur_pajak_number"/>
+                                    <field name="amount_untaxed" sum="Total DPP"/>
+                                    <field name="amount_tax" sum="Total PPN"/>
+                                    <field name="amount_total" sum="Total"/>
+                                    <field name="l10n_id_efaktur_status" widget="badge"
+                                           decoration-info="l10n_id_efaktur_status == 'assigned'"
+                                           decoration-success="l10n_id_efaktur_status == 'exported'"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </div>
+
+                <div invisible="state != 'done'">
+                    <div class="alert alert-success" role="alert">
+                        <strong>Ekspor Berhasil!</strong> Berkas CSV e-Faktur 4.0 / Coretax telah siap diunduh.
+                    </div>
+                    <group>
+                        <field name="file_name" invisible="1"/>
+                        <field name="csv_file" filename="file_name" readonly="1"/>
+                    </group>
+                </div>
+
+                <footer>
+                    <button name="action_generate_csv" string="Generate e-Faktur CSV"
+                            type="object" class="btn-primary" invisible="state != 'draft'"/>
+                    <button string="Close" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action Window -->
+    <record id="action_l10n_id_efaktur_export_wizard" model="ir.actions.act_window">
+        <field name="name">Ekspor e-Faktur 4.0 (DJP CSV)</field>
+        <field name="res_model">l10n_id.efaktur.export.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

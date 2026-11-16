@@ -5,15 +5,32 @@
         <field name="model">account.move</field>
         <field name="inherit_id" ref="account.view_move_form"/>
         <field name="arch" type="xml">
+            <!-- Header button to manual assign NSFP -->
+            <xpath expr="//header" position="inside">
+                <button name="action_assign_nsfp" string="Alokasikan NSFP" type="object"
+                        class="btn-secondary"
+                        invisible="move_type not in ('out_invoice', 'out_refund') or state != 'posted' or l10n_id_faktur_pajak_number"/>
+            </xpath>
+
+            <!-- Dedicated Pajak & Coretax Notebook Tab -->
             <xpath expr="//notebook" position="inside">
-                <page string="Bukti Potong &amp; Coretax" name="bupot_coretax_tab">
+                <page string="Pajak Indonesia &amp; Coretax" name="bupot_coretax_tab">
                     <group>
-                        <group string="Dokumen Bukti Potong (Bupot)">
+                        <group string="Faktur Pajak Keluaran (PPN &amp; e-Faktur)">
+                            <field name="l10n_id_faktur_pajak_number" placeholder="Contoh: 01.000-26.00000001"/>
+                            <field name="l10n_id_tax_transaction_code"/>
+                            <field name="l10n_id_faktur_date"/>
+                            <field name="l10n_id_efaktur_status" widget="badge"
+                                   decoration-info="l10n_id_efaktur_status == 'assigned'"
+                                   decoration-success="l10n_id_efaktur_status in ('exported', 'approved')"
+                                   decoration-danger="l10n_id_efaktur_status == 'cancelled'"/>
+                            <field name="l10n_id_is_dpp_nilai_lain"/>
+                            <field name="l10n_id_dpp_factor" invisible="not l10n_id_is_dpp_nilai_lain"/>
+                        </group>
+                        <group string="Bukti Potong PPh &amp; e-Bupot">
                             <field name="l10n_id_bupot_number" placeholder="Nomor Bupot Resmi"/>
                             <field name="l10n_id_bupot_date"/>
-                            <field name="l10n_id_tax_object_code" placeholder="Kode Objek Pajak"/>
-                        </group>
-                        <group string="Status Regulasi DJP">
+                            <field name="l10n_id_tax_object_code" placeholder="Kode Objek Pajak (KOP)"/>
                             <field name="l10n_id_umkm_settlement_type"/>
                             <field name="l10n_id_coretax_exported"/>
                         </group>

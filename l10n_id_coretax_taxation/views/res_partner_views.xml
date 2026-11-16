@@ -11,9 +11,11 @@
                         <group string="Identitas Pajak DJP">
                             <field name="l10n_id_npwp16" placeholder="16 Digit NIK / NPWP16"/>
                             <field name="l10n_id_nitku" placeholder="22 Digit NITKU"/>
+                            <field name="l10n_id_tax_name" placeholder="Nama Resmi pada NPWP"/>
                             <field name="l10n_id_taxpayer_type"/>
                         </group>
-                        <group string="Fasilitas Bebas Pajak (SKB)">
+                        <group string="Alamat Pajak &amp; Fasilitas">
+                            <field name="l10n_id_tax_address" placeholder="Alamat Pajak Resmi untuk Faktur Pajak..."/>
                             <field name="l10n_id_has_skb"/>
                             <field name="l10n_id_skb_number" invisible="not l10n_id_has_skb"/>
                             <field name="l10n_id_skb_valid_until" invisible="not l10n_id_has_skb"/>

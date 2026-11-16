@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- NSFP Range List View -->
+    <record id="view_l10n_id_nsfp_range_list" model="ir.ui.view">
+        <field name="name">l10n_id.nsfp.range.list</field>
+        <field name="model">l10n_id.nsfp.range</field>
+        <field name="arch" type="xml">
+            <list string="DJP NSFP Pools" decoration-muted="not active or remaining_quota == 0">
+                <field name="name"/>
+                <field name="year"/>
+                <field name="prefix"/>
+                <field name="start_number"/>
+                <field name="end_number"/>
+                <field name="current_number"/>
+                <field name="total_quota"/>
+                <field name="used_quota"/>
+                <field name="remaining_quota" widget="badge"
+                       decoration-danger="remaining_quota == 0"
+                       decoration-warning="remaining_quota &gt; 0 and remaining_quota &lt;= 10"
+                       decoration-success="remaining_quota &gt; 10"/>
+                <field name="company_id" groups="base.group_multi_company"/>
+                <field name="active" widget="boolean_toggle"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- NSFP Range Form View -->
+    <record id="view_l10n_id_nsfp_range_form" model="ir.ui.view">
+        <field name="name">l10n_id.nsfp.range.form</field>
+        <field name="model">l10n_id.nsfp.range</field>
+        <field name="arch" type="xml">
+            <form string="DJP NSFP Range Pool">
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" string="Surat Keputusan / Reference DJP"/>
+                        <h1>
+                            <field name="name" placeholder="e.g. S-123/WPJ.04/KP.0103/2026"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group string="Konfigurasi NSFP DJP">
+                            <field name="year"/>
+                            <field name="prefix" placeholder="000"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                            <field name="active" widget="boolean_toggle"/>
+                        </group>
+                        <group string="Rentang Nomor Seri (8 Digit)">
+                            <field name="start_number"/>
+                            <field name="end_number"/>
+                            <field name="current_number"/>
+                        </group>
+                    </group>
+                    <group string="Status Kuota NSFP">
+                        <group>
+                            <field name="total_quota"/>
+                            <field name="used_quota"/>
+                        </group>
+                        <group>
+                            <field name="remaining_quota" class="fw-bold fs-5"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Catatan Internal" name="notes">
+                            <field name="notes" placeholder="Catatan pengajuan atau tanggal permohonan e-Nofa Coretax..."/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action Window -->
+    <record id="action_l10n_id_nsfp_range" model="ir.actions.act_window">
+        <field name="name">Nomor Seri Faktur Pajak (NSFP)</field>
+        <field name="res_model">l10n_id.nsfp.range</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Daftarkan rentang NSFP yang disetujui DJP!
+            </p>
+            <p>
+                Masukkan nomor surat izin dan rentang nomor seri dari portal e-Nofa / Coretax DJP. Faktur penjualan Anda akan secara otomatis mengambil nomor seri secara berurutan.
+            </p>
+        </field>
+    </record>
+</odoo>
