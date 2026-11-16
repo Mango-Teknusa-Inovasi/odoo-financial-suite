@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Top-level Menu item under Invoicing / Reporting or standalone if account is not loaded -->
+    <menuitem id="menu_l10n_id_coretax_root"
+              name="Pajak Indonesia (Coretax)"
+              parent="account.menu_finance_reports"
+              sequence="50"/>
+
+    <menuitem id="menu_action_coretax_export_wizard"
+              name="Ekspor Coretax DJP"
+              parent="menu_l10n_id_coretax_root"
+              action="action_coretax_export_wizard"
+              sequence="10"/>
+</odoo>

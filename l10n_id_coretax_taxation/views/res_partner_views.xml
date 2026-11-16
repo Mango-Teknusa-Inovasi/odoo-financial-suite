@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_partner_form_inherit_l10n_id_coretax" model="ir.ui.view">
+        <field name="name">res.partner.form.inherit.l10n.id.coretax</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="Pajak Indonesia &amp; Coretax" name="indonesian_tax_coretax">
+                    <group>
+                        <group string="Identitas Pajak DJP">
+                            <field name="l10n_id_npwp16" placeholder="16 Digit NIK / NPWP16"/>
+                            <field name="l10n_id_nitku" placeholder="22 Digit NITKU"/>
+                            <field name="l10n_id_taxpayer_type"/>
+                        </group>
+                        <group string="Fasilitas Bebas Pajak (SKB)">
+                            <field name="l10n_id_has_skb"/>
+                            <field name="l10n_id_skb_number" invisible="not l10n_id_has_skb"/>
+                            <field name="l10n_id_skb_valid_until" invisible="not l10n_id_has_skb"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

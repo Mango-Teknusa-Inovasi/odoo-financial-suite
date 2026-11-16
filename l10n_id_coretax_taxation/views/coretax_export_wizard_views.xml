@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_coretax_export_wizard_form" model="ir.ui.view">
+        <field name="name">coretax.export.wizard.form</field>
+        <field name="model">coretax.export.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Export Data Coretax DJP">
+                <field name="state" invisible="1"/>
+                
+                <div invisible="state != 'draft'">
+                    <p class="text-muted">
+                        Pilih rentang tanggal dan kategori pajak untuk mengekspor rekapitulasi bukti potong PPh ke format CSV yang kompatibel dengan portal Coretax DJP.
+                    </p>
+                    <group>
+                        <group>
+                            <field name="date_from"/>
+                            <field name="date_to"/>
+                        </group>
+                        <group>
+                            <field name="tax_category"/>
+                            <field name="partner_id"/>
+                        </group>
+                    </group>
+                </div>
+
+                <div invisible="state != 'done'">
+                    <div class="alert alert-success" role="alert">
+                        <strong>Berhasil!</strong> Berkas CSV Coretax telah siap diunduh.
+                    </div>
+                    <group>
+                        <field name="file_name" invisible="1"/>
+                        <field name="data_file" filename="file_name" readonly="1"/>
+                    </group>
+                </div>
+
+                <footer>
+                    <button name="action_generate_export" string="Generate Coretax CSV"
+                            type="object" class="btn-primary" invisible="state != 'draft'"/>
+                    <button string="Close" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_coretax_export_wizard" model="ir.actions.act_window">
+        <field name="name">Export Pajak Coretax DJP</field>
+        <field name="res_model">coretax.export.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>
