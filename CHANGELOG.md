@@ -20,6 +20,18 @@ The format follows standard semantic versioning practices (`MAJOR.MINOR.PATCH`).
 
 ---
 
+## [1.1.0] - 2026-11-16
+
+### Added (Phase 6: QBiz Dynamic QRIS Integration)
+- **Core Module `account_qris_qbiz`:** Integrated dynamic QRIS generator and automated bank mutation reconciler ported from [ardianryan/qbiz-qrisdinamis](https://github.com/ardianryan/qbiz-qrisdinamis).
+- **EMVCo Engine (`models/qris_emvco.py`):** Standalone pure Python TLV parser, dynamic Tag 54 injection, and Bank Indonesia/ASPI compliant CCITT-16 CRC recalculation (polynomial `0x1021`, initial `0xFFFF`).
+- **Unique Code Engine:** Automatic 3-digit anti-collision nominal suffix ensuring collision-free matching across concurrent customer payments.
+- **Inbound Webhook Controller (`controllers/qris_webhook.py`):** Public JSON endpoint at `/api/v1/webhook/qris` for instant real-time settlement and automated journal entry reconciliation.
+- **Invoice & Report Integration (`views/account_move_views.xml`, `views/report_invoice_qris.xml`):** Header actions, dynamic QR canvas preview, tree view status badges, and official PDF invoice QWeb overlay.
+- **Master Banner & Assets:** Updated master branding banner (`assets/banner.svg` & `assets/banner.png`) to showcase all 6 active production modules.
+
+---
+
 ## [1.0.0] - 2026-11-16
 
 ### Standardized & Verified (Odoo Apps Store Vendor Guidelines Alignment)
@@ -124,6 +136,18 @@ The format follows standard semantic versioning practices (`MAJOR.MINOR.PATCH`).
 - **`marketplace_settlement_sync` (Phase 2 Completed):**
   - Omnichannel settlement statement importer for Shopee, Tokopedia, and TikTok Shop.
   - Split-accounting engine separating Gross Order Turnover, Platform Service Fees, and Net Escrow Deposits into General Ledger journals.
+
+---
+
+## [1.1.0] - 2026-11-16
+
+### Added (Phase 6: QBiz Dynamic QRIS Integration)
+- **Core Module `account_qris_qbiz`:** Integrated dynamic QRIS generator and automated bank mutation reconciler ported from [ardianryan/qbiz-qrisdinamis](https://github.com/ardianryan/qbiz-qrisdinamis).
+- **EMVCo Engine (`models/qris_emvco.py`):** Standalone pure Python TLV parser, dynamic Tag 54 injection, and Bank Indonesia/ASPI compliant CCITT-16 CRC recalculation (polynomial `0x1021`, initial `0xFFFF`).
+- **Unique Code Engine:** Automatic 3-digit anti-collision nominal suffix ensuring collision-free matching across concurrent customer payments.
+- **Inbound Webhook Controller (`controllers/qris_webhook.py`):** Public JSON endpoint at `/api/v1/webhook/qris` for instant real-time settlement and automated journal entry reconciliation.
+- **Invoice & Report Integration (`views/account_move_views.xml`, `views/report_invoice_qris.xml`):** Header actions, dynamic QR canvas preview, tree view status badges, and official PDF invoice QWeb overlay.
+- **Master Banner & Assets:** Updated master branding banner (`assets/banner.svg` & `assets/banner.png`) to showcase all 6 active production modules.
 
 ---
 

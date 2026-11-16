@@ -19,6 +19,7 @@ if "odoo" not in sys.modules:
     sys.modules["odoo.api"] = MagicMock()
     sys.modules["odoo.tools"] = MagicMock()
     sys.modules["odoo.exceptions"] = MagicMock()
+    sys.modules["odoo.http"] = MagicMock()
 
 REPO_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 sys.path.insert(0, REPO_ROOT)
@@ -29,6 +30,7 @@ MODULE_TEST_PATHS = [
     "fnb_hpp_calculator.tests.test_fnb_hpp",
     "account_stamp_signature.tests.test_stamp_emeterai",
     "financial_health_kpi.tests.test_financial_ratios",
+    "account_qris_qbiz.tests.test_qris_emvco",
 ]
 
 def run_suite():
