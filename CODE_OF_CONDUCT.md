@@ -25,4 +25,4 @@ Unacceptable behaviors include:
 
 Project maintainers are responsible for clarifying standards of acceptable behavior and will take appropriate, fair corrective action in response to any instances of unacceptable behavior.
 
-If you encounter or witness behavior that violates these principles, please reach out privately to the maintainers at `community@mangoteknusa.com`. All inquiries will be handled confidentially and reviewed promptly.
+If you encounter or witness behavior that violates these principles, please reach out privately to the maintainers at `billing@ppti.me`. All inquiries will be handled confidentially and reviewed promptly.

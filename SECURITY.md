@@ -17,7 +17,7 @@ The development team actively maintains and releases security patches for the fo
 The maintainers of **Odoo Financial Suite** take software security seriously. If you identify a security issue, vulnerability, or potential exploit:
 
 1. **Do not create a public issue:** Please refrain from disclosing vulnerabilities in publicly accessible issue trackers or forums.
-2. **Contact the Security Team:** Send an encrypted or direct disclosure email to `security@mangoteknusa.com` (or submit a confidential advisory via GitHub Security Advisories).
+2. **Contact the Security Team:** Send an encrypted or direct disclosure email to `billing@ppti.me` (or submit a confidential advisory via GitHub Security Advisories).
 3. **Information to Include:**
    * A detailed description of the vulnerability.
    * Steps to reproduce the issue (including sample payloads, screenshots, or configuration files).
