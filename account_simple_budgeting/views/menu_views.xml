@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- 1. Dedicated Root App Drawer Menu -->
+    <menuitem id="menu_account_simple_budget_root"
+              name="Visual Budgeting"
+              web_icon="account_simple_budgeting,static/description/icon.png"
+              sequence="39"/>
+
+    <!-- 2. Operational Submenus -->
+    <menuitem id="menu_account_simple_budget_ops"
+              name="Perencanaan Anggaran"
+              parent="menu_account_simple_budget_root"
+              sequence="10"/>
+
+    <menuitem id="menu_account_simple_budget_action"
+              name="Rencana Anggaran Tahunan"
+              parent="menu_account_simple_budget_ops"
+              action="action_account_simple_budget"
+              sequence="10"/>
+
+    <menuitem id="menu_account_simple_budget_config"
+              name="Konfigurasi"
+              parent="menu_account_simple_budget_root"
+              sequence="90"/>
+
+    <menuitem id="menu_account_budget_category_action"
+              name="Kategori Anggaran"
+              parent="menu_account_simple_budget_config"
+              action="action_account_budget_category"
+              sequence="10"/>
+
+    <!-- 3. Invoicing / Accounting Integration Hooks -->
+    <menuitem id="menu_account_budget_invoicing_hook"
+              name="Visual Budgeting"
+              parent="account.menu_finance_entries"
+              action="action_account_simple_budget"
+              sequence="28"/>
+
+    <menuitem id="menu_account_budget_category_config_hook"
+              name="Kategori Anggaran (Budget Categories)"
+              parent="account.menu_finance_configuration"
+              action="action_account_budget_category"
+              sequence="35"/>
+</odoo>

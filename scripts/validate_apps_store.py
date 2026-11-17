@@ -23,6 +23,7 @@ MODULES = [
     "account_project_job_costing",
     "pos_thermal_receipt_designer",
     "l10n_id_bi_currency_rate",
+    "account_simple_budgeting",
 ]
 
 def validate_suite():

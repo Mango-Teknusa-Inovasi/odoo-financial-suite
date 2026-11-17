@@ -117,6 +117,11 @@ Each module in the MangoTek Financial Suite possesses a distinct, cohesive 50x50
 * **Palette:** Emerald Green (`#10B981`), Midnight Slate (`#0F172A`), Golden Sand (`#FBB945`), Royal Azure (`#088BF5`).
 * **Source:** `l10n_id_bi_currency_rate/static/description/icon.png`
 
+### 12. `account_simple_budgeting` (Simple Visual Budgeting)
+* **Concept:** Target budget allocation gauge flanked by 12-month calendar milestones, real-time GL expense realization burn bars, and traffic-light indicator dials.
+* **Palette:** Odoo Plum / Indigo (`#985184`), Midnight Slate (`#0F172A`), Emerald Mint (`#1AD3BB`), Sunflower Amber (`#F59E0B`), Coral Red (`#EF4444`).
+* **Source:** `account_simple_budgeting/static/description/icon.png`
+
 ---
 
 ## 5. Typography Standards

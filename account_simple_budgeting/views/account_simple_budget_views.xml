@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- List View -->
+    <record id="view_account_simple_budget_list" model="ir.ui.view">
+        <field name="name">account.simple.budget.list</field>
+        <field name="model">account.simple.budget</field>
+        <field name="arch" type="xml">
+            <list decoration-success="state == 'confirmed' and overall_health_status == 'healthy'"
+                  decoration-warning="state == 'confirmed' and overall_health_status == 'warning'"
+                  decoration-danger="state == 'confirmed' and overall_health_status == 'critical'"
+                  decoration-muted="state == 'closed'">
+                <field name="name"/>
+                <field name="fiscal_year"/>
+                <field name="total_budget_expense"/>
+                <field name="total_realized_expense"/>
+                <field name="expense_burn_rate" widget="progressbar"/>
+                <field name="total_budget_revenue"/>
+                <field name="total_realized_revenue"/>
+                <field name="revenue_achievement_rate" widget="progressbar"/>
+                <field name="overall_health_status" widget="badge"/>
+                <field name="state" widget="badge"/>
+                <field name="company_id" groups="base.group_multi_company"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_account_simple_budget_form" model="ir.ui.view">
+        <field name="name">account.simple.budget.form</field>
+        <field name="model">account.simple.budget</field>
+        <field name="arch" type="xml">
+            <form string="Rencana Anggaran Keuangan">
+                <header>
+                    <button name="action_confirm" string="Aktifkan Anggaran" type="object" class="btn-primary" invisible="state != 'draft'"/>
+                    <button name="action_recompute_realization" string="Hitung Ulang Realisasi" type="object" class="btn-secondary" invisible="state != 'confirmed'" icon="fa-refresh"/>
+                    <button name="action_print_budget_report" string="Cetak Laporan (PDF)" type="object" class="btn-secondary" icon="fa-print"/>
+                    <button name="action_export_excel" string="Ekspor Excel (.xlsx)" type="object" class="btn-secondary" icon="fa-file-excel-o"/>
+                    <button name="action_close" string="Tutup Anggaran" type="object" class="btn-secondary" invisible="state != 'confirmed'"/>
+                    <button name="action_reset_draft" string="Kembalikan ke Draf" type="object" class="btn-secondary" invisible="state == 'draft'"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,confirmed,closed"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <span class="text-muted font-weight-bold">Tahun Fiskal <field name="fiscal_year" class="oe_inline"/></span>
+                        <h1><field name="name" placeholder="Judul Rencana Anggaran..."/></h1>
+                    </div>
+
+                    <!-- Executive KPI Stat Cards -->
+                    <div class="row g-3 mb-3">
+                        <div class="col-md-4">
+                            <div class="card p-3 shadow-sm bg-light border-start border-4 border-danger rounded-3">
+                                <span class="text-muted small fw-bold text-uppercase">Plafon Beban Pengeluaran</span>
+                                <h3 class="mb-1 text-danger font-weight-bold"><field name="total_budget_expense"/></h3>
+                                <div class="d-flex justify-content-between text-muted small">
+                                    <span>Realisasi: <field name="total_realized_expense"/></span>
+                                    <span>Burn: <field name="expense_burn_rate"/>%</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card p-3 shadow-sm bg-light border-start border-4 border-success rounded-3">
+                                <span class="text-muted small fw-bold text-uppercase">Target Omset Pendapatan</span>
+                                <h3 class="mb-1 text-success font-weight-bold"><field name="total_budget_revenue"/></h3>
+                                <div class="d-flex justify-content-between text-muted small">
+                                    <span>Realisasi: <field name="total_realized_revenue"/></span>
+                                    <span>Capaian: <field name="revenue_achievement_rate"/>%</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card p-3 shadow-sm bg-light border-start border-4 border-primary rounded-3 text-center">
+                                <span class="text-muted small fw-bold text-uppercase">Status Kesehatan Anggaran</span>
+                                <h4 class="mt-2 font-weight-bold">
+                                    <field name="overall_health_status" widget="badge"/>
+                                </h4>
+                            </div>
+                        </div>
+                    </div>
+
+                    <group>
+                        <group string="Periode Anggaran">
+                            <field name="date_from"/>
+                            <field name="date_to"/>
+                        </group>
+                        <group string="Perusahaan &amp; Valuta">
+                            <field name="company_id" groups="base.group_multi_company"/>
+                            <field name="currency_id" invisible="1"/>
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <!-- TAB 1: 12-Month Distribution Grid -->
+                        <page name="tab_distribution" string="Distribusi Plafon &amp; Realisasi 12 Bulan">
+                            <field name="line_ids">
+                                <list editable="bottom"
+                                      decoration-danger="status == 'critical' and budget_type == 'expense'"
+                                      decoration-warning="status == 'warning'"
+                                      decoration-success="status == 'healthy'">
+                                    <field name="category_id"/>
+                                    <field name="budget_type" widget="badge"/>
+                                    <field name="annual_target"/>
+                                    <field name="m1_target" optional="show"/>
+                                    <field name="m1_realized" optional="show"/>
+                                    <field name="m2_target" optional="show"/>
+                                    <field name="m2_realized" optional="show"/>
+                                    <field name="m3_target" optional="show"/>
+                                    <field name="m3_realized" optional="show"/>
+                                    <field name="m4_target" optional="hide"/>
+                                    <field name="m4_realized" optional="hide"/>
+                                    <field name="m5_target" optional="hide"/>
+                                    <field name="m5_realized" optional="hide"/>
+                                    <field name="m6_target" optional="hide"/>
+                                    <field name="m6_realized" optional="hide"/>
+                                    <field name="m7_target" optional="hide"/>
+                                    <field name="m7_realized" optional="hide"/>
+                                    <field name="m8_target" optional="hide"/>
+                                    <field name="m8_realized" optional="hide"/>
+                                    <field name="m9_target" optional="hide"/>
+                                    <field name="m9_realized" optional="hide"/>
+                                    <field name="m10_target" optional="hide"/>
+                                    <field name="m10_realized" optional="hide"/>
+                                    <field name="m11_target" optional="hide"/>
+                                    <field name="m11_realized" optional="hide"/>
+                                    <field name="m12_target" optional="hide"/>
+                                    <field name="m12_realized" optional="hide"/>
+                                    <field name="ytd_realized"/>
+                                    <field name="variance_amount"/>
+                                    <field name="achievement_pct" widget="progressbar"/>
+                                    <field name="status" widget="badge"/>
+                                </list>
+                            </field>
+                        </page>
+
+                        <!-- TAB 2: Annual Summary Matrix -->
+                        <page name="tab_summary" string="Ringkasan Performa YTD">
+                            <field name="line_ids" readonly="1">
+                                <list>
+                                    <field name="category_id"/>
+                                    <field name="budget_type" widget="badge"/>
+                                    <field name="annual_target"/>
+                                    <field name="ytd_realized"/>
+                                    <field name="variance_amount"/>
+                                    <field name="achievement_pct" widget="progressbar"/>
+                                    <field name="status" widget="badge"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="view_account_simple_budget_search" model="ir.ui.view">
+        <field name="name">account.simple.budget.search</field>
+        <field name="model">account.simple.budget</field>
+        <field name="arch" type="xml">
+            <search string="Cari Rencana Anggaran">
+                <field name="name"/>
+                <field name="fiscal_year"/>
+                <filter string="Draf" name="filter_draft" domain="[('state', '=', 'draft')]"/>
+                <filter string="Aktif Berjalan" name="filter_confirmed" domain="[('state', '=', 'confirmed')]"/>
+                <filter string="Ditutup" name="filter_closed" domain="[('state', '=', 'closed')]"/>
+                <group expand="0" string="Kelompokkan Berdasarkan">
+                    <filter string="Tahun Fiskal" name="group_fiscal_year" context="{'group_by': 'fiscal_year'}"/>
+                    <filter string="Status" name="group_state" context="{'group_by': 'state'}"/>
+                    <filter string="Perusahaan" name="group_company" context="{'group_by': 'company_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_account_simple_budget" model="ir.actions.act_window">
+        <field name="name">Rencana Anggaran Keuangan</field>
+        <field name="res_model">account.simple.budget</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_account_simple_budget_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Buat rencana anggaran tahunan pertama untuk memantau plafon beban dan target omset usaha Anda.
+            </p>
+        </field>
+    </record>
+</odoo>
