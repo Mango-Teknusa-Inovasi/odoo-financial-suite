@@ -115,6 +115,14 @@ MODULE_SPECIFICATIONS = [
         "accent": (16, 185, 129), # Emerald Green (#10B981)
         "highlight": "🏛️ BI JISDOR & KMK Tax Rates",
     },
+    {
+        "dir": "account_simple_budgeting",
+        "icon": "account_simple_budgeting_512.png",
+        "title": "Simple Visual Budgeting",
+        "subtitle": "12-Month Target Distribution · Real-Time GL Actuals · Traffic-Light Scorecard",
+        "accent": (152, 81, 132), # Odoo Plum / Indigo (#985184)
+        "highlight": "📊 Visual Budgeting & Targets",
+    },
 ]
 
 def get_font(font_name, size):

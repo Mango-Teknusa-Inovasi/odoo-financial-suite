@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Report Action -->
+    <record id="action_report_budget_realization" model="ir.actions.report">
+        <field name="name">Laporan Realisasi Anggaran Keuangan (PDF)</field>
+        <field name="model">account.simple.budget</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">account_simple_budgeting.report_budget_realization_document</field>
+        <field name="report_file">account_simple_budgeting.report_budget_realization_document</field>
+        <field name="print_report_name">'BudgetRealization_' + (object.name or 'DOC').replace(' ', '_')</field>
+        <field name="binding_model_id" ref="model_account_simple_budget"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <!-- QWeb Document Template -->
+    <template id="report_budget_realization_document">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.external_layout">
+                    <div class="page" style="font-family: 'Segoe UI', Arial, sans-serif; font-size: 11px; color: #1E293B;">
+                        <!-- Report Header -->
+                        <div class="row pb-3 mb-3 border-bottom">
+                            <div class="col-8">
+                                <h3 class="font-weight-bold mb-1" style="color: #0F172A;">LAPORAN REALISASI ANGGARAN KEUANGAN</h3>
+                                <p class="text-muted mb-0 small">Visual Budgeting &amp; GL Expense Target Realization Scorecard</p>
+                            </div>
+                            <div class="col-4 text-end">
+                                <span class="badge badge-secondary p-2 font-weight-bold" style="font-size: 12px;">
+                                    Tahun Fiskal <t t-esc="doc.fiscal_year"/>
+                                </span>
+                                <div class="mt-1 small text-muted">
+                                    Status: <strong><t t-esc="dict(doc._fields['state'].selection).get(doc.state)"/></strong>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Budget Metadata Grid -->
+                        <div class="row mb-3">
+                            <div class="col-6">
+                                <table class="table table-sm table-borderless mb-0">
+                                    <tr>
+                                        <td class="text-muted" style="width: 35%;">Judul Rencana:</td>
+                                        <td class="font-weight-bold"><t t-esc="doc.name"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-muted">Perusahaan:</td>
+                                        <td><strong><t t-esc="doc.company_id.name"/></strong></td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="col-6">
+                                <table class="table table-sm table-borderless mb-0">
+                                    <tr>
+                                        <td class="text-muted" style="width: 40%;">Periode Anggaran:</td>
+                                        <td><t t-esc="doc.date_from"/> s/d <t t-esc="doc.date_to"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-muted">Status Kesehatan:</td>
+                                        <td>
+                                            <strong><t t-esc="dict(doc._fields['overall_health_status'].selection).get(doc.overall_health_status)"/></strong>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Executive KPI Stat Boxes -->
+                        <div class="row mb-4">
+                            <div class="col-6">
+                                <div class="card p-2 border border-danger rounded">
+                                    <div class="font-weight-bold text-danger mb-1" style="font-size: 11px;">PLAFON BEBAN OPERASIONAL (EXPENSE CEILING)</div>
+                                    <table class="table table-sm table-borderless mb-0">
+                                        <tr>
+                                            <td>Total Plafon Anggaran:</td>
+                                            <td class="text-end font-weight-bold">
+                                                <t t-esc="doc.currency_id.symbol"/> <t t-esc="'{:,.2f}'.format(doc.total_budget_expense)"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Total Realisasi YTD:</td>
+                                            <td class="text-end font-weight-bold text-danger">
+                                                <t t-esc="doc.currency_id.symbol"/> <t t-esc="'{:,.2f}'.format(doc.total_realized_expense)"/>
+                                            </td>
+                                        </tr>
+                                        <tr class="border-top">
+                                            <td class="font-weight-bold">Tingkat Penyerapan (Burn Rate):</td>
+                                            <td class="text-end font-weight-bold">
+                                                <t t-esc="doc.expense_burn_rate"/>%
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="card p-2 border border-success rounded">
+                                    <div class="font-weight-bold text-success mb-1" style="font-size: 11px;">TARGET OMSET PENDAPATAN (REVENUE TARGET)</div>
+                                    <table class="table table-sm table-borderless mb-0">
+                                        <tr>
+                                            <td>Total Target Omset:</td>
+                                            <td class="text-end font-weight-bold">
+                                                <t t-esc="doc.currency_id.symbol"/> <t t-esc="'{:,.2f}'.format(doc.total_budget_revenue)"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Total Realisasi YTD:</td>
+                                            <td class="text-end font-weight-bold text-success">
+                                                <t t-esc="doc.currency_id.symbol"/> <t t-esc="'{:,.2f}'.format(doc.total_realized_revenue)"/>
+                                            </td>
+                                        </tr>
+                                        <tr class="border-top">
+                                            <td class="font-weight-bold">Tingkat Capaian Omset:</td>
+                                            <td class="text-end font-weight-bold">
+                                                <t t-esc="doc.revenue_achievement_rate"/>%
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Realization Performance Table -->
+                        <h5 class="font-weight-bold mb-2 pb-1 border-bottom" style="color: #1E293B;">Rincian Kategori &amp; Realisasi Tahunan (YTD)</h5>
+                        <table class="table table-sm table-striped mb-4" style="font-size: 10px;">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>Kode</th>
+                                    <th>Kategori Anggaran</th>
+                                    <th>Tipe</th>
+                                    <th class="text-end">Plafon Tahunan</th>
+                                    <th class="text-end">Realisasi YTD</th>
+                                    <th class="text-end">Sisa Plafon / Selisih</th>
+                                    <th class="text-end">Progress (%)</th>
+                                    <th class="text-center">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr t-foreach="doc.line_ids" t-as="l">
+                                    <td><t t-esc="l.category_id.code or '-'"/></td>
+                                    <td class="font-weight-bold"><t t-esc="l.category_id.name"/></td>
+                                    <td>
+                                        <t t-if="l.budget_type == 'expense'"><span class="badge bg-danger">Beban</span></t>
+                                        <t t-else=""><span class="badge bg-success">Omset</span></t>
+                                    </td>
+                                    <td class="text-end"><t t-esc="'{:,.2f}'.format(l.annual_target)"/></td>
+                                    <td class="text-end"><t t-esc="'{:,.2f}'.format(l.ytd_realized)"/></td>
+                                    <td class="text-end"><t t-esc="'{:,.2f}'.format(l.variance_amount)"/></td>
+                                    <td class="text-end"><t t-esc="l.achievement_pct"/>%</td>
+                                    <td class="text-center">
+                                        <t t-esc="dict(l._fields['status'].selection).get(l.status)"/>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <!-- 12-Month Realization Breakdown Matrix -->
+                        <h5 class="font-weight-bold mb-2 pb-1 border-bottom" style="color: #1E293B;">Matriks Realisasi Bulanan Buku Besar (Jan - Des)</h5>
+                        <table class="table table-sm table-bordered mb-4" style="font-size: 9px;">
+                            <thead class="table-secondary">
+                                <tr>
+                                    <th>Kategori</th>
+                                    <th class="text-end">Jan</th>
+                                    <th class="text-end">Feb</th>
+                                    <th class="text-end">Mar</th>
+                                    <th class="text-end">Apr</th>
+                                    <th class="text-end">Mei</th>
+                                    <th class="text-end">Jun</th>
+                                    <th class="text-end">Jul</th>
+                                    <th class="text-end">Agu</th>
+                                    <th class="text-end">Sep</th>
+                                    <th class="text-end">Okt</th>
+                                    <th class="text-end">Nov</th>
+                                    <th class="text-end">Des</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr t-foreach="doc.line_ids" t-as="l">
+                                    <td class="font-weight-bold"><t t-esc="l.category_id.name"/></td>
+                                    <td class="text-end"><t t-esc="'{:,.0f}'.format(l.m1_realized)"/></td>
+                                    <td class="text-end"><t t-esc="'{:,.0f}'.format(l.m2_realized)"/></td>
+                                    <td class="text-end"><t t-esc="'{:,.0f}'.format(l.m3_realized)"/></td>
+                                    <td class="text-end"><t t-esc="'{:,.0f}'.format(l.m4_realized)"/></td>
+                                    <td class="text-end"><t t-esc="'{:,.0f}'.format(l.m5_realized)"/></td>
+                                    <td class="text-end"><t t-esc="'{:,.0f}'.format(l.m6_realized)"/></td>
+                                    <td class="text-end"><t t-esc="'{:,.0f}'.format(l.m7_realized)"/></td>
+                                    <td class="text-end"><t t-esc="'{:,.0f}'.format(l.m8_realized)"/></td>
+                                    <td class="text-end"><t t-esc="'{:,.0f}'.format(l.m9_realized)"/></td>
+                                    <td class="text-end"><t t-esc="'{:,.0f}'.format(l.m10_realized)"/></td>
+                                    <td class="text-end"><t t-esc="'{:,.0f}'.format(l.m11_realized)"/></td>
+                                    <td class="text-end"><t t-esc="'{:,.0f}'.format(l.m12_realized)"/></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <!-- Report Signature Footer -->
+                        <div class="row mt-5 pt-3">
+                            <div class="col-4 text-center">
+                                <p class="mb-4">Disusun Oleh,</p>
+                                <div style="height: 50px;"></div>
+                                <p class="border-top pt-1 font-weight-bold">Staff Keuangan / Accounting</p>
+                            </div>
+                            <div class="col-4 text-center"></div>
+                            <div class="col-4 text-center">
+                                <p class="mb-4">Disetujui Oleh,</p>
+                                <div style="height: 50px;"></div>
+                                <p class="border-top pt-1 font-weight-bold">Direktur / Finance Head</p>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

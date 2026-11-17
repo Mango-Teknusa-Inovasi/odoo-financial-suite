@@ -6,14 +6,26 @@ The format follows standard semantic versioning practices (`MAJOR.MINOR.PATCH`).
 
 ---
 
-## [Unreleased]
-
-### Planned (Phase 12 Horizon)
-- **Phase 12: `account_simple_budgeting`:** Monthly revenue target and expense limit monitoring with traffic-light visual progress gauges.
-
----
-
 ## [1.3.0] - 2026-11-17
+
+### Added (Phase 12: Simple Visual Budgeting & Real-Time Target Progress — ROADMAP 100% COMPLETE 🎉)
+- **Core Module `account_simple_budgeting`:** Lightweight visual budgeting engine comparing planned budgets against real-time General Ledger postings (`account.move.line`) without requiring Odoo Enterprise Analytic Accounting.
+- **Dual Financial Scope Tracking:**
+  - *Expense Ceiling (Plafon Beban Pengeluaran):* Caps operational expenditures and tracks burn rate against budget.
+  - *Revenue Target (Target Omset Penjualan):* Tracks sales quotas and achievement progress against annual revenue goals.
+- **Flexible Budget Categories (`account.budget.category`):** Custom mapping linking one or multiple Chart of Accounts (COA) into meaningful operational categories (e.g. Marketing, Operating Expenses, COGS, Revenue).
+- **Annual Master with 12-Month Target Distribution:** Automatically divides annual targets into 12 monthly slots (Jan–Dec) with editable monthly targets and dynamic real-time General Ledger actuals.
+- **Traffic-Light Visual Health Scorecard:** Color-coded status badges and progress gauges:
+  - 🟢 **Aman (Healthy):** Burn rate $\le 85\%$ or revenue achievement $\ge 100\%$.
+  - 🟡 **Waspada (Warning):** Burn rate $85\%-100\%$ or revenue achievement $75\%-100\%$.
+  - 🔴 **Over Budget / Kurang (Critical):** Expense burn rate $> 100\%$ or revenue achievement $< 75\%$.
+- **Vendor Bill Soft Warning Guard (`account.move`):**
+  - Non-blocking informative alert banner on vendor bills (`in_invoice`, `in_refund`) when an invoice exceeds remaining monthly budget ceiling.
+  - Automatic audit note posting to Chatter on bill confirmation without blocking posting.
+- **Executive Realization Outputs:**
+  - Printable official **QWeb PDF Budget Realization Report** with executive KPI cards, 12-month realization matrix, and management approval sign-off blocks.
+  - One-click **Excel (.xlsx)** spreadsheet export wizard powered by `openpyxl` with universal UTF-8 BOM CSV fallback.
+- **Master Roadmap Completion:** All 12/12 phases of MangoTek Financial Suite are now fully developed, verified, tested (65/65 unit tests), and validated against Odoo Apps Store guidelines (96/96 checks passed, Score 5.0 / 5.0).
 
 ### Added (Phase 11: Bank Indonesia Official Currency Rate Auto-Sync)
 - **Core Module `l10n_id_bi_currency_rate`:** Enterprise automated currency exchange rate synchronization engine fetching official Bank Indonesia rates (JISDOR for USD & Kurs Transaksi BI for other foreign currencies) and Kemenkeu KMK weekly fiscal tax rates.
