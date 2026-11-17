@@ -48,12 +48,7 @@ Standard ERP systems introduce significant administrative overhead when applied 
 | <img src="assets/icons/account_project_job_costing_100.png" width="48" height="48" alt="Project Costing Icon"/> | [`account_project_job_costing`](account_project_job_costing) | **Project Job Costing** | • Agile project job costing without complex Analytic Accounting overhead<br>• Dual-metric real-time P&L: Accrual Profit vs Real Cashflow Liquidity Position<br>• Multi-category budget plafon (Material, Labor, Overhead), Indonesian WHT sensitivity (PPh 23 & PP 9/2021), and audit closure guard |
 | <img src="assets/icons/pos_thermal_receipt_designer_100.png" width="48" height="48" alt="POS Thermal Icon"/> | [`pos_thermal_receipt_designer`](pos_thermal_receipt_designer) | **POS Thermal Receipt** | • Dual-engine ESC/POS & QWeb continuous roll receipt designer for 58 mm and 80 mm printers<br>• Adaptive dual-line item formatting preventing truncation of Indonesian dish/product names<br>• 1-bit Floyd-Steinberg monochrome dithering for logos, dynamic QRIS integration, and live form preview |
 | <img src="assets/icons/l10n_id_bi_currency_rate_100.png" width="48" height="48" alt="BI Rate Icon"/> | [`l10n_id_bi_currency_rate`](l10n_id_bi_currency_rate) | **BI Currency Rate Sync** | • Daily foreign exchange rate auto-sync from official Bank Indonesia (JISDOR for USD & Kurs Tengah BI)<br>• Kemenkeu KMK weekly fiscal tax rates for statutory PPN 12% and e-Faktur compliance<br>• 3-tier multi-provider fallback cascade + Last Business Day carry-forward protection for weekends/holidays |
-
-### 🚀 Upcoming Module on the Roadmap (Phase 12)
-
-| Module Icon | Module Candidate | Focus Area | Planned Capabilities |
-|:---:|:---|:---|:---|
-| <img src="assets/icons/account_simple_budgeting_100.png" width="48" height="48" alt="Budgeting Icon"/> | `account_simple_budgeting` | **Visual Budgeting & Targets** | Monthly revenue target and expense limit monitoring with traffic-light visual progress gauges. |
+| <img src="assets/icons/account_simple_budgeting_100.png" width="48" height="48" alt="Budgeting Icon"/> | [`account_simple_budgeting`](account_simple_budgeting) | **Simple Visual Budgeting** | • Lightweight visual budgeting engine comparing planned monthly budgets against real-time General Ledger actuals<br>• Dual tracking: Plafon Pengeluaran (Expense Ceiling) & Target Omset Penjualan (Revenue Target)<br>• Traffic-light visual health scorecards (🟢 Aman, 🟡 Waspada, 🔴 Over Budget), vendor bill soft warnings, and QWeb PDF / Excel export |
 
 ---
 

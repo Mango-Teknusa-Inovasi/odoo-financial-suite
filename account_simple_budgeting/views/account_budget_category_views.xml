@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- List View -->
+    <record id="view_account_budget_category_list" model="ir.ui.view">
+        <field name="name">account.budget.category.list</field>
+        <field name="model">account.budget.category</field>
+        <field name="arch" type="xml">
+            <list decoration-danger="budget_type == 'expense'" decoration-success="budget_type == 'revenue'">
+                <field name="code"/>
+                <field name="name"/>
+                <field name="budget_type" widget="badge"/>
+                <field name="account_ids" widget="many2many_tags"/>
+                <field name="company_id" groups="base.group_multi_company"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_account_budget_category_form" model="ir.ui.view">
+        <field name="name">account.budget.category.form</field>
+        <field name="model">account.budget.category</field>
+        <field name="arch" type="xml">
+            <form string="Kategori Anggaran">
+                <sheet>
+                    <div class="oe_title">
+                        <span class="text-muted font-weight-bold"><field name="code"/></span>
+                        <h1><field name="name" placeholder="Nama Kategori (misal: Biaya Pemasaran &amp; Iklan)..."/></h1>
+                    </div>
+                    <group>
+                        <group string="Klasifikasi">
+                            <field name="budget_type" widget="radio"/>
+                            <field name="color" widget="color_picker"/>
+                        </group>
+                        <group string="Perusahaan">
+                            <field name="company_id" groups="base.group_multi_company"/>
+                            <field name="active" invisible="1"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page name="tab_accounts" string="Akun Buku Besar (COA) Terkait">
+                            <field name="account_ids">
+                                <list>
+                                    <field name="code"/>
+                                    <field name="name"/>
+                                    <field name="account_type"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="view_account_budget_category_search" model="ir.ui.view">
+        <field name="name">account.budget.category.search</field>
+        <field name="model">account.budget.category</field>
+        <field name="arch" type="xml">
+            <search string="Cari Kategori Anggaran">
+                <field name="name"/>
+                <field name="code"/>
+                <filter string="Plafon Beban" name="filter_expense" domain="[('budget_type', '=', 'expense')]"/>
+                <filter string="Target Omset" name="filter_revenue" domain="[('budget_type', '=', 'revenue')]"/>
+                <group expand="0" string="Kelompokkan Berdasarkan">
+                    <filter string="Tipe Anggaran" name="group_budget_type" context="{'group_by': 'budget_type'}"/>
+                    <filter string="Perusahaan" name="group_company" context="{'group_by': 'company_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_account_budget_category" model="ir.actions.act_window">
+        <field name="name">Kategori Anggaran</field>
+        <field name="res_model">account.budget.category</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_account_budget_category_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Buat kategori anggaran pertama Anda untuk memetakan akun buku besar (COA).
+            </p>
+        </field>
+    </record>
+</odoo>

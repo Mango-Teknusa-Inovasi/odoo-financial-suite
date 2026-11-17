@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_account_budget_excel_export_wizard_form" model="ir.ui.view">
+        <field name="name">account.budget.excel.export.wizard.form</field>
+        <field name="model">account.budget.excel.export.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Ekspor Realisasi Anggaran">
+                <sheet>
+                    <p class="text-muted">
+                        Pilih format lembar kerja untuk mengekspor matriks realisasi anggaran 12 bulan beserta persentase capaian dan sisa plafon.
+                    </p>
+                    <group>
+                        <field name="budget_id" readonly="1" options="{'no_open': True}"/>
+                        <field name="export_format" widget="radio"/>
+                    </group>
+                    <group invisible="not file_data">
+                        <field name="file_name" invisible="1"/>
+                        <field name="file_data" filename="file_name" widget="binary"/>
+                    </group>
+                </sheet>
+                <footer>
+                    <button name="action_generate_export" string="Generate File Unduhan" type="object" class="btn-primary" invisible="file_data"/>
+                    <button string="Tutup" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_account_budget_excel_export_wizard" model="ir.actions.act_window">
+        <field name="name">Ekspor Realisasi Anggaran</field>
+        <field name="res_model">account.budget.excel.export.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

@@ -1,0 +1,8 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_account_budget_category_user,account.budget.category.user,model_account_budget_category,account.group_account_invoice,1,1,1,0
+access_account_budget_category_manager,account.budget.category.manager,model_account_budget_category,account.group_account_manager,1,1,1,1
+access_account_simple_budget_user,account.simple.budget.user,model_account_simple_budget,account.group_account_invoice,1,1,1,0
+access_account_simple_budget_manager,account.simple.budget.manager,model_account_simple_budget,account.group_account_manager,1,1,1,1
+access_account_simple_budget_line_user,account.simple.budget.line.user,model_account_simple_budget_line,account.group_account_invoice,1,1,1,0
+access_account_simple_budget_line_manager,account.simple.budget.line.manager,model_account_simple_budget_line,account.group_account_manager,1,1,1,1
+access_account_budget_excel_export_wizard_user,account.budget.excel.export.wizard.user,model_account_budget_excel_export_wizard,account.group_account_invoice,1,1,1,1

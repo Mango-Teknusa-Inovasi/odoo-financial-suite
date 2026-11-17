@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_move_form_inherit_simple_budgeting" model="ir.ui.view">
+        <field name="name">account.move.form.inherit.simple.budgeting</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet" position="before">
+                <field name="has_budget_warning" invisible="1"/>
+                <div class="alert alert-warning mb-0" role="alert" invisible="not has_budget_warning">
+                    <div class="d-flex align-items-center">
+                        <i class="fa fa-exclamation-triangle fa-2x me-3 text-warning"/>
+                        <div>
+                            <strong>Peringatan Plafon Anggaran (Budget Warning):</strong><br/>
+                            <field name="budget_warning_message" readonly="1" class="text-dark"/>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>
